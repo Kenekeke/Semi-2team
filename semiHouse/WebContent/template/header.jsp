@@ -8,12 +8,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/common.css" type="text/css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main_style.css" type="text/css">
-    <style>
+    <style> 
         /*   **자리 테스트**  전부 다 만들고 없애기   */
         main, header, nav, section,
         aside, article, footer, div {
             border: 1px dotted lightgray
-        } 
+        }  
         /*section 영역*/
         section {
             margin: 0;
