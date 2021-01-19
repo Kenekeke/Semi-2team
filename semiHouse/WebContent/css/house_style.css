@@ -1,0 +1,127 @@
+ .outbox {
+            height: 80px;
+        }
+
+        .outbox div {
+            height: inherit;
+            display: inline-block;
+            position: fixed;
+            top: 0;
+        }
+
+        .menu-bar {
+            left: 230px;
+        }
+
+        .empty {
+            right: 800px;
+        }
+
+        .login-btn {
+            right: 260px;
+        }
+
+        .ad {
+            right: 40px;
+        }
+
+        /*전체 메뉴*/
+        .menu,
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 1차 메뉴 항목 */
+        .menu-bar {
+            position: relative;
+            /*relative로 내부의 absolute를 가둔다*/
+            bottom: 38px;
+        }
+
+        .menu>li {
+            display: inline-block;
+            padding: 1rem;
+            height: 80px;
+            width: 120px;
+        }
+
+        .menu>li>a {
+            position: relative;
+            top: 8px;
+            left: 24px;
+        }
+
+        /* 2차 이상 메뉴 */
+        .menu ul {
+            background: white;
+            display: none;
+            z-index: 1000;
+            position: absolute;
+            width: 8rem;
+            top: 80px;
+            left: 20px;
+            border: 1px solid gray;
+        }
+
+        .menu-regist ul {
+            left: 280px;
+        }
+
+        .menu ul>li {
+            padding: 0.4rem;
+        }
+
+        .menu ul>li>a:hover {
+            color: red;
+        }
+
+        /*전체 메뉴에 마우스가 올라간 경우의 하위 메뉴*/
+        .menu li:hover>ul {
+            display: block;
+        }
+
+        /*메뉴에 있는 링크 전체*/
+        .menu a {
+            text-decoration: none;
+            color: black;
+        }
+
+        /*로그인 버튼 및 ad*/
+        .login-btn {
+            position: relative;
+            bottom: 50px;
+        }
+
+        .ad {
+            position: relative;
+            bottom: 10px;
+        }
+
+        .login-btn input {
+            position: relative;
+            top: 18px;
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            border: 1px solid lightgray;
+            font-size: 12px;
+        }
+
+        /*세컨드 메뉴바 영역*/
+        .second-menubar {
+            height: 55px;
+            border-bottom: 1px solid lightgray;
+        }
+
+        .second-menubar li {
+            list-style: none;
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        .second-menubar a {
+            text-decoration: none;
+            color: black;
+        }
