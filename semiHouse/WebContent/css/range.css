@@ -1,0 +1,260 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    width:100%;
+    height:100%;
+}
+* {
+    box-sizing: border-box;
+}
+main{
+    width: 100%;
+    height:100%;
+}
+header{
+    height:80px;
+    padding-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+.header-a{
+    margin: 0 1rem;
+}
+nav{
+    height:50px;
+    padding-left: 3rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #bdc3c7;
+}
+.menu-filter{
+    width:100px;
+    height: 80%;
+    margin:0 1rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-family: "빙그레체";
+    cursor: pointer;
+}
+.menu-choice{
+    font-weight: bold;
+    border-bottom: 3px solid black;
+}
+section{
+    height: calc(100% - 130px);
+    display:flex;
+}
+article{
+    width: calc(100% - 400px);
+    height:100%;
+    background-color: beige;
+    /* float: left; */
+}
+
+/* 필터링 */
+aside{
+    width:400px;
+    height:calc(100vh - 130px);
+    /* display:inline-block; */
+    border-left:1px solid #bdc3c7;
+}
+
+.fb{
+    height:40px;
+    padding:0.3rem;
+    text-align: right;
+}
+#filter-btn{
+    width:60px;
+    height:100%;
+    margin-right: 20px;
+    border-radius: 0.5rem;
+    border:1px solid gray;
+    outline:none;
+    cursor: pointer;
+}
+.filter-open{
+    background-image: url("/temp/image/filterbtn.png");
+    background-repeat: no-repeat;
+    background-position-x: -4px;
+    background-position-y: -10px;
+    background-size: 70px;
+}
+.filter-close{
+    background-image: url("/temp/image/close.png");
+    background-repeat: no-repeat;
+    background-position-x: -4px;
+    background-position-y: -10px;
+    background-size: 70px;
+}
+.list{
+	height: calc(100vh - 170px);
+    overflow:auto;
+    z-index: 99;
+}
+.mOrc{
+    height:60px;
+    margin:0 0.5rem;
+    padding-top:0.6rem;
+    text-align: center;
+    border-top: 3px solid #ecf0f1;
+    border-bottom: 3px solid #ecf0f1;
+}
+#monthly, #charter{
+    width:6rem;
+    height:2rem;
+    border-radius: 1rem;
+    border:none;
+    /* background-color: #bdc3c7; */
+    font-size: 20px;
+    outline: none;
+    cursor: pointer;
+}
+.detailFilter{
+    height: calc(100vh - 290px);
+    overflow:auto;
+}
+#charter-range, #deposit-range, #monthly-range{
+    height: 130px;
+    border-bottom: 3px solid #ecf0f1;
+}
+.priceTitle{
+    padding:0.5rem 0;
+}
+.price-show{
+    color:darkgoldenrod;
+    font-size: 20px;
+}
+.floor{
+    border-bottom: 3px solid #ecf0f1;
+}
+#floor1, #floor2, #floor3,
+#parking, #elevator, #animal, #loan{
+    width:100px;
+    height:35px;
+    font-size: 15px;
+    border-radius: 1rem;
+    border:none;
+    outline: none;
+    margin: 0.5rem 0;
+    cursor: pointer;
+}
+
+/* 맨 아래 */
+.applySpace{
+    height:60px;
+}
+.apply-reset{
+    width:400px;
+    height:60px;
+    position:fixed;
+    bottom:0;
+    right:0;
+}
+.reset, .apply{
+    float:left;
+    /* border: 1px solid black; */
+    width:50%;
+    height:100%;
+    padding:0.5rem 3rem ;
+}
+.reset{
+    background-color: cornsilk;
+}
+.apply{
+    background-color: darkgoldenrod;
+}
+#reset-btn, #apply-btn{
+    width:100%;
+    height:100%;
+    border-radius: 1rem;
+    background-color: transparent;
+    border:none;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "빙그레체";
+    outline:none;
+    cursor: pointer;
+}
+#reset-btn{
+    color:black;
+}
+#apply-btn{
+    color: white;
+}
+.margin-t{
+    margin: 0.5rem;
+}
+.choice{
+    background-color: #bdc3c7;
+}
+.box{
+    width :100%;
+    height:80px;
+    margin:0.5rem 0;
+}
+.slider{
+    width:100%;
+    height:100%;
+    padding: 1.5rem 2rem;
+    display : flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+input[type=range]{
+    width: calc(100% - 2rem);
+    position:absolute;
+    top: 0.8rem;
+    left:1rem;
+    /* border: 1px solid black; */
+    pointer-events: none;
+    z-index : 10;
+    opacity : 0;
+    appearance : none;
+}
+input[type=range]::-webkit-slider-thumb{
+    pointer-events: all;
+    /* background-color: red; */
+    width:2rem;
+    height:1.5rem;
+    appearance: none;
+}
+.track{
+    position: relative;
+    width: 100%;
+    height:0.4rem;
+    /* margin-top:5rem; */
+    background-color: #ecf0f1;
+    border-radius: 0.5rem;
+}
+.range{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    border-radius: 0.5rem;
+    background-color: #bdc3c7;
+}
+.thumb{
+    position:absolute;
+    top:0;
+    width:1.5rem;
+    height:1.5rem;
+    background-color: #bdc3c7;
+    border-radius: 50%;
+    margin-top: -0.55rem;
+}
+.left{
+    left:0;
+    margin-left:-0.5rem;
+}
+.right{
+    right:0;
+    margin-right:-0.5rem;
+}
