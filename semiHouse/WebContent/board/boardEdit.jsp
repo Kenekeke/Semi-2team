@@ -1,6 +1,13 @@
 <%@page import="houseSemi.beans.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%	
+	int board_no=Integer.parseInt(request.getParameter("board_no"));
+	System.out.println(board_no);
+	BoardDao boardDao = new BoardDao(); 
+	BoardDto boardDto = boardDao.find(board_no); 
+	System.out.println(boardDto);
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +20,10 @@
 		$(".cancle_btn").on('click', function(e){
 			e.preventDefault();
 			window.history.back();
-		})
+		});
+		
+		$("#<%=boardDto.getBoard_header()%>").prop("checked", true);
+
 	})
 </script>
 <style>
@@ -60,12 +70,13 @@
 			<h3>부동산 이야기</h3>
 			<hr>
 		</div>
-		<form action="<%=request.getContextPath()%>/board/write" method="post">
-			<label class="board_tit">제목</label><input type="text" name="board_title" class="input">
+		<form action="<%=request.getContextPath()%>/board/edit.do" method="post">
+			<input type="hidden" name="board_no" value="<%=boardDto.getBoard_no()%>">
+			<label class="board_tit">제목</label><input type="text" name="board_title" class="input" value="<%=boardDto.getBoard_title()%>">
 			<label class="board_header">구분</label>
 			
 			<div class="type_radio">
-				<input type="radio" name="board_header" value="interior" id="interior" checked><label for="interior">인테리어</label>
+				<input type="radio" name="board_header" value="interior" id="interior" ><label for="interior">인테리어</label>
 				<input type="radio" name="board_header" value="pre_sale" id="pre_sale"><label for="pre_sale">분양/청약</label>
 				<input type="radio" name="board_header" value="monthly" id="monthly"><label for="monthly">전/월세</label>
 				<input type="radio" name="board_header" value="repair" id="repair"><label for="repair" >인테리어</label>
@@ -74,9 +85,9 @@
 			</div>
 			
 			<div>
-				<textarea class="board_content" name="board_content"></textarea>
+				<textarea class="board_content" name="board_content" ><%=boardDto.getBoard_content()%></textarea>
 			</div>
-			<input type="submit" value="등록" class="board_btn write_btn"><input class="board_btn cancle_btn" type="button" value="취소">
+			<input type="submit" value="수정" class="board_btn write_btn"><input class="board_btn cancle_btn" type="button" value="취소">
 		</form>
 	</div>
 </body>

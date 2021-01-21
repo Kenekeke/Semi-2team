@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../CSS/range.css">
+<link rel="stylesheet" type="text/css" href="../css/range.css">
 <style>
    .list-image{
    		float:left;
@@ -20,7 +20,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript"
     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=clusterer,services"></script>
-<script src="<%=request.getContextPath()%>/semi-project/js/pricechoice.js"></script>
+<script src="<%=request.getContextPath()%>/js/pricechoice.js"></script>
 <%request.setCharacterEncoding("UTF-8");%>
 <script>
     $(function () {
