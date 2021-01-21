@@ -3,17 +3,15 @@
     pageEncoding="UTF-8"%>
 <%	
 	int board_no=Integer.parseInt(request.getParameter("board_no"));
-	System.out.println(board_no);
 	BoardDao boardDao = new BoardDao(); 
-	BoardDto boardDto = boardDao.find(board_no); 
-	System.out.println(boardDto);
+	BoardDto boardDto = boardDao.find(board_no);
 %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../CSS/common.css">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
 	$(function(){
@@ -21,9 +19,6 @@
 			e.preventDefault();
 			window.history.back();
 		});
-		
-		$("#<%=boardDto.getBoard_header()%>").prop("checked", true);
-
 	})
 </script>
 <style>
@@ -67,7 +62,7 @@
 <body>
 	<div class="outbox border center" style="width:800px")>
 		<div class="left">
-			<h3>부동산 이야기</h3>
+			<h3>커뮤니티</h3>
 			<hr>
 		</div>
 		<form action="<%=request.getContextPath()%>/board/edit.do" method="post">
@@ -76,12 +71,10 @@
 			<label class="board_header">구분</label>
 			
 			<div class="type_radio">
-				<input type="radio" name="board_header" value="interior" id="interior" ><label for="interior">인테리어</label>
-				<input type="radio" name="board_header" value="pre_sale" id="pre_sale"><label for="pre_sale">분양/청약</label>
-				<input type="radio" name="board_header" value="monthly" id="monthly"><label for="monthly">전/월세</label>
-				<input type="radio" name="board_header" value="repair" id="repair"><label for="repair" >인테리어</label>
-				<input type="radio" name="board_header" value="rural" id="rural"><label for="rural">전원주택</label>
-				<input type="radio" name="board_header" value="etc" id="etc"><label for="etc">기타</label>
+				<input type="radio" name="board_header" value="인테리어/DIY" id="interior"><label for="interior">인테리어/DIY</label>
+				<input type="radio" name="board_header" value="전/월세 장터" id="market"><label for="market">전/월세 장터</label>
+				<input type="radio" name="board_header" value="집수리/이사" id="repair"><label for="repair">집수리/이사</label>
+				<input type="radio" name="board_header" value="기타" id="etc"><label for="etc">기타</label>
 			</div>
 			
 			<div>

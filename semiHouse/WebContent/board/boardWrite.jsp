@@ -1,6 +1,9 @@
-<%@page import="houseSemi.beans.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	//session.setAttribute("check", 1);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,22 +58,24 @@
 </style>
 </head>
 <body>
-	<div class="outbox border center" style="width:800px")>
+	<div class="outbox border center" style="width:800px">
 		<div class="left">
-			<h3>부동산 이야기</h3>
+			<h3>커뮤니티</h3>
 			<hr>
 		</div>
-		<form action="<%=request.getContextPath()%>/board/write" method="post">
-			<label class="board_tit">제목</label><input type="text" name="board_title" class="input">
+		<form action="boardWrite.do" method="post">
+		<div>
+			<label class="board_title">제목</label><input type="text" name="board_title" class="input">
+		</div>
+		<div>
 			<label class="board_header">구분</label>
+		</div>
 			
 			<div class="type_radio">
-				<input type="radio" name="board_header" value="interior" id="interior" checked><label for="interior">인테리어</label>
-				<input type="radio" name="board_header" value="pre_sale" id="pre_sale"><label for="pre_sale">분양/청약</label>
-				<input type="radio" name="board_header" value="monthly" id="monthly"><label for="monthly">전/월세</label>
-				<input type="radio" name="board_header" value="repair" id="repair"><label for="repair" >인테리어</label>
-				<input type="radio" name="board_header" value="rural" id="rural"><label for="rural">전원주택</label>
-				<input type="radio" name="board_header" value="etc" id="etc"><label for="etc">기타</label>
+				<input type="radio" name="board_header" value="인테리어/DIY" id="interior" checked><label for="interior">인테리어/DIY</label>
+				<input type="radio" name="board_header" value="전/월세 장터" id="market"><label for="market">전/월세 장터</label>
+				<input type="radio" name="board_header" value="집수리/이사" id="repair"><label for="repair">집수리/이사</label>
+				<input type="radio" name="board_header" value="기타" id="etc"><label for="etc" >기타</label>
 			</div>
 			
 			<div>
