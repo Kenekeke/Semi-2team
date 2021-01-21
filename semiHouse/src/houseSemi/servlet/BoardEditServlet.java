@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import houseSemi.beans.*;
+import houseSemi.beans.BoardDao;
+import houseSemi.beans.BoardDto;
 
-@WebServlet(urlPatterns ="/board/write" )
-public class BoardWriteServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/board/edit.do")
+public class BoardEditServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
@@ -20,17 +21,12 @@ public class BoardWriteServlet extends HttpServlet{
 			boardDto.setBoard_header(req.getParameter("board_header"));
 			boardDto.setBoard_title(req.getParameter("board_title"));
 			boardDto.setBoard_content(req.getParameter("board_content"));
+			boardDto.setBoard_no(Integer.parseInt(req.getParameter("board_no")));
+			BoardDao boardDao=new BoardDao();
+			boardDao.update(boardDto);
 			
-			int member_no = (int) req.getSession().getAttribute("세션값을 넣어주새요");
-			boardDto.setMember_no(member_no);
-			
-			BoardDao boardDao = new BoardDao();
-			
-			int board_no = boardDao.getSequence();
-			boardDto.setBoard_no(board_no);		
-			boardDao.writeWithPrimaryKey(boardDto);
-					
-			resp.sendRedirect("어디로 가야하나요");
+			resp.sendRedirect("경로를 넣어주세요!");
+
 		}
 		catch(Exception e) {
 			e.printStackTrace();
