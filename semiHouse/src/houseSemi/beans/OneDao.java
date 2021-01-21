@@ -6,9 +6,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import houseSemi.util.JdbcUtil;
+
 public class OneDao {
+	String USERNAME="house";
+	String PASSWORD="house";
 	public List<OneDto> select() throws Exception{
-		Connection con = JdbcUtil.getConnection("web", "web");
+		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 		String sql = "select * from one";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
@@ -32,7 +36,7 @@ public class OneDao {
 	
 	
 	public List<OneDto> select(OneVO oneVO) throws Exception{
-		Connection con = JdbcUtil.getConnection("web", "web");
+		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 		String floor1,floor2,floor3;
 		if(oneVO.getFloor1().equals("N")&&oneVO.getFloor2().equals("N")&&oneVO.getFloor3().equals("N")) {
 			floor1 = "반지하";
@@ -343,7 +347,7 @@ public class OneDao {
 
 	
 	public OneDto select(int one_no) throws Exception{
-		Connection con = JdbcUtil.getConnection("web", "web");
+		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 		String sql = "select * from one where one_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, one_no);

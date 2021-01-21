@@ -1,13 +1,17 @@
 <%@page import="houseSemi.beans.*"%>
-<%@page import="java.util.List"%>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% //초기 지도의 중심좌표로 사용할 위도, 경도 불어오기
+	double Lat = Double.parseDouble(request.getParameter("Lat"));
+	double Lng = Double.parseDouble(request.getParameter("Lng"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/range.css">
+<link rel="stylesheet" type="text/css" href="../CSS/range.css">
 <style>
    .list-image{
    		float:left;
@@ -15,25 +19,73 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript"
-    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=clusterer,services"></script>
-<script src="<%=request.getContextPath()%>/js/pricechoice.js"></script>
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=clusterer,services"></script>
+<script src="<%=request.getContextPath()%>/semi-project/js/pricechoice.js"></script>
 <%request.setCharacterEncoding("UTF-8");%>
 <script>
     $(function () {
+    	//검색어를 받아서 추천 검색목록을 출력합니다.
+    	var searchTemplate = $("#search_template").html();
+    	$(".search").on('input', function(){
+        	var searchKeyword=$(".search").val();
+			$(".searchResult").remove();
+    		$.ajax({
+    			async: false,
+        		url: "<%=request.getContextPath()%>/filter/test.do",
+        		type: "POST",
+        		data: {
+        			keyword : searchKeyword
+        		},
+        		success: function(resp){
+        			$(searchTemplate).find(".searchResult").appendTo(".floatBox");
+        			if(resp.length==0){
+        				$(searchTemplate).find(".searchItem").appendTo(".searchResult");
+        				$(searchTemplate).find(".searchAddress").text('검색 결과가 없습니다.').appendTo(($(".searchResult").children().last()));
+        			}
+        			else{
+	        			$.each(resp, function(index,data){
+	        				$(searchTemplate).find(".searchItem").appendTo(".searchResult");
+	        				$(searchTemplate).find(".searchName").text(data.name).appendTo(($(".searchResult").children().last()));
+	        				$(searchTemplate).find(".searchAddress").text(data.address).appendTo(($(".searchResult").children().last()));
+	        				$(searchTemplate).find(".searchLat").text(data.lat).appendTo(($(".searchResult").children().last()));
+	        				$(searchTemplate).find(".searchLng").text(data.lng).appendTo(($(".searchResult").children().last()));
+	        				$("<hr>").appendTo(($(".searchResult").children().last()));        	
+		    			});
+        			}
+					$(".searchResult").css("display","block");			
+        		},
+        		error: function(){
+        			console.log('false');
+        		}
+        	});
+    		$(".floatBox").find(".searchItem").bind('click', function(e){
+    			$(".search").val($(this).find(".searchName").text());
+    			$(".searchResult").remove();
+    			var searchLat=$(this).find(".searchLat").text();
+            	var searchLng=$(this).find(".searchLng").text();
+    			map.setCenter(new kakao.maps.LatLng(searchLat,searchLng));
+    			map.setLevel(4);
+    		});
+    		$(".floatBox").find(".searchItem").bind('mouseover', function(e){
+    			$(this).css("background-color","lightgray");
+    		});
+    		$(".floatBox").find(".searchItem").bind('mouseleave', function(e){
+    			$(this).css("background-color","transparent");
+    		});
+    		
+    	});
     	$(".active").hide();
         $(".list").show();
 		$("#charter-range").hide();
-		
-    	<% //초기 지도의 중심좌표로 사용할 위도, 경도 불어오기
-    		double Lat = Double.parseDouble(request.getParameter("Lat"));
-        	double Lng = Double.parseDouble(request.getParameter("Lng"));
-        %>
-    	
         var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
             center: new kakao.maps.LatLng(<%=Lat%>,<%=Lng%>), // 지도의 중심좌표 
             level: 6 // 지도의 확대 레벨 
         });
-        
+      	//로드되면 초기 중심좌표를 저장합니다.
+    	var Lat = map.getCenter().getLat();
+		var Lng = map.getCenter().getLng();
+		$("#Lat").val(Lat);
+  		$("#Lng").val(Lng);
         // 마커 클러스터러를 생성합니다 
         var clusterer = new kakao.maps.MarkerClusterer({
             map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
@@ -46,41 +98,35 @@
         
         var datas=[];
 		//Dto를 이용하여 datas 배열에 매물 정보를 넣어준다.
-        <%
-        	OneDao oneDao=new OneDao();
-        	List<OneDto> onelist;
-        	if(request.getParameter("filter") == null){
-        		onelist = oneDao.select();
+        
+        $.ajax({
+        	url:"<%=request.getContextPath()%>/filter/list.do",
+        	type: "POST",
+        	data: {
+        		charter_min : '<%=request.getParameter("charter_min")%>',
+        		charter_max : '<%=request.getParameter("charter_max")%>',
+        		deposit_min : '<%=request.getParameter("deposit_min")%>',
+        		deposit_max : '<%=request.getParameter("deposit_max")%>',
+        		monthly_min : '<%=request.getParameter("monthly_min")%>',
+        		monthly_max : '<%=request.getParameter("monthly_max")%>',
+        		floor1 : '<%=request.getParameter("floor1")%>',
+	    	   	floor2 : '<%=request.getParameter("floor2")%>',
+	    	   	floor3 : '<%=request.getParameter("floor3")%>',
+	    	   	parking : '<%=request.getParameter("parking")%>',
+	    	   	elevator : '<%=request.getParameter("elevator")%>',
+	    	   	animal : '<%=request.getParameter("animal")%>',	
+	    	   	loan : '<%=request.getParameter("loan")%>'     		
+        	},
+        	success: function(resp){
+        		datas=resp;
+        		onMap(datas);
+        	},
+        	error: function(){
+        		console.log('false2');
         	}
-        	else{
-        		OneVO oneVO = new OneVO();
-        		oneVO.setCharter_min(request.getParameter("charter_min"));
-        		oneVO.setCharter_max(request.getParameter("charter_max"));
-        		oneVO.setDeposit_min(request.getParameter("deposit_min"));
-        		oneVO.setDeposit_max(request.getParameter("deposit_max"));
-        		oneVO.setMonthly_min(request.getParameter("monthly_min"));
-        		oneVO.setMonthly_max(request.getParameter("monthly_max"));
-        		oneVO.setFloor1(request.getParameter("floor1"));
-        		oneVO.setFloor2(request.getParameter("floor2"));
-        		oneVO.setFloor3(request.getParameter("floor3"));
-        		oneVO.setParking(request.getParameter("parking"));
-        		oneVO.setElevator(request.getParameter("elevator"));
-        		oneVO.setAnimal(request.getParameter("animal"));
-        		oneVO.setLoan(request.getParameter("loan"));
-        		onelist = oneDao.select(oneVO);
-        	}
-        
-        	for(OneDto oneDto : onelist){
-        %>
-        	datas.push({
-        		"번호" : <%=oneDto.getOne_no()%>,
-        		"주소" : '<%=oneDto.getOne_address()%>'
-        		//스트링을 넣어줄때는 ''를 반드시 사용해 줘야함
-        	});
-        <%} %>
-        
-        onMap(datas); //data를 지도위에 표기한다.
-        
+        	
+        })
+                
       
         //cluseter.clear(); //기존에 있던 클러스터를 지운다.
         //onMap(datas); //필터링된 data를 받아서 지도위에 표기한다.
@@ -92,13 +138,13 @@
        		var count=0;
         	var markers = $(datas).map(function (i, data) {
         		//주소를 받아서 좌표를 생성한 뒤 마커에 좌표 정보를 넣어준다.
-           		geocoder.addressSearch(data.주소, function(result, status){
+           		geocoder.addressSearch(data.one_address, function(result, status){
             		if(status===kakao.maps.services.Status.OK){
             			var coords=new kakao.maps.LatLng(result[0].y, result[0].x);
             			var marker = new kakao.maps.Marker({
             				position: coords
             			});
-            			marker.no = data.번호;
+            			marker.no = data.one_no;
                    	 	markers.push(marker); //마커스 배열에 마커를 입력 
                     	//사실 필요없는데 남겨둔 변수
                     	var pos = marker.getPosition();
@@ -135,17 +181,13 @@
       				if(bounds.contain(marker.getPosition())){
       					$.ajax({
         					async:false,//순차적으로실행되도록 설정
-        					url : "<%=request.getContextPath()%>/semi-project/filter.do",
-        					type : "get",
+        					url : "<%=request.getContextPath()%>/filter/filter.do",
+        					type : "POST",
         					data : {
         						one_no : marker.no
         					},
         					success:function(resp){
-        						console.log("ajax finish!");
-        						console.log(resp);
-        						console.log("each function");
-        						console.log(this);
-       				            var div1 = $("<div>");
+        						var div1 = $("<div>");
        				            var div2 = $("<div>");
        				            var div3 = $("<div>");
        				         	var img = $("#template").html();
@@ -187,6 +229,75 @@
 <script id="template" type="text/template">
     <img class="list-image" alt="매물이미지">
 </script>
+<script id="search_template" type="text/template">
+		<div>
+			<div class="searchResult"></div>
+			<div class="searchName"></div>
+			<div class="searchItem"></div>
+			<div class="searchAddress"></div>
+			<div class="searchLat"></div>
+			<div class="searchLng"></div>
+		</div>
+</script>
+<style>
+	.searchLat,
+   	.searchLng{
+   		display:none;
+   	}
+   	.selectItem{
+    	padding 10px 10px 0;
+    }
+    .searchResult{
+   		border: 2px solid white;
+    	z-index: 110;
+    	width: 260px;
+   		max-height: 300px;
+    	display: none;
+    	background-color: white;
+    	overflow: auto;
+    }
+    .searchName{
+    	font-size: 14px;
+    	font-weight: bold;
+    	display: block;
+    }
+    .searchAddress{
+    	font-size: 10px;
+    	display: block;
+    }
+    .floatBox{
+        	z-index: 100;
+        	width: 329px;
+        	height: 50px;
+        	position: absolute;
+        	left:20px;
+        	top:150px;
+        	border: 1px solid;
+			background-color: white;
+			padding: 10px 10px;
+		
+    }
+    .searchBox{
+        border: 2px solid orange;
+    }
+    .search{
+        float: left;
+        padding: 4px;
+        border: none;
+        width: 260px;
+        margin: 0;
+    }
+    .search::after{
+        content:"";
+        display: block;
+        clear:both;
+    }
+	hr{
+		background-color: lightgray;
+		height: 1px;
+		border:0;        
+    }
+</style>	
 </head>
 <body>
     <main>
@@ -204,6 +315,12 @@
         <section>
             <article>
                 <div id="map" style="width:100%;height:100%;"></div>
+                <div class="floatBox">
+					<div class="searchBox" >
+						<input type="text" placeholder="지역, 지하철역 검색" class="search">
+						<button class="searchBtn">제출</button>
+					</div>
+				</div>
             </article>
             <aside class="filtering">
                 
@@ -216,7 +333,7 @@
 					<div>짜잔</div>
 				</div>
 					    
-                <form action="filter.jsp" method="get">
+                <form action="filter.jsp" method="post">
                     <div class="active">
                     	<input type="hidden" name="filter">
                     	<input type="hidden" id="Lat" name="Lat">
