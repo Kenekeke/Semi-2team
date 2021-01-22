@@ -5,8 +5,6 @@ import java.sql.Date;
 public class OneDto {
 	private int one_no;
 	private int house_no;
-	private int member_no;
-	private int broker_no;
 	private int one_deposit;
 	private int one_monthly;
 	private String one_address;
@@ -29,18 +27,6 @@ public class OneDto {
 	}
 	public void setHouse_no(int house_no) {
 		this.house_no = house_no;
-	}
-	public int getMember_no() {
-		return member_no;
-	}
-	public void setMember_no(int member_no) {
-		this.member_no = member_no;
-	}
-	public int getBroker_no() {
-		return broker_no;
-	}
-	public void setBroker_no(int broker_no) {
-		this.broker_no = broker_no;
 	}
 	public int getOne_deposit() {
 		return one_deposit;
@@ -108,5 +94,6 @@ public class OneDto {
 	public void setAgree(String agree) {
 		this.agree = agree;
 	}
+	
 	
 }
