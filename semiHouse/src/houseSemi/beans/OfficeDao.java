@@ -69,7 +69,7 @@ public class OfficeDao {
 			dto.setHouse_no(rs.getInt("house_no"));
 			dto.setLoan(rs.getString("loan"));
 			dto.setMember_no(rs.getInt("member_no"));
-			dto.setMove_in(rs.getDate("move_in"));
+			dto.setMove_in(rs.getString("move_in"));
 			dto.setParking(rs.getString("parking"));
 			dto.setAddress(rs.getString("address"));
 			dto.setAddress2(rs.getString("address2"));
@@ -87,4 +87,37 @@ public class OfficeDao {
 		con.close();
 		return dto;
 	}
+	public void insert(OfficeDto officeDto) throws Exception {
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "insert into office "
+				+ "values(office_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,? ,0 ,?, ?, ?, ?)";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setInt(1, officeDto.getHouse_no());
+		ps.setInt(2, officeDto.getMember_no());
+		ps.setInt(3, officeDto.getBroker_no());
+		ps.setInt(4, officeDto.getDeposit());
+		ps.setInt(5, officeDto.getMonthly());
+		ps.setString(6, officeDto.getAddress());
+		ps.setString(7, officeDto.getAddress2());
+		ps.setString(8, officeDto.getFloor());
+		ps.setString(9, officeDto.getLoan());
+		ps.setString(10, officeDto.getAnimal());
+		ps.setString(11, officeDto.getElevator());
+		ps.setString(12, officeDto.getParking());
+		ps.setString(13, officeDto.getMove_in());
+		ps.setString(14, officeDto.getEtc());
+		ps.setString(15, officeDto.getArea());
+		ps.setInt(16, officeDto.getBill());
+		ps.setString(17, officeDto.getDirection());
+		ps.setString(18, officeDto.getTitle());
+		
+		
+		
+		ps.execute();
+		
+		con.close();
+		
+	}	
 }
