@@ -39,7 +39,7 @@ public class ZzimTypeServlet extends HttpServlet{
     				resp.getWriter().print(json);
     				break;
     			case "villaTwo":
-    				VillaTwoDao villaDao = new VillaTwoDao();
+    				VillatwoDao villaDao = new VillatwoDao();
     				VillaTwoTypeVO villavo = villaDao.type(house_no);
     				json = mapper.writeValueAsString(villavo);
     				resp.getWriter().print(json);

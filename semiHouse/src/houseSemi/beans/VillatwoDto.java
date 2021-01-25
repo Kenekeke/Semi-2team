@@ -2,7 +2,7 @@ package houseSemi.beans;
 
 import java.sql.Date;
 
-public class VillaTwoDto {
+public class VillatwoDto {
 	private int villaTwo_no;
 	private int house_no;
 	private int member_no;
@@ -16,18 +16,16 @@ public class VillaTwoDto {
 	private String animal;
 	private String elevator;
 	private String parking;
-	private Date move_in;
+	private String move_in;
 	private String etc;
 	private String area;
 	private String broker_agree;
 	private int bill;
 	private String direction;
 	private String title;
+	
 	public int getVillaTwo_no() {
 		return villaTwo_no;
-	}
-	public void setVillaTwo_no(int villaTwo_no) {
-		this.villaTwo_no = villaTwo_no;
 	}
 	public int getHouse_no() {
 		return house_no;
@@ -101,10 +99,10 @@ public class VillaTwoDto {
 	public void setParking(String parking) {
 		this.parking = parking;
 	}
-	public Date getMove_in() {
+	public String getMove_in() {
 		return move_in;
 	}
-	public void setMove_in(Date move_in) {
+	public void setMove_in(String move_in) {
 		this.move_in = move_in;
 	}
 	public String getEtc() {
@@ -143,7 +141,26 @@ public class VillaTwoDto {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	
-	
+	public void setVillaTwo_no(int villaTwo_no) {
+		this.villaTwo_no = villaTwo_no;
+	}
+	//객체 검사
+	public boolean isFloor (String floor) {
+		return this.floor != null && this.floor.equals(floor);
+	}
+	public boolean isDirection (String direction) {
+		return this.direction != null && this.direction.equals(direction);
+	}
+	public boolean isLoan (String loan) {
+		return this.loan != null && this.loan.equals(loan);
+	}
+	public boolean isAnimal (String animal) {
+		return this.animal != null && this.animal.equals(animal);
+	}
+	public boolean isElevator (String elevator) {
+		return this.elevator != null && this.elevator.equals(elevator);
+	}
+	public boolean isParking (String parking) {
+		return this.parking != null && this.parking.equals(parking);
+	}
 }

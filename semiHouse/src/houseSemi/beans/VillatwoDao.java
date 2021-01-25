@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import houseSemi.util.*;
 
-public class VillaTwoDao {
+public class VillatwoDao {
 	String USERNAME="house";
 	String PASSWORD="house";
 	
@@ -50,16 +50,16 @@ public class VillaTwoDao {
 		return VO;
 	}
 	
-	public VillaTwoDto find(int house_no) throws Exception {
+	public VillatwoDto find(int house_no) throws Exception {
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
 		String sql = "select * from villa where house_no =?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, house_no);
 		ResultSet rs= ps.executeQuery();
 		
-		VillaTwoDto dto;
+		VillatwoDto dto;
 		if(rs.next()) {
-			dto = new VillaTwoDto();
+			dto = new VillatwoDto();
 			
 			dto.setBroker_agree(rs.getString("broker_agree"));
 			dto.setAnimal(rs.getString("animal"));
@@ -70,7 +70,7 @@ public class VillaTwoDao {
 			dto.setHouse_no(rs.getInt("house_no"));
 			dto.setLoan(rs.getString("loan"));
 			dto.setMember_no(rs.getInt("member_no"));
-			dto.setMove_in(rs.getDate("move_in"));
+			dto.setMove_in(rs.getString("move_in"));
 			dto.setParking(rs.getString("parking"));
 			dto.setAddress(rs.getString("address"));
 			dto.setAddress2(rs.getString("address2"));
@@ -87,5 +87,35 @@ public class VillaTwoDao {
 		}
 		con.close();
 		return dto;
+	}
+	
+	public void insert(VillatwoDto villatwoDto) throws Exception {
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "insert into villatwo "
+				+ "values(villatwo_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,? ,0 ,?, ?, ?, ?)";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, villatwoDto.getHouse_no());
+		ps.setInt(2, villatwoDto.getMember_no());
+		ps.setInt(3, villatwoDto.getBroker_no());
+		ps.setInt(4, villatwoDto.getDeposit());
+		ps.setInt(5, villatwoDto.getMonthly());
+		ps.setString(6, villatwoDto.getAddress());
+		ps.setString(7, villatwoDto.getAddress2());
+		ps.setString(8, villatwoDto.getFloor());
+		ps.setString(9, villatwoDto.getLoan());
+		ps.setString(10, villatwoDto.getAnimal());
+		ps.setString(11, villatwoDto.getElevator());
+		ps.setString(12, villatwoDto.getParking());
+		ps.setString(13, villatwoDto.getMove_in());
+		ps.setString(14, villatwoDto.getEtc());
+		ps.setString(15, villatwoDto.getArea());
+		ps.setInt(16, villatwoDto.getBill());
+		ps.setString(17, villatwoDto.getDirection());
+		ps.setString(18, villatwoDto.getTitle());
+		
+		ps.execute();
+		
+		con.close();
 	}
 }

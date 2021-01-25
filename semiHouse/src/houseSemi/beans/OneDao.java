@@ -30,7 +30,7 @@ public class OneDao {
 			dto.setHouse_no(rs.getInt("house_no"));
 			dto.setLoan(rs.getString("loan"));
 			dto.setMember_no(rs.getInt("member_no"));
-			dto.setMove_in(rs.getDate("move_in"));
+			dto.setMove_in(rs.getString("move_in"));
 			dto.setParking(rs.getString("parking"));
 			dto.setAddress(rs.getString("address"));
 			dto.setAddress2(rs.getString("address2"));
@@ -66,7 +66,7 @@ public class OneDao {
 			dto.setHouse_no(rs.getInt("house_no"));
 			dto.setLoan(rs.getString("loan"));
 			dto.setMember_no(rs.getInt("member_no"));
-			dto.setMove_in(rs.getDate("move_in"));
+			dto.setMove_in(rs.getString("move_in"));
 			dto.setParking(rs.getString("parking"));
 			dto.setAddress(rs.getString("address"));
 			dto.setAddress2(rs.getString("address2"));
@@ -490,4 +490,101 @@ public class OneDao {
 		con.close();
 		return oneDto;
 	}
+	//매물 등록
+	public void insert(OneDto oneDto) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "insert into one "
+				+ "values(one_seq.nextval,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,? ,0 ,?, ?, ?, ?)";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, oneDto.getHouse_no());
+		ps.setInt(2, oneDto.getMember_no());
+		ps.setInt(3, oneDto.getBroker_no());
+		ps.setInt(4, oneDto.getDeposit());
+		ps.setInt(5, oneDto.getMonthly());
+		ps.setString(6, oneDto.getAddress());
+		ps.setString(7, oneDto.getAddress2());
+		ps.setString(8, oneDto.getFloor());
+		ps.setString(9, oneDto.getLoan());
+		ps.setString(10, oneDto.getAnimal());
+		ps.setString(11, oneDto.getElevator());
+		ps.setString(12, oneDto.getParking());
+		ps.setString(13, oneDto.getMove_in());
+		ps.setString(14, oneDto.getEtc());
+		ps.setString(15, oneDto.getArea());
+		ps.setInt(16, oneDto.getBill());
+		ps.setString(17, oneDto.getDirection());
+		ps.setString(18, oneDto.getTitle());
+		
+		ps.execute();
+		
+		con.close();
+	}
+	//수정
+	public boolean updateOne(OneDto oneDto)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "update one set "
+				+ "deposit=?, monthly=?, address=?, address2=?, floor=?, loan=?, animal=?, elevater=?, "
+				+ "parking=?, move_in=?, etc=?, area=?, bill=?, direction=?, title=? where house_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, oneDto.getDeposit());
+		ps.setInt(2, oneDto.getMonthly());
+		ps.setString(3, oneDto.getAddress());
+		ps.setString(4, oneDto.getAddress2());
+		ps.setString(5, oneDto.getFloor());
+		ps.setString(6, oneDto.getLoan());
+		ps.setString(7, oneDto.getAnimal());
+		ps.setString(8, oneDto.getElevator());
+		ps.setString(9, oneDto.getParking());
+		ps.setString(10, oneDto.getMove_in());
+		ps.setString(11, oneDto.getEtc());
+		ps.setString(12, oneDto.getArea());
+		ps.setInt(13, oneDto.getBill());
+		ps.setString(14, oneDto.getDirection());
+		ps.setString(15, oneDto.getTitle());
+		ps.setInt(16, oneDto.getHouse_no());
+		
+		int count = ps.executeUpdate();
+		con.close();
+		return count>0;
+	}
+	//단일 조회
+	public OneDto find(int house_no)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "select * from one where house_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, house_no);
+		
+		ResultSet rs = ps.executeQuery();
+		OneDto dto;
+		if(rs.next()) {
+			dto = new OneDto();
+			dto.setHouse_no(rs.getInt("house_no"));
+			dto.setDeposit(rs.getInt("deposit"));
+			dto.setMonthly(rs.getInt("monthly"));
+			dto.setAddress(rs.getString("address"));
+			dto.setAddress2(rs.getString("address2"));
+			dto.setFloor(rs.getString("floor"));
+			dto.setLoan(rs.getString("loan"));
+			dto.setAnimal(rs.getString("animal"));
+			dto.setElevator(rs.getString("elevator"));
+			dto.setParking(rs.getString("parking"));
+			dto.setMove_in(rs.getString("move_in"));
+			dto.setEtc(rs.getString("etc"));
+			dto.setArea(rs.getString("area"));
+			dto.setBill(rs.getInt("bill"));
+			dto.setDirection(rs.getString("direction"));
+			dto.setTitle(rs.getString("title"));
+			
+		}else {
+			dto = null;
+		}
+		con.close();
+		return dto;
+		
+	}
+	
+	
 }
