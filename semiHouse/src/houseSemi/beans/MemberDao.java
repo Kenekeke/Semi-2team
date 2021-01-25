@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import houseSemi.util.JdbcUtil;
-import semiproject.MemberJoinDto;
 
 public class MemberDao {
 	String USERNAME="house";

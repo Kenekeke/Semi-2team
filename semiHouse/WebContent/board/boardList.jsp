@@ -5,7 +5,7 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
-	//session.setAttribute("check", 1);
+	session.removeAttribute("read"); // 홈화면.jsp에도 추가!
 	boolean isMember = session.getAttribute("check") != null;
 	int n;
 	try{
@@ -71,72 +71,71 @@
 		endN = pagelast;
 	}
 	
-	
-	
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<jsp:include page="/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
 	$(function(){
 		$(".board_write_btn").click(function(){
 			if(<%=isMember%>){
-				location.href = "<%=request.getContextPath()%>/semi-project/boardWrite.jsp";
+				location.href = "<%=request.getContextPath()%>/board/boardWrite.jsp";
 			}
 			else{
-				location.href = "<%=request.getContextPath()%>/semi-project/login.jsp";
+				location.href = "<%=request.getContextPath()%>/member/login.jsp";
 			}
 		});
 		$("#board-total").on("input", function(){
 			if($(this).prop("checked")){
-				location.href = "<%=request.getContextPath()%>/semi-project/boardList.jsp";
+				location.href = "<%=request.getContextPath()%>/board/boardList.jsp";
+				$(this).prop("checked",true)
+			}
+		});
+		$("#board-notice").on("input", function(){
+			if($(this).prop("checked")){
+				var a = "공지사항";
+				location.href = "<%=request.getContextPath()%>/board/boardList.jsp?board_header="+a;
 				$(this).prop("checked",true)
 			}
 		});
 		$("#board-inte").on("input", function(){
 			if($(this).prop("checked")){
 				var a = "인테리어/DIY";
-				location.href = "<%=request.getContextPath()%>/semi-project/boardList.jsp?board_header="+a;
+				location.href = "<%=request.getContextPath()%>/board/boardList.jsp?board_header="+a;
 				$(this).prop("checked",true)
 			}
 		});
 		$("#board-market").on("input", function(){
 			if($(this).prop("checked")){
 				var a = "전/월세 장터";
-				location.href = "<%=request.getContextPath()%>/semi-project/boardList.jsp?board_header="+a;
+				location.href = "<%=request.getContextPath()%>/board/boardList.jsp?board_header="+a;
 				$(this).prop("checked",true)
 			}
 		});
 		$("#board-move").on("input", function(){
 			if($(this).prop("checked")){
 				var a = "집수리/이사";
-				location.href = "<%=request.getContextPath()%>/semi-project/boardList.jsp?board_header="+a;
+				location.href = "<%=request.getContextPath()%>/board/boardList.jsp?board_header="+a;
 				$(this).prop("checked",true)
 			}
 		});
 		$("#board-etc").on("input", function(){
 			if($(this).prop("checked")){
 				var a = "기타";
-				location.href = "<%=request.getContextPath()%>/semi-project/boardList.jsp?board_header="+a;
+				location.href = "<%=request.getContextPath()%>/board/boardList.jsp?board_header="+a;
 				$(this).prop("checked",true)
 			}
 		});
 	});
 </script>
-</head>
-<body>
-	<header></header>
 	<div class="board-outbox">
-        <div class="row">
+        <div>
         	<input type="button" value="글쓰기" class="board_write_btn">
         </div>
-        <div class="row">
+        <div class="type_radio">
         	<input type="radio" name="board_header_check" id="board-total" value="전체" <%if(board_header==null){%>checked<%}%>>
         	<label for="board-total">전체</label>
+        	<input type="radio" name="board_header_check" id="board-notice" value="공지사항" <%if(board_header!=null&&board_header.equals("공지사항")){%>checked<%}%>>
+        	<label for="board-notice">공지사항</label>
         	<input type="radio" name="board_header_check" id="board-inte" value="인테리어/DIY" <%if(board_header!=null&&board_header.equals("인테리어/DIY")){%>checked<%}%>>
         	<label for="board-inte">인테리어/DIY</label>
         	<input type="radio" name="board_header_check" id="board-market" value="전/월세 장터" <%if(board_header!=null&&board_header.equals("전/월세 장터")){%>checked<%}%>>
@@ -146,33 +145,31 @@
         	<input type="radio" name="board_header_check" id="board-etc" value="기타" <%if(board_header!=null&&board_header.equals("기타")){%>checked<%}%>>
         	<label for="board-etc">기타</label>
         </div>
-        <div class="row">
+        <div>
             <table class="table-box center">
                 <thead>
-                    <tr>
+                    <tr style="height:40px;">
                         <th width="20%">구분</th>
-                        <th width="50%">제목</th>
+                        <th width="47%">제목</th>
                         <th width="10%">글쓴이</th>
                         <th width="10%">조회</th>
-                        <th width="10%">등록일</th>
+                        <th width="13%">등록일</th>
                     </tr>
                 </thead>
                 <tbody>
 				<%for(BoardVO boardVO : boardlist){%>
-                    <tr>
+                    <tr class="listItem">
                         <td><%=boardVO.getBoard_header()%></td>
                         <td><a href="boardDetail.jsp?board_no=<%=boardVO.getBoard_no()%>"><%=boardVO.getBoard_title()%><%if(boardVO.getReplycount()>0){%>[<%=boardVO.getReplycount()%>]<%}%></a></td>
                         <td><%=boardVO.getMember_nick()%></td>
                         <td><%=boardVO.getBoard_count()%></td>
-                        <td><%=boardVO.getBoard_time()%></td>
+                        <td style="font-size:13px;"><%=boardVO.getBoard_time()%></td>
                     </tr>
                 <%}%>
                 </tbody>
             </table>
         </div>
-        
-        <!-- 페이징 -->
-        <div class="row center">
+        <div class="center boardlistPaging">
         	<ul class="pagination">
         		<%if(isSearch){ %>
         		<%if(isHeader){ %>
@@ -237,9 +234,7 @@
         		}%>
         	</ul>
         </div>
-        
-        <!-- 검색창 -->
-        <div class="row center">
+        <div class="center">
         	<form action="boardList.jsp" method="post">
         		<select name="type" class="board_search_type">
         			<option value="board_title" <%if(type!=null&&type.equals("board_title")){%>selected<%}%>>제목</option>
@@ -258,5 +253,4 @@
         	</form>
         </div>
     </div>
-</body>
-</html>
+<jsp:include page="/template/footer.jsp"></jsp:include>

@@ -1,9 +1,7 @@
 package houseSemi.beans;
 
-import java.sql.Date;
-
 public class VillatwoDto {
-	private int villaTwo_no;
+	private int villatwo_no;
 	private int house_no;
 	private int member_no;
 	private int broker_no;
@@ -18,14 +16,19 @@ public class VillatwoDto {
 	private String parking;
 	private String move_in;
 	private String etc;
-	private String area;
 	private String broker_agree;
+	private String area;
 	private int bill;
 	private String direction;
 	private String title;
-	
-	public int getVillaTwo_no() {
-		return villaTwo_no;
+	public VillatwoDto() {
+		super();
+	}
+	public int getVillatwo_no() {
+		return villatwo_no;
+	}
+	public void setVillatwo_no(int villatwo_no) {
+		this.villatwo_no = villatwo_no;
 	}
 	public int getHouse_no() {
 		return house_no;
@@ -111,17 +114,17 @@ public class VillatwoDto {
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
-	public String getArea() {
-		return area;
-	}
-	public void setArea(String area) {
-		this.area = area;
-	}
 	public String getBroker_agree() {
 		return broker_agree;
 	}
 	public void setBroker_agree(String broker_agree) {
 		this.broker_agree = broker_agree;
+	}
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
 	}
 	public int getBill() {
 		return bill;
@@ -140,27 +143,5 @@ public class VillatwoDto {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public void setVillaTwo_no(int villaTwo_no) {
-		this.villaTwo_no = villaTwo_no;
-	}
-	//객체 검사
-	public boolean isFloor (String floor) {
-		return this.floor != null && this.floor.equals(floor);
-	}
-	public boolean isDirection (String direction) {
-		return this.direction != null && this.direction.equals(direction);
-	}
-	public boolean isLoan (String loan) {
-		return this.loan != null && this.loan.equals(loan);
-	}
-	public boolean isAnimal (String animal) {
-		return this.animal != null && this.animal.equals(animal);
-	}
-	public boolean isElevator (String elevator) {
-		return this.elevator != null && this.elevator.equals(elevator);
-	}
-	public boolean isParking (String parking) {
-		return this.parking != null && this.parking.equals(parking);
 	}
 }

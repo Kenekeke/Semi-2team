@@ -1,7 +1,7 @@
 package houseSemi.beans;
 
-public class OneVO {
-	private int one_no;
+public class OfficeVO {
+	private int office_no;
 	private int house_no;
 	private int member_no;
 	private int broker_no;
@@ -31,14 +31,14 @@ public class OneVO {
 	private String broker_landline;
 	private String member_email;
 	private String member_phone;
-	public OneVO() {
+	public OfficeVO() {
 		super();
 	}
-	public int getOne_no() {
-		return one_no;
+	public int getOffice_no() {
+		return office_no;
 	}
-	public void setOne_no(int one_no) {
-		this.one_no = one_no;
+	public void setOffice_no(int office_no) {
+		this.office_no = office_no;
 	}
 	public int getHouse_no() {
 		return house_no;

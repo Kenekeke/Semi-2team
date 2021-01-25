@@ -12,6 +12,14 @@ public class BoardDao {
 	public static final String USERNAME = "house";
 	public static final String PASSWORD = "house";
 	
+	public void delete(int board_no) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "delete board where board_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, board_no);
+		ps.execute();
+		con.close();
+	}
 	public BoardDto find(int board_no) throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
 		String sql = "select * from board where board_no=?";
@@ -34,7 +42,7 @@ public class BoardDao {
 		con.close();
 		return boardDto;
 	}
-	public boolean update(BoardDto boardDto) throws Exception {
+	public void update(BoardDto boardDto) throws Exception {
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
 		String sql ="update board set board_title=?, board_header=?, board_content=? where board_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -42,9 +50,8 @@ public class BoardDao {
 		ps.setString(2, boardDto.getBoard_header());
 		ps.setString(3, boardDto.getBoard_content());
 		ps.setInt(4, boardDto.getBoard_no());
-		int result =ps.executeUpdate();
+		ps.execute();
 		con.close();
-		return result>0;
 	}
 	
 	//게시물 상세정보
@@ -284,7 +291,7 @@ public class BoardDao {
 			ps.setString(2, key);
 		}
 		else {
-			sql = "select count(*) count from board where instr(#1,?)>0";
+			sql = "select count(*) count from (board B inner join member M on B.member_no = M.member_no) where instr(#1,?)>0";
 			sql = sql.replace("#1", type);
 			ps = con.prepareStatement(sql);
 			ps.setString(1, key);
@@ -306,7 +313,7 @@ public class BoardDao {
 			ps.setString(3, key);
 		}
 		else {
-			sql = "select count(*) count from board where board_header=? and instr(#1,?)>0";
+			sql = "select count(*) count from (board B inner join member M on B.member_no = M.member_no) where board_header=? and instr(#1,?)>0";
 			sql = sql.replace("#1", type);
 			ps = con.prepareStatement(sql);
 			ps.setString(1, header);
@@ -338,6 +345,14 @@ public class BoardDao {
 		ps.setString(3, boardDto.getBoard_header());
 		ps.setString(4, boardDto.getBoard_title());
 		ps.setString(5, boardDto.getBoard_content());
+		ps.execute();
+		con.close();
+	}
+	public void plusCount(int board_no) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "update board set board_count=board_count+1 where board_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, board_no);
 		ps.execute();
 		con.close();
 	}
