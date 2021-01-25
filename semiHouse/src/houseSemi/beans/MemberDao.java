@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import houseSemi.util.JdbcUtil;
+import semiproject.MemberJoinDto;
 
 public class MemberDao {
 	String USERNAME="house";
@@ -35,11 +36,11 @@ public class MemberDao {
 		}
 		return dto;
 	}
-	public void join(MemberDto dto) throws Exception {
+	public void write(MemberDto dto)throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
 		
-		String sql = "insert into member values("
-				+ "member_seq.nextval, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into Member("
+					+ "values(member_seq.nextval, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, dto.getMember_id());
 		ps.setString(2, dto.getMember_pw());
@@ -48,7 +49,7 @@ public class MemberDao {
 		ps.setString(5, dto.getMember_phone());
 		ps.setString(6, dto.getMember_auth());
 		ps.execute();
-		
+
 		con.close();
 	}
 	public boolean login(MemberDto dto) throws Exception {
