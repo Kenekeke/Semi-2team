@@ -2,8 +2,8 @@ package houseSemi.beans;
 
 import java.sql.Date;
 
-public class OneDto {
-	private int one_no;
+public class OfficeDto {
+	private int office_no;
 	private int house_no;
 	private int member_no;
 	private int broker_no;
@@ -22,18 +22,18 @@ public class OneDto {
 	private String broker_agree;
 	private int bill;
 	private String direction;
-	private String title;
+	private String title;	
 	
-	public OneDto() {
+	public OfficeDto() {
 		super();
 	}
 
-	public int getOne_no() {
-		return one_no;
+	public int getOffice_no() {
+		return office_no;
 	}
 
-	public void setOne_no(int one_no) {
-		this.one_no = one_no;
+	public void setOffice_no(int office_no) {
+		this.office_no = office_no;
 	}
 
 	public int getHouse_no() {
@@ -187,7 +187,7 @@ public class OneDto {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	// 객체 검사
+	//객체 검사
 	public boolean isFloor (String floor) {
 		return this.floor != null && this.floor.equals(floor);
 	}
@@ -206,5 +206,6 @@ public class OneDto {
 	public boolean isParking (String parking) {
 		return this.parking != null && this.parking.equals(parking);
 	}
-		
+	
+	
 }
