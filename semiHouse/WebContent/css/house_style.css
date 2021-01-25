@@ -1,5 +1,7 @@
  .outbox {
             height: 80px;
+            z-index: 9999;
+   			position: relative;
         }
 
         .outbox div {
