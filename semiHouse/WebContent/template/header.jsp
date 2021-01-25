@@ -82,7 +82,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/list.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
                         </li>
                     </ul>
                 </div>
@@ -106,7 +106,7 @@
                 <div class="menu-bar">
                     <ul class="menu">
                         <li class="menu-find">
-                            <a href="<%=request.getContextPath()%>/house.oneroom.jsp">방 찾기</a>
+                            <a href="<%=request.getContextPath()%>/house.one.jsp">방 찾기</a>
                             <ul class="menu-second">
                                 <li><a href="<%=request.getContextPath()%>/house.one.jsp">원룸</a></li>
                                 <li><a href="<%=request.getContextPath()%>/house.villatwo.jsp">빌라 ｜ 투룸</a></li>
@@ -114,7 +114,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/like/like.jsp">찜한 매물</a>
+                            <a href="<%=request.getContextPath()%>/like/zzim.jsp">찜한 매물</a>
                         </li>
                         <li class="menu-regist">
                             <a href="<%=request.getContextPath()%>/house/insert.jsp">방 내놓기</a>
@@ -134,7 +134,7 @@
                             </ul>
                         </li>
                         <li> 
-                            <a href="<%=request.getContextPath()%>/board/list.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
                         </li>
                     </ul>
                 </div>
@@ -163,7 +163,7 @@
                         <li class="menu-my">
                             <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/list.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
                         </li>
                     </ul>
                 </div>

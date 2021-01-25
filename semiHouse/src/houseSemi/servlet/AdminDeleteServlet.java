@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.MemberDao;
+import houseSemi.beans.MemberDao;
+
 
 @WebServlet(urlPatterns = "/admin/delete.do")
 public class AdminDeleteServlet extends HttpServlet{

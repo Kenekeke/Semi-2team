@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	request.setCharacterEncoding("UTF-8");
 	boolean isLogin = session.getAttribute("check") != null; 
 	
 	String auth = (String)session.getAttribute("auth");
@@ -16,7 +17,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/range.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/search.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/house_style.css" type="text/css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style>
 
 html, body{
@@ -54,6 +54,9 @@ aside{
     width:400px;
     height:calc(100vh - 130px);
 }
+.callInfo{
+	display:none;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="<%=request.getContextPath()%>/js/pricechoice.js"></script>	
@@ -61,6 +64,17 @@ aside{
 </head>
 
 <body>
+<div class="callInfo">
+	<div class="callInfodetail">
+		<div class="calltitle">문의하기</div>
+		<div>등록번호를 꼭 알려주세요</div>
+		<div class="call-house-no"></div>
+		<div class="call-broker-name"></div>
+		<div class="call-broker-landline"></div>
+		<div class="call-broker-phone"></div>
+		<input type="button" value="닫기" class="call-close">
+	</div>
+</div>
     <main>
     	<%if(!isLogin){ %>
         <header>
@@ -135,21 +149,21 @@ aside{
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/like/like.jsp">찜한 매물</a>
+                            <a href="<%=request.getContextPath()%>/like/zzim.jsp">찜한 매물</a>
                         </li>
                         <li class="menu-regist">
                             <a href="<%=request.getContextPath()%>/house/insert.jsp">방 내놓기</a>
                             <ul class="menu-second">
-                                <li><a href="#">원룸</a></li>
-                                <li><a href="#">빌라 ｜ 투룸</a></li>
-                                <li><a href="#">오피스텔</a></li>
+                                <li><a class="one" href="<%= request.getContextPath() %>/house/insert-one.jsp">원룸</a></li>
+                                <li><a class="villatow" href="<%= request.getContextPath() %>/house/insert-villatwo.jsp">빌라 ｜ 투룸</a></li>
+                                <li><a class="office" href="<%= request.getContextPath() %>/house/insert-office.jsp">오피스텔</a></li>
                             </ul>
                         </li>
                         <li class="menu-my">
                             <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
                             <ul class="menu-second" style="left:380px">
                                 <li><a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a></li>
-                                <li><a href="<%=request.getContextPath()%>/member/myroom.jsp">내 매물</a></li>
+                                <li><a class="room-list" href="<%= request.getContextPath() %>/member/room-list.jsp">등록된 매물</a></li>
                             </ul>
                         </li>
                         <li>

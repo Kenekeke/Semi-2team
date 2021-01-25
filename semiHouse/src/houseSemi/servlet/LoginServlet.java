@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.MemberDao;
-import beans.MemberDto;
+import houseSemi.beans.MemberDao;
+import houseSemi.beans.MemberDto;
 
 
 @WebServlet(urlPatterns = "/member/login.do")

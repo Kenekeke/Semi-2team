@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.MemberDao;
-
+import houseSemi.beans.MemberDao;
 
 @WebServlet(urlPatterns = "/member/pw.do")
 public class MemberPasswordServlet extends HttpServlet{

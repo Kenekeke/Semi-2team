@@ -12,7 +12,7 @@ import houseSemi.beans.BoardDao;
 import houseSemi.beans.BoardDto;
 
 
-@WebServlet(urlPatterns ="/semi-project/boardWrite.do")
+@WebServlet(urlPatterns ="/board/boardWrite.do")
 public class BoardWriteServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

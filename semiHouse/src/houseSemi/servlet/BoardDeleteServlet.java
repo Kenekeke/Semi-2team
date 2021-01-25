@@ -8,26 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import houseSemi.beans.MemberDao;
+import houseSemi.beans.BoardDao;
 
-@WebServlet(urlPatterns = "/member/delete.do")
-public class MemberDeleteServlet extends HttpServlet{
+@WebServlet(urlPatterns="/board/boardDelete.do")
+public class BoardDeleteServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-
-			int member_no = (int) req.getSession().getAttribute("check");
-		
-			MemberDao dao = new MemberDao();
-			dao.delete(member_no); 
-			
-			req.getSession().removeAttribute("check");
-			req.getSession().removeAttribute("auth");
-			resp.sendRedirect("goodbye.jsp");
+			int board_no = Integer.parseInt(req.getParameter("board_no"));
+			BoardDao boardDao = new BoardDao();
+			boardDao.delete(board_no);
+			resp.sendRedirect("boardList.jsp");
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}
-} 
+}

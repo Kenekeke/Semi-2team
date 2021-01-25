@@ -134,25 +134,25 @@ public class HouseDao {
 		con.close();
 		return houseList;
 	}
-	public List<HouseOnePhotoVO> select(String member_no) throws Exception{
-		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-		
-		String sql = "select H.house_no, O.address, O.address2, H.insert_date, O.broker_agree " + 
-				"from house H inner join one O on H.house_no = O.house_no where H.member_no=?;";
-		
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, member_no);
-		ResultSet rs = ps.executeQuery();
-		
-		List<HouseOnePhotoVO> houseList = new ArrayList<>();
-		while (rs.next()) {
-			HouseOnePhotoVO vo = new HouseDto();
-			vo.setHouse_no(rs.getInt("house_no"));
-			vo.setMember_no(rs.getInt("member_no"));
-			vo.setInsert_date(rs.getDate("insert_date"));
-			houseList.add(houseDto);
-		}
-		con.close();
-		return houseList;
-	}
+//	public List<HouseOnePhotoVO> select(String member_no) throws Exception{
+//		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+//		
+//		String sql = "select H.house_no, O.address, O.address2, H.insert_date, O.broker_agree " + 
+//				"from house H inner join one O on H.house_no = O.house_no where H.member_no=?;";
+//		
+//		PreparedStatement ps = con.prepareStatement(sql);
+//		ps.setString(1, member_no);
+//		ResultSet rs = ps.executeQuery();
+//		
+//		List<HouseOnePhotoVO> houseList = new ArrayList<>();
+//		while (rs.next()) {
+//			HouseOnePhotoVO vo = new HouseDto();
+//			vo.setHouse_no(rs.getInt("house_no"));
+//			vo.setMember_no(rs.getInt("member_no"));
+//			vo.setInsert_date(rs.getDate("insert_date"));
+//			houseList.add(houseDto);
+//		}
+//		con.close();
+//		return houseList;
+//	}
 }

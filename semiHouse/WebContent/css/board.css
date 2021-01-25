@@ -1,0 +1,157 @@
+html, body{
+     margin: 0;
+     padding: 0;
+     width:100%;
+     height:100%;
+ }
+ * {
+     box-sizing: border-box;
+ }
+ header{
+     height:80px;
+ }
+ .board-outbox{
+     width: 800px;
+     margin: 0 auto;
+     padding:20px 0;
+ }
+ .table-box{
+     width : 100%;
+     margin: 0 auto;
+     border-spacing: 0;
+ }
+ .table-box > thead > tr{
+     background-color: lightgray;
+ }
+ .table-box > tbody > tr > td{
+     border-bottom: 1px solid gray;
+     height:40px;
+ }
+ .left {
+     text-align: left !important;
+ }
+
+ .center {
+     text-align: center !important;
+ }
+
+ .right {
+     text-align: right !important;
+ }
+ .pagination {
+    margin: 0;
+    padding: 1rem;
+    color: darkgray;
+}
+.pagination > li {
+    list-style: none;
+    display: inline-block;
+    padding: 0.5rem;
+    min-width: 40px;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.pagination > li.active,
+.pagination > li:hover {
+    color: red;
+    font-weight: bold;
+    border: 1px solid darkgray;
+    /*  box-shadow: 0px 0px 2px 2px gray;*/
+    cursor: pointer;
+}
+
+.pagination > li > a {
+    text-decoration: none;
+    color: darkgray;
+}
+
+.pagination > li:hover > a {
+    color: red;
+}
+.listItem td{
+	font-size:15px;	
+}
+.board_write_btn{
+	margin:10px 0 5px 0;
+}
+input[name=board_header_check]+label{
+	margin:0 25px 0 0;
+}
+.boardlistPaging{
+	margin:10px 0;
+}
+.board_search_type{
+  	width: auto;
+	padding: 0.5rem;
+	outline: none;
+	border: 0.5px solid gray;
+}
+.board_search_key{
+  	width: auto;
+	padding: 0.5rem;
+	outline: none;
+	border: 0.5px solid gray;
+}
+.board-content{
+    height:500px;
+}
+.board-detail-info, .reply{
+    margin:0.5rem 0;
+}
+.board-cbt{
+	float:right;
+	display:inline-block;
+}
+.board-count, .board-time, .bar{
+	margin:0 0.5rem;
+}
+.reply-delete{
+	cursor:pointer;
+}
+.boardinput {
+    width: 730px;
+    height:30px;
+    padding: 0.5rem;
+    outline: none;
+    border: 0.5px solid gray;
+}
+.boardTitle, .boardHeader{
+	margin: 20px 0 0 0;
+	width:800px;
+	display:flex;
+}
+.board_title,
+.board_header{
+	width:50px;
+	height:30px;
+	margin: 0 15px 0 0;
+}
+.type_radio{
+	width: 800px;
+	height:30px;
+	display:inline-block;
+	text-align:center;
+	margin:10px 0;
+}
+input[name=board_header]+label{
+	margin: 0 33px 0 0;
+}
+.board_content{
+	width: 100%;
+	height: 500px;
+	resize: none;
+	padding: 30px;
+	margin: 30px 0 0 0;
+}
+.boardwriteBtn{
+	margin: 30px 0;
+	
+}
+.write_btn, .cancle_btn{
+	width: 80px;
+	height: 30px;
+	font-size: 16px;
+	margin:0 10px;
+}
+

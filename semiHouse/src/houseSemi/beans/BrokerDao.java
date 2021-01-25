@@ -4,10 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.apache.tomcat.dbcp.dbcp2.Jdbc41Bridge;
-
-import beans.BrokerDto;
-import beans.BrokerMemberVO;
 import houseSemi.util.JdbcUtil;
 
 public class BrokerDao {
@@ -124,4 +120,3 @@ public class BrokerDao {
 	
 }
 
-}
