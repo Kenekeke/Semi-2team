@@ -25,9 +25,9 @@ public class AjaxListServlet extends HttpServlet{
 			
 			OneDao oneDao=new OneDao();
 		   	List<OneDto> onelist;
-		   	
-		   	if(filter == null){
-		   		onelist = oneDao.select();
+		   	System.out.println(filter);
+		   	if(filter.equals("null")){
+		   		onelist = oneDao.onSelect();
 		   	}
 		   	else{
 		   		OneVO oneVO = new OneVO();
@@ -46,13 +46,6 @@ public class AjaxListServlet extends HttpServlet{
 		   		oneVO.setLoan(req.getParameter("loan"));
 		   		onelist = oneDao.select(oneVO);
 		   	}
-		   	
-			/*
-			 * for(OneDto oneDto : onelist){
-			 * 
-			 * datas.push({ "번호" : oneDto.getOne_no(), "주소" : oneDto.getOne_address() //스트링을
-			 * 넣어줄때는 ''를 반드시 사용해 줘야함 }); }
-			 */
 			
 			resp.setHeader("Content-Type", "application/json");
 			resp.setHeader("Content-Encoding", "UTF-8");	

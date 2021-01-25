@@ -2,7 +2,7 @@ package houseSemi.beans;
 
 import java.sql.Date;
 
-public class OneDto {
+public class OneTypeVO {
 	private int one_no;
 	private int house_no;
 	private int member_no;
@@ -23,6 +23,14 @@ public class OneDto {
 	private int bill;
 	private String direction;
 	private String title;
+	private String house_type;
+	
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
 	public int getOne_no() {
 		return one_no;
 	}
@@ -113,12 +121,6 @@ public class OneDto {
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
-	public String getArea() {
-		return area;
-	}
-	public void setArea(String area) {
-		this.area = area;
-	}
 	public String getBroker_agree() {
 		return broker_agree;
 	}
@@ -143,6 +145,13 @@ public class OneDto {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public String getHouse_type() {
+		return house_type;
+	}
+	public void setHouse_type(String house_type) {
+		this.house_type = house_type;
+	}
+	
 	
 	
 }

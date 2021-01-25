@@ -2,8 +2,8 @@ package houseSemi.beans;
 
 import java.sql.Date;
 
-public class OneDto {
-	private int one_no;
+public class VillaTwoDto {
+	private int villaTwo_no;
 	private int house_no;
 	private int member_no;
 	private int broker_no;
@@ -23,11 +23,11 @@ public class OneDto {
 	private int bill;
 	private String direction;
 	private String title;
-	public int getOne_no() {
-		return one_no;
+	public int getVillaTwo_no() {
+		return villaTwo_no;
 	}
-	public void setOne_no(int one_no) {
-		this.one_no = one_no;
+	public void setVillaTwo_no(int villaTwo_no) {
+		this.villaTwo_no = villaTwo_no;
 	}
 	public int getHouse_no() {
 		return house_no;
@@ -143,6 +143,7 @@ public class OneDto {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
 	
 	
 }
