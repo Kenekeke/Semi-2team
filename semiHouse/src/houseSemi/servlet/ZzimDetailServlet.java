@@ -11,13 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import houseSemi.beans.OfficeDao;
-import houseSemi.beans.OfficeTypeVO;
-import houseSemi.beans.OneDao;
-import houseSemi.beans.OneTypeVO;
-import houseSemi.beans.OneVO;
-import houseSemi.beans.VillaTwoTypeVO;
-import houseSemi.beans.VillatwoDao;
+import houseSemi.beans.*;
+
 
 @WebServlet(urlPatterns = "/like/zzim_detail.do")
 public class ZzimDetailServlet extends HttpServlet{
@@ -51,13 +46,11 @@ public class ZzimDetailServlet extends HttpServlet{
 				break;
 			case "office":
 				OfficeDao officeDao = new OfficeDao();
-				List<OfficeVO> officelist = officeDao.type(house_no);
+				List<OfficeVO> officelist = officeDao.house_select(house_no);
 				json = mapper.writeValueAsString(officelist);
 				resp.getWriter().print(json);
-				break;
-		}    
-			
-			resp.getWriter().print(json);
+				break;	
+			}    
 		}
 		catch(Exception e) {
 			e.printStackTrace();

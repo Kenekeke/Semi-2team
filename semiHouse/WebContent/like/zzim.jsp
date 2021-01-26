@@ -61,8 +61,9 @@ int member_no = (int)session.getAttribute("check");
     			$(this).css("background-color","transparent");
     		});
     	});
-        
-		
+        $(".list").show();
+		$("#charter-range").hide();
+		$(".listDetail").hide();
    		var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
       	 		center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표 
            	level: 8 // 지도의 확대 레벨 
@@ -145,13 +146,14 @@ int member_no = (int)session.getAttribute("check");
         		var Lng = map.getCenter().getLng();
         		$("#Lat").val(Lat);
       			$("#Lng").val(Lng);
-      			$(".list").empty();
-      			var div = $("<div>");
-      			$(div).addClass("list-text").appendTo(".list");
+      			var template = $("#template").html();
+      			var listCount=0;
+      			var photolist=[];
+      			var n =[];
       		
       			$.each(markers, function(index, marker){
-          			
       				if(bounds.contain(marker.getPosition())){
+      					listCount = listCount+1;
       					$.ajax({
         					async:false,//순차적으로실행되도록 설정
         					url: "<%=request.getContextPath()%>/like/zzim_detail.do",
@@ -162,22 +164,134 @@ int member_no = (int)session.getAttribute("check");
         					},
         					success:function(resp){
         						console.log(resp);
-        						var template = $("#template").html();
         						$(template).find(".filterResult").appendTo(".list");
-      				            var list_price = resp.deposit + "/" + resp.monthly;
-      				            var area_floor = resp.floor+" ㆍ "+resp.area;
-      				            var photo_name = resp.save_name;
-      				         	$(template).find(".filterImg").children().prop("src", "http://placeimg.com/150/120/any").appendTo($(".list").children().last());
-      				            $(template).find(".filterPrice").text(list_price).appendTo($(".list").children().last());
-      				            $(template).find(".filterInfo").text(area_floor).appendTo($(".list").children().last());
-      				            $(template).find(".filterAddress").text(resp.one_address).appendTo($(".list").children().last());
+       							$.each(resp, function(index, info){
+       								console.log(index);
+           							if(resp.length>1){
+           								photolist.push(info.save_name+info.photo_type);
+           								n.push(index);
+           							}
+           							console.log(photolist);
+           							console.log("<%=request.getContextPath()%>/img/"+info.save_name+info.photo_type);
+           							console.log(n.length);
+           							if(index==0){
+           								var list_price = info.deposit + "/" + info.monthly;
+               				            var area_floor = info.floor+" ㆍ "+info.area;
+               				         	$(".image-next").addClass("n"+n[0]);
+               				         	$(".image-box").children().prop("src", "<%=request.getContextPath()%>/img/"+info.save_name+info.photo_type);
+               				         	$(template).find(".filterImg").children().prop("src", "<%=request.getContextPath()%>/img/"+info.save_name+info.photo_type).appendTo($(".list").children().last());
+               				      	 	$(template).find(".filterPrice").text(list_price).appendTo($(".list").children().last());
+         				             	$(template).find(".filterInfo").text(area_floor).appendTo($(".list").children().last());
+         				             	$(template).find(".filterAddress").text(info.address).appendTo($(".list").children().last());
+         				            	$(".list").children().last().click(function(){
+    	       				        		$(".detail-house-price").text("월세 "+list_price);
+    	       				        		$(".regist-house-num").text("등록번호 ("+info.house_no+")");
+	    	       				        	$(".detail-house-area").text(info.area);
+	    	       				        	$(".detail-house-bill").text(info.bill);
+	    	       				        	$(".detail-house-direction").text(info.direction);
+	    	       				        	$(".detail-house-title").text(info.title);
+	    	       				        	if(info.parking==="1"){
+	    	       				        		$(".detail-house-parking").text("가능");
+	    	       				        	}
+	    	       				        	else{
+	    	       				        		$(".detail-house-parking").text("불가능");
+	    	       				        	}
+	    	       				        	if(info.elevator==="1"){
+	    	       				        		$(".detail-house-elevator").text("있음");
+	    	       				        	}
+	    	       				        	else{
+	    	       				        		$(".detail-house-elevator").text("없음");
+	    	       				        	}
+	    	       				        	if(info.animal==="1"){
+	    	       				        		$(".detail-house-animal").text("가능");
+	    	       				        	}
+	    	       				        	else{
+	    	       				        		$(".detail-house-animal").text("불가능");
+	    	       				        	}
+	    	       				        	if(info.loan==="1"){
+	    	       				        		$(".detail-house-loan").text("가능");
+	    	       				        	}
+	    	       				        	else{
+	    	       				        		$(".detail-house-loan").text("불가능");
+	    	       				        	}
+	    	       				        	if(info.move_in != null){
+	    	       				        		$(".detail-house-move_in").text(info.move_in);
+	    	       				        	}
+	    	       				        	else{
+	    	       				        		$(".detail-house-move_in").text("협의가능");
+	    	       				        	}
+	    	       				        	$(".detail-house-bill1").text(info.bill);
+	    	       				        	$(".detail-house-area1").text(info.area);
+	    	       				        	$(".detail-house-direction1").text(info.direction);
+	    	       				        	$(".detail-house-floor").text(info.floor);
+	    	       				        	$(".detail-house-address").text(info.address+" "+info.address2);
+	    	       				        	$(".detail-house-etc").text(info.etc);
+	    	       				        	$(".detail-broker-name").text(info.broker_name);
+	    	       				        	if(info.broker_landline != null){
+	    	       				        		$(".detail-broker-landline").text("대표번호 : "+info.broker_landline);
+	    	       				        		$(".detail-broker-phone").text("핸드폰번호 : "+info.member_phone);
+	    	       				        		$(".call-broker-landline").text(info.broker_landline);
+	    	       				        		$(".call-broker-phone").text(info.member_phone);
+	    	       				        	}
+	    	       				        	else{
+	    	       				        		$(".detail-broker-landline").text("");
+	    	       				        		$(".detail-broker-phone").text("핸드폰번호 : "+info.member_phone);
+	    	       				        		$(".call-broker-phone").text(info.member_phone);
+	    	       				        	}
+	    	       				        	$(".detail-broker-email").text("이메일 : "+info.member_email);
+	    	       				        	if(info.broker_address2!=null){
+	    	       				        		$(".detail-broker-address").text("위치 : "+info.broker_address+" "+info.broker_address2);
+	    	       				        	}
+	    	       				        	else{
+	    	       				        		$(".detail-broker-address").text("위치 : "+info.broker_address);
+	    	       				        	}
+	    	       				        	$(".call-house-no").text(info.house_no);
+	    	       				        	$(".call-broker-name").text(info.broker_name);
+	    	       				        	$(".listDetail").show();
+	    	       				        	$(".ListAndFilter").hide();
+	    	       				        	$(".zzimSpace").click(function(){
+	    		       				         	if($(this).hasClass("zzimDo")){
+	    		       				         		$(this).children().prop("src","../img/zzim.png");
+	    		       				         		$(this).removeClass("zzimDo");
+	    		       				         		//location.href="찜삭제";
+	    		       				         	}
+	    		       				         	else{
+	    		       				         		$(this).children().prop("src","../img/zzima.png");
+	    		       				         		$(this).addClass("zzimDo");
+	    		       				         		//location.href="찜등록";
+	    		       				         	}
+	    		       				        });
+	    	       				        });
+           							}
+           						});//안에 each문
+           						var indexs=n.length;
+           						$(".image-next").click(function(){
+           							for(var i=0; i<indexs; i++){
+           								if(i==(indexs-1)){
+           									i=-1;
+           								}
+           								if(!$(this).hasClass(photolist[i+1])){
+               								$(this).addClass(photolist[i+1]);
+               								$(".image-box").children().prop("src", "<%=request.getContextPath()%>/img/"+photolist[i+1]);
+               								if(i==-1){
+               									$(this).removeClass(photolist[indexs-1]);
+               								}
+               								else{
+               									$(this).removeClass(photolist[i]);
+               								}
+               							}
+           							}
+           						});
+           						photolist=[];
         					},
         					error:function(){
         						console.log("false_filter")
         					}
+        					
         				});
       				}
       			});
+      			$(".total-list").text("지역 목록 "+listCount+"개");
         	};
         	kakao.maps.event.addListener(map,'bounds_changed', function(){
             	$("body").children().find(".text").remove(); //기존에 있던 정보들을 삭제시킨다.
@@ -230,12 +344,14 @@ int member_no = (int)session.getAttribute("check");
 	</div>
 </article>
 <aside class="filtering">
+
 	<div class="ListAndFilter">
 		<div class="fb">
 			<div class="total-list"></div>
 		</div>
 		<div class="list"></div>
 	</div>
+
 	<div class="listDetail">
 		<div class="backlist">◀</div>
 		<div class="de-info">
@@ -332,5 +448,5 @@ int member_no = (int)session.getAttribute("check");
 			</div>
 		</div>
 	</div>
-            </aside>
+</aside>
 <jsp:include page="/template/house_footer.jsp"></jsp:include>

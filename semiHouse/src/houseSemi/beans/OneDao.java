@@ -579,7 +579,7 @@ public class OneDao {
 			Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 			String sql = "select * from(one O inner join photo P on O.house_no = P.house_no " + 
 					"inner join broker B on O.broker_no = B.broker_no " + 
-					"inner join member M on B.member_no = M.member_no) where house_no=?";
+					"inner join member M on B.member_no = M.member_no) where O.house_no=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, house_no);
 			ResultSet rs = ps.executeQuery();
