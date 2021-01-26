@@ -23,13 +23,13 @@ public class AjaxFilterOfficeServlet extends HttpServlet{
 			int office_no = Integer.parseInt(req.getParameter("office_no"));
 			//System.out.println(one_no);
 			OfficeDao officeDao = new OfficeDao();
-			OfficeVO vo = officeDao.select(office_no);
+			List<OfficeVO> officelist = officeDao.select(office_no);
 			
 			//출력
 			resp.setHeader("Contect-Type", "application/json");
 			resp.setHeader("Content-Encoding", "UTF-8");
 			ObjectMapper mapper = new ObjectMapper();
-			String json = mapper.writeValueAsString(vo);
+			String json = mapper.writeValueAsString(officelist);
 			resp.getWriter().print(json);
 		}
 		catch(Exception e) {

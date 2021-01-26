@@ -23,13 +23,13 @@ public class AjaxFilterVillatwoServlet extends HttpServlet{
 			int villatwo_no = Integer.parseInt(req.getParameter("villatwo_no"));
 			//System.out.println(one_no);
 			VillatwoDao villatwoDao = new VillatwoDao();
-			VillatwoVO vo = villatwoDao.select(villatwo_no);
+			List<VillatwoVO> villalist = villatwoDao.select(villatwo_no);
 			
 			//출력
 			resp.setHeader("Contect-Type", "application/json");
 			resp.setHeader("Content-Encoding", "UTF-8");
 			ObjectMapper mapper = new ObjectMapper();
-			String json = mapper.writeValueAsString(vo);
+			String json = mapper.writeValueAsString(villalist);
 			resp.getWriter().print(json);
 		}
 		catch(Exception e) {
