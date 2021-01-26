@@ -5,14 +5,14 @@
 		font-size: 15px;
 	}
 </style>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services" charset="UTF-8"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
 var map;
 $(function(){
-		//검색을 원할 때 실행 할 함수
+		//지도
 		$(".check-location").click(function(){
-			$('#map').show();
+			$("#map").show();
 			//지도 생성
 			var mapContainer = document.querySelector("#map"),
             mapOption = {
@@ -62,7 +62,7 @@ $(function(){
             var zoomControl = new kakao.maps.ZoomControl();
             map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 		});
-		
+		//관리비 및 입주일 check값 연결
 		$(".bill-check").change(function(){
 			var check = $(this).prop("checked");
 			if(check){
@@ -71,10 +71,45 @@ $(function(){
 				$("input[name=bill]").val(null);
 			}
 		});
-		$(".photo-delete").click(function(){
-			var photo = document.querySelector("input[name=f1]");
-			photo[0].select();
-			document.selection.clear();
+		$(".move_in-check").change(function(){
+			var check = $(this).prop("checked");
+			if(check){
+				$("input[name=move_in]").val(null);
+			}
+		});
+		//사진삭제
+		$(".photo-delete1").click(function(){
+			$("input[name=f1]").val("");
+		});
+		$(".photo-delete2").click(function(){
+			$("input[name=f2]").val("");
+		});
+		//상세 설명 1000자 이내 작성
+		$(".etc").on("input", function(){
+            $("#etc-number").text($(this).val().length);
+            if($(this).val().length>1000){
+                alert("1000자 이내로 작성해주세요");
+            }
+        });
+		$("input[name=title]").on("input", function(){
+            if($(this).val().length>20){$
+                alert("제목은 20자 이내로 작성해주세요");
+            }
+        });
+		//날짜 선택
+		
+		//form 이벤트 검사 추가
+		var count = 0;
+		$(".check-location").click(function(){
+			count++;
+		}); 			
+		$(".form").submit(function(e){
+ 			e.preventDefault();
+ 			if(count == 0){
+ 				alert("위치 확인 버튼을 눌러주세요")
+ 			}else{
+ 				this.submit();
+ 			}
 		});
 	});
 	
@@ -83,7 +118,7 @@ $(function(){
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 
-<form action="insert-room.do" method="post" enctype="multipart/form-data" >
+<form class="form" action="insert-room.do" method="post" enctype="multipart/form-data" >
 <!-- 추후 타입 히든으로 변경 -->
 <input type="hidden" name="house_type" value="office">
 <div class="add-adress" style="width: 600px;">
@@ -260,23 +295,31 @@ $(function(){
 				<th width="20%">입주 가능일 </th>
 				<td colspan="3" width="80%">
 					<input class="inline-input" type="date" name="move_in">
-					<span style="color: red;">※협의가능시, 날짜 선택을 하지마세요.</span>							
+					<label>					
+						<input class="inline-input move_in-check" type="checkbox">협의가능					
+					</label><br>
+					<span style="color: red;">※협의가능시, 협의가능을 체크해주세요.</span>							
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">제목 </th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="title" style="width: 100%">					
+					<input class="inline-input" type="text" name="title" style="width: 100%" placeholder="ex): 넓은 오픈형 원룸 전세  전세대출가능">					
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">상세 설명 </th>
 				<td colspan="3" width="80%">
-					<textarea rows="15" style="width: 100%" name="etc" 
-					placeholder="해당 방에 대한 특징과 소개를 최소 50자 이상 입력해야 합니다.
-방의 위치와 교통, 주변 편의시설, 방의 특징과 장점, 보안시설, 옵션, 주차, 전체적인 방의 느낌 등을 작성 해주세요.
-다른 방에 대한 설명, 연락처, 홍보 메세지 등 해당 방과 관련없는 내용을 입력하거나 해당 방에 대한 설명이 부적절한 경우 중개가 종료될 수 있습니다.">
-					</textarea>
+            		<div class="right">
+					<textarea class="etc" rows="15" style="width: 100%" name="etc" 
+placeholder="해당 방에 대한 특징과 소개를 최소 50자 이상 입력해야 합니다.
+방의 위치와 교통, 주변 편의시설, 방의 특징과 장점, 보안시설, 옵션, 주차, 
+전체적인 방의 느낌 등을 작성 해주세요.
+
+다른 방에 대한 설명, 연락처, 홍보 메세지 등 해당 방과 관련없는 내용을 입력하거나 해당 방에 대한 설명이 부적절한 경우 중개가 종료될 수 있습니다."></textarea>
+            			<span class="etc-length" id="etc-number" >0</span>
+            			<span class="etc-length">/1000</span>            		
+            		</div>
 				</td>
 			</tr>				
 		</tbody>
