@@ -63,11 +63,11 @@
                 <div class="menu-bar">
                     <ul class="menu">
                         <li class="menu-find">
-                            <a href="<%=request.getContextPath()%>/house.one.jsp">방 찾기</a>
+                            <a href="<%=request.getContextPath()%>/house/one.jsp">방 찾기</a>
                             <ul class="menu-second">
-                                <li><a href="<%=request.getContextPath()%>/house.one.jsp">원룸</a></li>
-                                <li><a href="<%=request.getContextPath()%>/house.villatwo.jsp">빌라 ｜ 투룸</a></li>
-                                <li><a href="<%=request.getContextPath()%>/house.office.jsp">오피스텔</a></li>
+                                <li><a href="<%=request.getContextPath()%>/house/one.jsp">원룸</a></li>
+                                <li><a href="<%=request.getContextPath()%>/house/villatwo.jsp">빌라 ｜ 투룸</a></li>
+                                <li><a href="<%=request.getContextPath()%>/house/office.jsp">오피스텔</a></li>
                             </ul>
                         </li>
                         <li>
@@ -106,11 +106,11 @@
                 <div class="menu-bar">
                     <ul class="menu">
                         <li class="menu-find">
-                            <a href="<%=request.getContextPath()%>/house.one.jsp">방 찾기</a>
+                            <a href="<%=request.getContextPath()%>/house/one.jsp">방 찾기</a>
                             <ul class="menu-second">
-                                <li><a href="<%=request.getContextPath()%>/house.one.jsp">원룸</a></li>
-                                <li><a href="<%=request.getContextPath()%>/house.villatwo.jsp">빌라 ｜ 투룸</a></li>
-                                <li><a href="<%=request.getContextPath()%>/house.office.jsp">오피스텔</a></li>
+                                <li><a href="<%=request.getContextPath()%>/house/one.jsp">원룸</a></li>
+                                <li><a href="<%=request.getContextPath()%>/house/villatwo.jsp">빌라 ｜ 투룸</a></li>
+                                <li><a href="<%=request.getContextPath()%>/house/office.jsp">오피스텔</a></li>
                             </ul>
                         </li>
                         <li>

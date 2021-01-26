@@ -575,5 +575,50 @@ public class OneDao {
 			con.close();
 			return VO;
 		}
-	
+		public List<OneVO> house_select(int house_no) throws Exception{
+			Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
+			String sql = "select * from(one O inner join photo P on O.house_no = P.house_no " + 
+					"inner join broker B on O.broker_no = B.broker_no " + 
+					"inner join member M on B.member_no = M.member_no) where house_no=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, house_no);
+			ResultSet rs = ps.executeQuery();
+			List<OneVO> onelist = new ArrayList<>();
+			while(rs.next()) {
+				OneVO vo = new OneVO();
+				vo.setOne_no(rs.getInt("one_no"));
+				vo.setHouse_no(rs.getInt("house_no"));
+				vo.setMember_no(rs.getInt("member_no"));
+				vo.setBroker_no(rs.getInt("broker_no"));
+				vo.setDeposit(rs.getInt("deposit"));
+				vo.setMonthly(rs.getInt("monthly"));
+				vo.setAddress(rs.getString("address"));
+				vo.setAddress2(rs.getString("address2"));
+				vo.setFloor(rs.getString("floor"));
+				vo.setLoan(rs.getString("loan"));
+				vo.setAnimal(rs.getString("animal"));
+				vo.setElevator(rs.getString("elevator"));
+				vo.setParking(rs.getString("parking"));
+				vo.setMove_in(rs.getString("move_in"));
+				vo.setEtc(rs.getString("etc"));
+				vo.setBroker_agree(rs.getString("broker_agree"));
+				vo.setArea(rs.getString("area"));
+				vo.setBill(rs.getInt("bill"));
+				vo.setDirection(rs.getString("direction"));
+				vo.setTitle(rs.getString("title"));
+				vo.setPhoto_no(rs.getInt("photo_no"));
+				vo.setUpload_name(rs.getString("upload_name"));
+				vo.setSave_name(rs.getString("save_name"));
+				vo.setPhoto_type(rs.getString("photo_type"));
+				vo.setBroker_address(rs.getString("broker_address"));
+				vo.setBroker_address2(rs.getString("broker_address2"));
+				vo.setBroker_name(rs.getString("broker_name"));
+				vo.setBroker_landline(rs.getString("broker_landline"));
+				vo.setMember_email(rs.getString("member_email"));
+				vo.setMember_phone(rs.getString("member_phone"));
+				onelist.add(vo);
+			}
+			con.close();
+			return onelist;
+		}
 }

@@ -8,6 +8,8 @@
 	BoardDao boardDao = new BoardDao(); 
 	BoardDto boardDto = boardDao.find(board_no);
 	String board_header = boardDto.getBoard_header();
+	boolean isAdmin = session.getAttribute("auth").equals("admin");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -39,6 +41,9 @@
 			<div class="boardHeader">
 				<div class="board_header">구분</div>
 				<div class="type_radio">
+					<%if(isAdmin) {%>
+					<input type="radio" name="board_header" value="공지사항" id="notice" <%if(board_header!=null&&board_header.equals("공지사항")){%>checked<%}%>><label for="notice">공지사항</label>
+					<%} %>
 					<input type="radio" name="board_header" value="인테리어/DIY" id="interior" <%if(board_header!=null&&board_header.equals("인테리어/DIY")){%>checked<%}%>><label for="interior">인테리어/DIY</label>
 					<input type="radio" name="board_header" value="전/월세 장터" id="market" <%if(board_header!=null&&board_header.equals("전/월세 장터")){%>checked<%}%>><label for="market">전/월세 장터</label>
 					<input type="radio" name="board_header" value="집수리/이사" id="repair" <%if(board_header!=null&&board_header.equals("집수리/이사")){%>checked<%}%>><label for="repair">집수리/이사</label>

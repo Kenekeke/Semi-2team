@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
     
 <%
-	//session.setAttribute("check", 1);
+	boolean isMember = session.getAttribute("check") != null;
+	boolean isAdmin = session.getAttribute("auth").equals("admin");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -33,6 +35,9 @@
 			<div class="boardHeader">
 				<div class="board_header">구분</div>
 				<div class="type_radio">
+					<%if(isAdmin) {%>
+					<input type="radio" name="board_header" value="공지사항" id="notice" checked><label for="notice">공지사항</label>
+					<%} %>
 					<input type="radio" name="board_header" value="인테리어/DIY" id="interior" checked><label for="interior">인테리어/DIY</label>
 					<input type="radio" name="board_header" value="전/월세 장터" id="market"><label for="market">전/월세 장터</label>
 					<input type="radio" name="board_header" value="집수리/이사" id="repair"><label for="repair">집수리/이사</label>
