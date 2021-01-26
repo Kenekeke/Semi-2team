@@ -6,24 +6,7 @@
 request.setCharacterEncoding("utf8");
 int member_no = (int)session.getAttribute("check");
 %>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>찜목록</title>
-    <link rel="stylesheet" type="text/css" href="../css/range.css">
-    <style>
-   .list-image{
-   		float:left;
-   }
-</style>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=clusterer,services"></script>
-	
-	<script src="<%=request.getContextPath()%>/js/pricechoice.js"></script>
-	<%request.setCharacterEncoding("UTF-8");%>
+<jsp:include page="/template/house_header.jsp"></jsp:include>
     <script>
     $(function () {
 		var searchTemplate = $("#search_template").html();
@@ -171,7 +154,7 @@ int member_no = (int)session.getAttribute("check");
       				if(bounds.contain(marker.getPosition())){
       					$.ajax({
         					async:false,//순차적으로실행되도록 설정
-        					url: "<%=request.getContextPath()%>/like/zzim_type.do",
+        					url: "<%=request.getContextPath()%>/like/zzim_detail.do",
         					type : "POST",
         					data : {
         						house_type : marker.type,
@@ -201,6 +184,19 @@ int member_no = (int)session.getAttribute("check");
             	onBounds(); //사이드바 갱신 함수 호출
         	});
         };
+        $(".backlist").click(function(){
+        	$(".listDetail").hide();
+	        $(".ListAndFilter").show();
+        });
+        $(".callSpace").click(function(){
+        	$(".callInfo").css("display","flex");
+        	$(".callInfo").css("align-items","center");
+        	$(".callInfo").css("justify-content","center");
+	        $(".callInfo").show();
+	    });
+        $(".call-close").click(function(){
+        	$(".callInfo").css("display","none");
+        });
     });
 </script>
 <script id="search_template" type="text/template">
@@ -224,111 +220,117 @@ int member_no = (int)session.getAttribute("check");
 		<div class="filterAddress"></div>
 	</div>
 </script>
-<style>
-	.searchLat,
-   	.searchLng{
-   		display:none;
-   	}
-   	.selectItem{
-   		padding 10px 10px 0;
-   	}
-   	.searchResult{
-   		border: 2px solid white;
-   		z-index: 110;
-   		width: 260px;
-   		max-height: 300px;
-   		display: none;
-   		background-color: white;
-   		overflow: auto;
-   	}
-   	.searchName{
-   		font-size: 14px;
-   		font-weight: bold;
-   		display: block;
-   	}
-   	.searchAddress{
-   		font-size: 10px;
-   		display: block;
-   	}
-   	.center {
-        font-size: 40px;
-        font-weight: bold;
-    }
-
-    .slide {
-        z-index: 99;
-        position: fixed;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 200px;
-        background-color: white;
-    }
-    .floatBox{
-       	z-index: 100;
-       	width: 329px;
-       	height: 50px;
-       	position: absolute;
-       	left:20px;
-       	top:150px;
-       	border: 1px solid;
-		background-color: white;
-		padding: 10px 10px;
-	
-    }
-    .searchBox{
-     	border: 2px solid orange;
-    }
-	.search{
-	   	float: left;
-	   	padding: 4px;
-	   	border: none;
-	   	width: 260px;
-	   	margin: 0;
-    }
-       .search::after{
-       	content:"";
-       	display: block;
-       	clear:both;
-    }
-	hr{
-		background-color: lightgray;
-		height: 1px;
-		border:0;        
-    }
-</style>
-</head>
-<body>
-    <main>
-        <header>
-            <a class="header-a"><img alt="로고" src="https://placeimg.com/50/50/any"></a>
-            <a class="header-a">방 찾기</a>
-            <a class="header-a">찜한 매물</a>
-            <a class="header-a">방 내놓기</a>
-        </header>
-        <nav>
-            <a class="menu-filter menu-choice" id="menu-filter1">빌라, 투룸</a>
-            <a class="menu-filter" id="menu-filter2">원룸</a>
-            <a class="menu-filter" id="menu-filter3">오피스텔</a>
-        </nav>
-        <section>
-            <article>
-                <div id="map" style="width:100%;height:100%;"></div>
-                <div class="floatBox">
-					<div class="searchBox" >
-						<input type="text" placeholder="지역, 지하철역 검색" class="search">
-						<button class="searchBtn">제출</button>
-					</div>
+<article>
+    <div id="map" style="width:100%;height:100%;"></div>
+    <div class="floatBox">
+		<div class="searchBox" >
+			<input type="text" placeholder="지역, 지하철역 검색" class="search">
+			<button class="searchBtn">제출</button>
+		</div>
+	</div>
+</article>
+<aside class="filtering">
+	<div class="ListAndFilter">
+		<div class="fb">
+			<div class="total-list"></div>
+		</div>
+		<div class="list"></div>
+	</div>
+	<div class="listDetail">
+		<div class="backlist">◀</div>
+		<div class="de-info">
+			<div class="image-box">
+				<img alt="매물상세이미지" style="width: 100%; height: 100%;">
+				<div class="detail-image-nextBtn" style="width: 100%; height: 100%;">
+					<div class="image-back">＜</div>
+					<div class="image-next">＞</div>
 				</div>
-            </article>
-            <aside class="filtering">
-               
-				<div class="list">
-					<div>짜잔</div>
+			</div>
+			<div class="boundaryList">
+				<div class="detail-house-price"></div>
+				<div class="regist-house-num"></div>
+			</div>
+			<div class="boundaryList displayList">
+				<div>
+					<span>면적(전용)</span>
+					<div class="detail-house-area"></div>
 				</div>
+				<div>
+					<span>관리비</span>
+					<div class="detail-house-bill"></div>
+				</div>
+				<div>
+					<span>방향</span>
+					<div class="detail-house-direction"></div>
+				</div>
+			</div>
+			<div class="titleList detail-house-title"></div>
 
+			<div class="boundaryList">매물 정보</div>
+			<div class="titleList">
+				<div class="detailInfoList">
+					<div class="detailInfoWidth">주차</div>
+					<div class="detail-house-parking"></div>
+				</div>
+				<div class="detailInfoList">
+					<div class="detailInfoWidth">엘리베이터</div>
+					<div class="detail-house-elevator"></div>
+				</div>
+				<div class="detailInfoList">
+					<div class="detailInfoWidth">반려동물</div>
+					<div class="detail-house-animal"></div>
+				</div>
+				<div class="detailInfoList">
+					<div class="detailInfoWidth">전세대출</div>
+					<div class="detail-house-loan"></div>
+				</div>
+				<div class="detailInfoList">
+					<div class="detailInfoWidth">입주가능일</div>
+					<div class="detail-house-move_in"></div>
+				</div>
+				<div class="detailInfoList">
+					<div class="detailInfoWidth">관리비</div>
+					<div class="detail-house-bill1"></div>
+				</div>
+				<div class="detailInfoList">
+					<div class="detailInfoWidth">면적(전용)</div>
+					<div class="detail-house-area1"></div>
+				</div>
+				<div class="detailInfoList">
+					<div class="detailInfoWidth">방향</div>
+					<div class="detail-house-direction1"></div>
+				</div>
+				<div class="detailInfoList">
+					<div class="detailInfoWidth">층수</div>
+					<div class="detail-house-floor"></div>
+				</div>
+				<div class="lastList">
+					<div class="detailInfoWidth">주소</div>
+					<div class="detail-house-address"></div>
+				</div>
+			</div>
+			<div class="boundaryList">상세 설명</div>
+			<div class="titleList detail-house-etc"></div>
+			<div class="titleList">
+				<div class="detail-broker-name"></div>
+				<div class="detail-broker-landline"></div>
+				<div class="detail-broker-phone"></div>
+				<div class="detail-broker-email"></div>
+				<div class="detail-broker-address"></div>
+			</div>
+		</div>
+
+		<div class="callzzimSpace"></div>
+		<div class="callzzimSpace callzzim">
+			<div class="callSpace">
+				<img alt="전화이미지" src="../img/call.jpg" style="width: 30px;">
+				<div>전화하기</div>
+			</div>
+			<div class="zzimSpace">
+				<img alt="찜이미지" src="../img/zzim.png" style="width: 30px;">
+				<div>찜하기</div>
+			</div>
+		</div>
+	</div>
             </aside>
-        </section>
-    </main>
-</body>
-</html>
+<jsp:include page="/template/house_footer.jsp"></jsp:include>
