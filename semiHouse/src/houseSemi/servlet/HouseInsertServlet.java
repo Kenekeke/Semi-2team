@@ -71,9 +71,10 @@ public class HouseInsertServlet extends HttpServlet{
 			BrokerDao brokerDao = new BrokerDao();
 			
 			BrokerDto brokerDto = brokerDao.find(city);
+			int broker_no = brokerDto.getBroker_no();
 			//추출한 city가 부동산 주소에 포함되어있다면 부동산 넘버를 들고 오시오
 			if(brokerDto.getBroker_address().contains(city)) {
-				houseDto.setBroker_no(brokerDto.getBroker_no());				
+				houseDto.setBroker_no(broker_no);				
 			}
 			
 			int house_no = houseDao.getSequence(); //시퀀스 생성
@@ -113,7 +114,7 @@ public class HouseInsertServlet extends HttpServlet{
 				
 				oneDto.setHouse_no(house_no);
 				oneDto.setMember_no(member_no);
-				oneDto.setBroker_no(brokerDto.getBroker_no());
+				oneDto.setBroker_no(broker_no);
 				oneDto.setAddress(address);
 				oneDto.setAddress2(mRequest.getParameter("address2"));
 				oneDto.setDeposit(Integer.parseInt(mRequest.getParameter("deposit"))*10000);
@@ -138,7 +139,7 @@ public class HouseInsertServlet extends HttpServlet{
 				
 				villatwoDto.setHouse_no(house_no);
 				villatwoDto.setMember_no(member_no);
-				villatwoDto.setBroker_no(brokerDto.getBroker_no());
+				villatwoDto.setBroker_no(broker_no);
 				villatwoDto.setAddress(address);
 				villatwoDto.setAddress2(mRequest.getParameter("address2"));
 				villatwoDto.setDeposit(Integer.parseInt(mRequest.getParameter("deposit"))*10000);
@@ -165,7 +166,7 @@ public class HouseInsertServlet extends HttpServlet{
 				officeDto.setHouse_no(house_no);
 				officeDto.setAddress(address);
 				officeDto.setMember_no(member_no);
-				officeDto.setBroker_no(brokerDto.getBroker_no());
+				officeDto.setBroker_no(broker_no);
 				officeDto.setAddress2(mRequest.getParameter("address2"));
 				officeDto.setDeposit(Integer.parseInt(mRequest.getParameter("deposit"))*10000);
 				officeDto.setMonthly(Integer.parseInt(mRequest.getParameter("monthly"))*10000);
