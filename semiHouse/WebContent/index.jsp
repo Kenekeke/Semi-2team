@@ -3,7 +3,7 @@
 
 
 <script type="text/javascript"
-    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=services"></script>
+    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe6f523576b10aa9e50625a1962d3635&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
@@ -41,6 +41,7 @@
 	        // 지도에 사각형을 표시합니다
 	        rectangle.setMap(map);
 	        map.setDraggable(false);
+	        map.setZoomable(false);
 
 
             $.getJSON("./house/sources/seoul.json", function (geojson) {
