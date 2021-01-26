@@ -144,15 +144,15 @@
     </script>
 	<script>
     function type_bt(type){
-    	e.preventdefault()
+    	
     	if(type=="oneroom"){
-        	document.centerForm.action="./house/one.jsp"
+        	document.centerForm.action="<%=request.getContextPath()%>/house/one.jsp"
         };
         if(type=="villa"){
-        	document.centerForm.action="./house/villatwo.jsp"
+        	document.centerForm.action="<%=request.getContextPath()%>/house/villatwo.jsp"
         };
         if(type=="office"){
-        	document.centerForm.action="./house/office.jsp"
+        	document.centerForm.action="<%=request.getContextPath()%>/house/office.jsp"
         };
     };
     document.getElementById('type_bt').addEventListener('onchange',click);
