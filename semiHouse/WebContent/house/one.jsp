@@ -52,6 +52,8 @@
         			console.log('false');
         		}
         	});
+    		if($(".search").val().length==0){$(".searchResult").remove();}
+
     		$(".floatBox").find(".searchItem").bind('click', function(e){
     			$(".search").val($(this).find(".searchName").text());
     			$(".searchResult").remove();
