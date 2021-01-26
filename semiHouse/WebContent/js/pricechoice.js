@@ -857,42 +857,24 @@ window.onload = function(){
         inputRight3.addEventListener("input", setRightValue3);
     }
 
-    $("#menu-filter1").click(function(){
-        if(!$(this).hasClass("menu-choice")){
-            $(this).addClass("menu-choice");
-            $("#menu-filter2").removeClass("menu-choice");
-            $("#menu-filter3").removeClass("menu-choice");
-            $(".floor").hide();
-        }
-    });
-    $("#menu-filter2").click(function(){
-        if(!$(this).hasClass("menu-choice")){
-            $(this).addClass("menu-choice");
-            $("#menu-filter1").removeClass("menu-choice");
-            $("#menu-filter3").removeClass("menu-choice");
-            $(".floor").show();
-        }
-    });
-    $("#menu-filter3").click(function(){
-        if(!$(this).hasClass("menu-choice")){
-            $(this).addClass("menu-choice");
-            $("#menu-filter1").removeClass("menu-choice");
-            $("#menu-filter2").removeClass("menu-choice");
-            $(".floor").hide();
-        }
-    });
     $("#filter-btn").click(function(){
         if($(this).hasClass("filter-open")){
             $(this).addClass("filter-close");
             $(this).removeClass("filter-open");
             $(".active").show();
             $(".list").hide();
+            $(".listDetail").hide();
+            $(this).parent().css("border-bottom","none");
+            $(".total-list").hide();
         }
         else{
             $(this).removeClass("filter-close");
             $(this).addClass("filter-open");
             $(".active").hide();
             $(".list").show();
+            $(".listDetail").hide();
+            $(this).parent().css("border-bottom","1px solid lightgray");
+            $(".total-list").show();
         }
     });
     

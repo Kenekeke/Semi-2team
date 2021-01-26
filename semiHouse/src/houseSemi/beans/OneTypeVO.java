@@ -16,7 +16,7 @@ public class OneTypeVO {
 	private String animal;
 	private String elevator;
 	private String parking;
-	private Date move_in;
+	private String move_in;
 	private String etc;
 	private String area;
 	private String broker_agree;
@@ -109,10 +109,10 @@ public class OneTypeVO {
 	public void setParking(String parking) {
 		this.parking = parking;
 	}
-	public Date getMove_in() {
+	public String getMove_in() {
 		return move_in;
 	}
-	public void setMove_in(Date move_in) {
+	public void setMove_in(String move_in) {
 		this.move_in = move_in;
 	}
 	public String getEtc() {

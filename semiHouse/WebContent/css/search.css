@@ -1,0 +1,67 @@
+.searchLat, .searchLng {
+	display: none;
+}
+
+.selectItem {
+	padding: 10px 10px 0;
+}
+
+.searchResult {
+	border: 2px solid white;
+	z-index: 110;
+	width: 260px;
+	max-height: 300px;
+	display: none;
+	background-color: white;
+	overflow: auto;
+}
+
+.searchName {
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+}
+
+.searchAddress {
+	font-size: 10px;
+	display: block;
+}
+
+.floatBox {
+	z-index: 100;
+	width: 329px;
+	height: 50px;
+	position: absolute;
+	left: 20px;
+	top: 150px;
+	background-color: white;
+	padding: 10px 10px;
+}
+
+.searchBox {
+	border: 2px solid orange;
+}
+
+.search {
+	float: left;
+	padding: 4px;
+	border: none;
+	width: 260px;
+	margin: 0;
+	z-index: 100;
+}
+.searchBtn{
+	z-index: 100;
+}
+
+.search::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+hr {
+	background-color: lightgray;
+	height: 1px;
+	border: 0;
+}

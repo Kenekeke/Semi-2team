@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import houseSemi.beans.*;
 
 
-@WebServlet(urlPatterns = "/filter/test.do")
+@WebServlet(urlPatterns = "/house/test.do")
 public class AjaxSearchServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

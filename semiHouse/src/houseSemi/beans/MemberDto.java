@@ -50,5 +50,8 @@ public class MemberDto {
 	public void setMember_auth(String member_auth) {
 		this.member_auth = member_auth;
 	}
+	public boolean is(String member_auth) {
+		return this.member_auth != null && this.member_auth.equals(member_auth);
+	}
 	
 }

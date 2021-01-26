@@ -13,13 +13,6 @@ main{
 }
 header{
     height:80px;
-    padding-left: 0.5rem;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid black;
-}
-.header-a{
-    margin: 0 1rem;
 }
 nav{
     height:50px;
@@ -28,233 +21,455 @@ nav{
     align-items: center;
     border-bottom: 1px solid #bdc3c7;
 }
-.menu-filter{
-    width:100px;
-    height: 80%;
-    margin:0 1rem;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 17px;
-    font-family: "빙그레체";
-    cursor: pointer;
+
+section {
+	height: calc(100% - 130px);
+	display: flex;
 }
-.menu-choice{
-    font-weight: bold;
-    border-bottom: 3px solid black;
-}
-section{
-    height: calc(100% - 130px);
-    display:flex;
-}
-article{
-    width: calc(100% - 400px);
-    height:100%;
-    background-color: beige;
-    /* float: left; */
+
+article {
+	width: calc(100% - 400px);
+	height: 100%;
 }
 
 /* 필터링 */
-aside{
-    width:400px;
-    height:calc(100vh - 130px);
-    /* display:inline-block; */
-    border-left:1px solid #bdc3c7;
+aside {
+	width: 400px;
+	height: calc(100vh - 130px);
+	border-left: 1px solid #bdc3c7;
+	z-index:200;
+	background-color:white;
+}
+.ListAndFilter{
+	width:400px;
+	z-index:200;
+	position:absolute;
+	right:0;
+	bottom:0;
+}
+.active{
+	width:400px;
+	text-align:center;
 }
 
-.fb{
-    height:40px;
-    padding:0.3rem;
-    text-align: right;
+.fb {
+	height: 40px;
+	width: 100%;
+	padding: 0.5rem 0 0.6rem 0;
+	text-align: right;
+	border-bottom: 1px solid lightgray;
 }
-#filter-btn{
-    width:60px;
-    height:100%;
-    margin-right: 20px;
-    border-radius: 0.5rem;
-    border:1px solid gray;
-    outline:none;
-    cursor: pointer;
+
+.total-list {
+	width: 300px;
+	height: 100%;
+	font-size: 20px;
+	display: inline-block;
+	padding-right: 160px;
 }
-.filter-open{
-    background-image: url("/semiHouse/img/filterbtn.png");
-    background-repeat: no-repeat;
-    background-position-x: -4px;
-    background-position-y: -10px;
-    background-size: 70px;
+
+#filter-btn {
+	width: 60px;
+	height: 100%;
+	margin-right: 1rem; border-radius : 0.5rem;
+	border: 1px solid gray;
+	outline: none;
+	cursor: pointer;
+	display: inline-block;
+	border-radius: 0.5rem;
 }
-.filter-close{
-    background-image: url("/semiHouse/img/close.png");
-    background-repeat: no-repeat;
-    background-position-x: -4px;
-    background-position-y: -10px;
-    background-size: 70px;
+
+.filter-open {
+	background-image: url("../img/filterbtn.png");
+	background-repeat: no-repeat;
+	background-position-x: 0;
+	background-position-y: -10px;
+	background-size: 60px;
 }
-.list{
+
+.filter-close {
+	background-image: url("../img/close.png");
+	background-repeat: no-repeat;
+	background-position-x: 0;
+	background-position-y: -10px;
+	background-size: 60px;
+}
+
+.list {
+	width:400px;
 	height: calc(100vh - 170px);
-    overflow:auto;
-    z-index: 99;
+	overflow: auto;
+	z-index: 99;
 }
-.mOrc{
-    height:60px;
-    margin:0 0.5rem;
-    padding-top:0.6rem;
-    text-align: center;
-    border-top: 3px solid #ecf0f1;
-    border-bottom: 3px solid #ecf0f1;
+
+.mOrc {
+	height: 60px;
+	margin: 0 0.5rem;
+	padding-top: 0.6rem;
+	text-align: center;
+	border-top: 3px solid #ecf0f1;
+	border-bottom: 3px solid #ecf0f1;
 }
-#monthly, #charter{
-    width:6rem;
-    height:2rem;
-    border-radius: 1rem;
-    border:none;
-    /* background-color: #bdc3c7; */
-    font-size: 20px;
-    outline: none;
-    cursor: pointer;
+
+#monthly, #charter {
+	width: 6rem;
+	height: 2rem;
+	border-radius: 1rem;
+	border: none;
+	/* background-color: #bdc3c7; */
+	font-size: 20px;
+	outline: none;
+	cursor: pointer;
 }
-.detailFilter{
-    height: calc(100vh - 290px);
-    overflow:auto;
+
+.detailFilter {
+	height: calc(100vh - 290px);
+	overflow: auto;
 }
-#charter-range, #deposit-range, #monthly-range{
-    height: 130px;
-    border-bottom: 3px solid #ecf0f1;
+
+#charter-range, #deposit-range, #monthly-range {
+	height: 130px;
+	border-bottom: 3px solid #ecf0f1;
 }
-.priceTitle{
-    padding:0.5rem 0;
+
+.priceTitle {
+	padding: 0.5rem 0;
 }
-.price-show{
-    color:darkgoldenrod;
-    font-size: 20px;
+
+.price-show {
+	color: darkgoldenrod;
+	font-size: 20px;
 }
-.floor{
-    border-bottom: 3px solid #ecf0f1;
+
+.floor {
+	border-bottom: 3px solid #ecf0f1;
 }
-#floor1, #floor2, #floor3,
-#parking, #elevator, #animal, #loan{
-    width:100px;
-    height:35px;
-    font-size: 15px;
-    border-radius: 1rem;
-    border:none;
-    outline: none;
-    margin: 0.5rem 0;
-    cursor: pointer;
+
+#floor1, #floor2, #floor3, #parking, #elevator, #animal, #loan {
+	width: 100px;
+	height: 35px;
+	font-size: 15px;
+	border-radius: 1rem;
+	border: none;
+	outline: none;
+	margin: 0.5rem 0;
+	cursor: pointer;
 }
 
 /* 맨 아래 */
-.applySpace{
-    height:60px;
+.applySpace {
+	height: 60px;
 }
-.apply-reset{
-    width:400px;
-    height:60px;
-    position:fixed;
-    bottom:0;
-    right:0;
+
+.apply-reset {
+	width: 400px;
+	height: 60px;
+	position: fixed;
+	bottom: 0;
+	right: 0;
 }
-.reset, .apply{
-    float:left;
-    /* border: 1px solid black; */
-    width:50%;
-    height:100%;
-    padding:0.5rem 3rem ;
+
+.reset, .apply {
+	float: left;
+	/* border: 1px solid black; */
+	width: 50%;
+	height: 100%;
+	padding: 0.5rem 3rem;
 }
-.reset{
-    background-color: cornsilk;
+
+.reset {
+	background-color: cornsilk;
 }
-.apply{
-    background-color: darkgoldenrod;
+
+.apply {
+	background-color: darkgoldenrod;
 }
-#reset-btn, #apply-btn{
-    width:100%;
-    height:100%;
-    border-radius: 1rem;
-    background-color: transparent;
-    border:none;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: "빙그레체";
-    outline:none;
-    cursor: pointer;
+
+#reset-btn, #apply-btn {
+	width: 100%;
+	height: 100%;
+	border-radius: 1rem;
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: "빙그레체";
+	outline: none;
+	cursor: pointer;
 }
-#reset-btn{
-    color:black;
+
+#reset-btn {
+	color: black;
 }
-#apply-btn{
-    color: white;
+
+#apply-btn {
+	color: white;
 }
-.margin-t{
-    margin: 0.5rem;
+
+.margin-t {
+	margin: 0.5rem;
 }
-.choice{
-    background-color: #bdc3c7;
+
+.choice {
+	background-color: #bdc3c7;
 }
-.box{
-    width :100%;
-    height:80px;
-    margin:0.5rem 0;
+
+.box {
+	width: 100%;
+	height: 80px;
+	margin: 0.5rem 0;
 }
-.slider{
-    width:100%;
-    height:100%;
-    padding: 1.5rem 2rem;
-    display : flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
+
+.slider {
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
 }
-input[type=range]{
-    width: calc(100% - 2rem);
-    position:absolute;
-    top: 0.8rem;
-    left:1rem;
-    /* border: 1px solid black; */
-    pointer-events: none;
-    z-index : 10;
-    opacity : 0;
-    appearance : none;
+
+input[type=range] {
+	width: calc(100% - 2rem);
+	position: absolute;
+	top: 0.8rem;
+	left: 1rem;
+	/* border: 1px solid black; */
+	pointer-events: none;
+	z-index: 10;
+	opacity: 0;
+	appearance: none;
 }
-input[type=range]::-webkit-slider-thumb{
-    pointer-events: all;
-    /* background-color: red; */
-    width:2rem;
-    height:1.5rem;
-    appearance: none;
+
+input[type=range]::-webkit-slider-thumb {
+	pointer-events: all;
+	/* background-color: red; */
+	width: 2rem;
+	height: 1.5rem;
+	appearance: none;
 }
-.track{
-    position: relative;
-    width: 100%;
-    height:0.4rem;
-    /* margin-top:5rem; */
-    background-color: #ecf0f1;
-    border-radius: 0.5rem;
+
+.track {
+	position: relative;
+	width: 100%;
+	height: 0.4rem;
+	/* margin-top:5rem; */
+	background-color: #ecf0f1;
+	border-radius: 0.5rem;
 }
-.range{
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    border-radius: 0.5rem;
-    background-color: #bdc3c7;
+
+.range {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-radius: 0.5rem;
+	background-color: #bdc3c7;
 }
-.thumb{
-    position:absolute;
-    top:0;
-    width:1.5rem;
-    height:1.5rem;
-    background-color: #bdc3c7;
-    border-radius: 50%;
-    margin-top: -0.55rem;
+
+.thumb {
+	position: absolute;
+	top: 0;
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: #bdc3c7;
+	border-radius: 50%;
+	margin-top: -0.55rem;
 }
-.left{
-    left:0;
-    margin-left:-0.5rem;
+
+.left {
+	left: 0;
+	margin-left: -0.5rem;
 }
-.right{
-    right:0;
-    margin-right:-0.5rem;
+
+.right {
+	right: 0;
+	margin-right: -0.5rem;
+}
+
+.list-image {
+	float: left;
+	margin-right: 0.5rem;
+	width:150px;
+	height:120px;
+}
+
+.filterResult {
+	padding: 1rem 0;
+	padding-left: 1rem;
+	height: 150px;
+	z-index: 100;
+}
+
+.filterPrice {
+	font-size: 22px;
+	margin: 0.5rem;
+}
+
+.filterInfo {
+	font-size: 18px;
+	margin: 0.5rem;
+}
+
+.filterAddress {
+	font-size: 15px;
+	margin: 0.5rem;
+}
+
+.filterResult:hover {
+	background-color: lightgray;
+	cursor: pointer;
+}
+
+.boundaryList {
+	padding: 15px;
+	border-bottom: 1px solid lightgray;
+}
+
+.titleList {
+	padding: 1rem 1.5rem;
+	border-bottom: 15px solid lightgray;
+}
+
+.displayList {
+	display: flex;
+	justify-content: space-around;
+}
+
+.lastList {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem 0;
+}
+
+.detailInfoList {
+	display: flex;
+	border-bottom: 1px solid lightgray;
+	padding: 0.5rem 0;
+}
+
+.detailInfoWidth {
+	width: 150px;
+}
+
+.callzzimSpace {
+	height: 50px;
+}
+
+.callzzim {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background-color: bisque;
+	display: flex;
+	justify-content: space-around;
+}
+
+.callSpace, .zzimSpace{
+	width: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	outline: none;
+	cursor: pointer;
+}
+
+.de-info {
+	height: calc(100vh - 220px);
+	overflow: auto;
+}
+
+.backlist {
+	height: 40px;
+	font-size: 30px;
+	width: 50px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.image-box {
+	padding-top: 5px;
+	height:300px;
+}
+
+.listDetail {
+	height: calc(100vh - 130px);
+}
+.detail-image-nextBtn{
+	display:none;
+}
+.detail-image-nextBtn:hover > .image-back,
+.detail-image-nextBtn:hover > .image-next{
+	background-color:rgba(000,000,000,0.3);
+	color:white;
+	font-weight:bold;
+}
+.image-back, .image-next{
+	width:50px;
+	height:100%;
+	text-align:center;
+}
+.detail-house-price, .detail-broker-name{
+	font-size:25px;
+	font-weight:bold;
+	margin-bottom: 0.5rem;
+}
+.detail-house-area, .detail-house-bill, .detail-house-direction{
+	font-size:25px;
+	color:blue;
+}
+.callInfo{
+	width:100vw;
+	height:100vh;
+	z-index:990;
+	background-color:rgba(000,000,000,0.5);
+	position:absolute;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.callInfodetail{
+	width:300px;
+	height:300px;
+	position:absolute;
+	z-index:999;
+	opacity:1;
+	background-color:white;
+	text-align:center;
+	padding:10px;
+}
+.calltitle{
+	font-size:20px;
+	font-weight:bold;
+	margin:1rem 0;
+}
+.call-house-no{
+	font-size:23px;
+	font-weight:bold;
+	margin:0.5rem 0 1rem 0;
+}
+.call-broker-landline{
+	font-size:20px;
+	font-weight:bold;
+	color:orange;
+	margin-top:0.5rem;
+}
+.call-broker-phone{
+	font-size:23px;
+	font-weight:bold;
+	color:orange;
+	margin-bottom:1rem;
+}
+.call-close{
+	width:100%;
+	height:30px;
+	background-color:orange;
+	color:white;
+	font-weight:bold;
+	border:none;
+	outline: none;
+	cursor: pointer;
 }
