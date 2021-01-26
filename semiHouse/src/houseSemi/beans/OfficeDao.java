@@ -464,7 +464,7 @@ public class OfficeDao {
 	}
 
 	
-	public OfficeVO select(int office_no) throws Exception{
+	public List<OfficeVO> select(int office_no) throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 		String sql = "select * from(office O inner join photo P on O.house_no = P.house_no " + 
 				"inner join broker B on O.broker_no = B.broker_no " + 
@@ -472,8 +472,9 @@ public class OfficeDao {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, office_no);
 		ResultSet rs = ps.executeQuery();
-		OfficeVO vo = new OfficeVO();
-		if(rs.next()) {
+		List<OfficeVO> officelist = new ArrayList<>();
+		while(rs.next()) {
+			OfficeVO vo = new OfficeVO();
 			vo.setOffice_no(rs.getInt("office_no"));
 			vo.setHouse_no(rs.getInt("house_no"));
 			vo.setMember_no(rs.getInt("member_no"));
@@ -504,12 +505,10 @@ public class OfficeDao {
 			vo.setBroker_landline(rs.getString("broker_landline"));
 			vo.setMember_email(rs.getString("member_email"));
 			vo.setMember_phone(rs.getString("member_phone"));
-		}
-		else {
-			vo = null;
+			officelist.add(vo);
 		}
 		con.close();
-		return vo;
+		return officelist;
 	}
 	
 	public OfficeTypeVO type(int house_no) throws Exception {
