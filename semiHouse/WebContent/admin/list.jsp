@@ -29,7 +29,7 @@
 	List<MemberDto> list;
 	
 	 if(isSearch){
-		list = dao.select(type, key, startRow, endRow); 
+		list = dao.select(type, key, startRow, endRow);  
 	} 
 	else{	
 		list = dao.select(startRow, endRow);

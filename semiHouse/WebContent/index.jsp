@@ -3,7 +3,7 @@
 
 
 <script type="text/javascript"
-    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=services"></script>
+    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
@@ -144,18 +144,18 @@
     </script>
 	<script>
     function type_bt(type){
-    	e.preventdefault()
+    	//e.preventdefault()
     	if(type=="oneroom"){
-        	document.centerForm.action="./house/one.jsp"
+        	document.centerForm.action="./house/one.jsp";
         };
         if(type=="villa"){
-        	document.centerForm.action="./house/villatwo.jsp"
+        	document.centerForm.action="./house/villatwo.jsp";
         };
         if(type=="office"){
-        	document.centerForm.action="./house/office.jsp"
+        	document.centerForm.action="./house/office.jsp";
         };
     };
-    document.getElementById('type_bt').addEventListener('onchange',click);
+     document.getElementById('type_bt').addEventListener('onchange',click);
 	</script>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <div class="all_wrapper">
