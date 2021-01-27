@@ -434,8 +434,8 @@
 										type="hidden" name="charter_max" value="N">
 									<div class="track">
 										<div class="range" id="range1"></div>
-										<div class="thumb left" id="thumb-left1"></div>
-										<div class="thumb right" id="thumb-right1"></div>
+										<div class="thumb tleft" id="thumb-left1"></div>
+										<div class="thumb tright" id="thumb-right1"></div>
 									</div>
 								</div>
 							</div>
@@ -457,8 +457,8 @@
 										type="hidden" name="deposit_max" value="max">
 									<div class="track">
 										<div class="range" id="range3"></div>
-										<div class="thumb left" id="thumb-left3"></div>
-										<div class="thumb right" id="thumb-right3"></div>
+										<div class="thumb tleft" id="thumb-left3"></div>
+										<div class="thumb tright" id="thumb-right3"></div>
 									</div>
 								</div>
 							</div>
@@ -480,8 +480,8 @@
 										type="hidden" name="monthly_max" value="max">
 									<div class="track">
 										<div class="range" id="range2"></div>
-										<div class="thumb left" id="thumb-left2"></div>
-										<div class="thumb right" id="thumb-right2"></div>
+										<div class="thumb tleft" id="thumb-left2"></div>
+										<div class="thumb tright" id="thumb-right2"></div>
 									</div>
 								</div>
 							</div>

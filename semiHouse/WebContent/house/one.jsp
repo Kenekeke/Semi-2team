@@ -300,16 +300,7 @@
    	       				        	$(".listDetail").show();
    	       				        	$(".ListAndFilter").hide();
    	       				        	$(".zzimSpace").click(function(){
-   		       				         	if($(this).hasClass("zzimDo")){
-   		       				         		$(this).children().prop("src","../img/zzim.png");
-   		       				         		$(this).removeClass("zzimDo");
-   		       				         		//location.href="찜삭제";
-   		       				         	}
-   		       				         	else{
-   		       				         		$(this).children().prop("src","../img/zzima.png");
-   		       				         		$(this).addClass("zzimDo");
-   		       				         		//location.href="찜등록";
-   		       				         	}
+   		       				         	zzimAdd(resp[0].house_no);
    		       				        });
     	       				    });
         					},
@@ -320,6 +311,38 @@
       				}
       			});
       			$(".total-list").text("지역 목록 "+listCount+"개");
+        	};
+        	function zzimAdd(house_no){
+        		$.ajax({
+   					async:false,//순차적으로실행되도록 설정
+   					url : "<%=request.getContextPath()%>/like/zzim_add.do",
+   					type : "POST",
+   					data : {
+   						house_no : house_no
+   					},
+   					success:function(resp){
+			        	alert("찜목록에 추가되었습니다.");
+   					},
+					error:function(){
+						
+					}
+        		});
+        	};
+        	function zzimRemove(house_no){
+        		$.ajax({
+   					async:false,//순차적으로실행되도록 설정
+   					url : "<%=request.getContextPath()%>/like/zzim_add.do",
+   					type : "POST",
+   					data : {
+   						house_no : house_no
+   					},
+   					success:function(resp){
+			        	alert("찜목록에서 삭제되었습니다.");
+   					},
+					error:function(){
+						
+					}
+        		});
         	};
         	//클러스터 클릭 시 지도의 중심이 클러스터로 이동하는 이벤트 
         	kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
@@ -433,8 +456,8 @@
 										type="hidden" name="charter_max" value="N">
 									<div class="track">
 										<div class="range" id="range1"></div>
-										<div class="thumb left" id="thumb-left1"></div>
-										<div class="thumb right" id="thumb-right1"></div>
+										<div class="thumb tleft" id="thumb-left1"></div>
+										<div class="thumb tright" id="thumb-right1"></div>
 									</div>
 								</div>
 							</div>
@@ -456,8 +479,8 @@
 										type="hidden" name="deposit_max" value="max">
 									<div class="track">
 										<div class="range" id="range3"></div>
-										<div class="thumb left" id="thumb-left3"></div>
-										<div class="thumb right" id="thumb-right3"></div>
+										<div class="thumb tleft" id="thumb-left3"></div>
+										<div class="thumb tright" id="thumb-right3"></div>
 									</div>
 								</div>
 							</div>
@@ -479,8 +502,8 @@
 										type="hidden" name="monthly_max" value="max">
 									<div class="track">
 										<div class="range" id="range2"></div>
-										<div class="thumb left" id="thumb-left2"></div>
-										<div class="thumb right" id="thumb-right2"></div>
+										<div class="thumb tleft" id="thumb-left2"></div>
+										<div class="thumb tright" id="thumb-right2"></div>
 									</div>
 								</div>
 							</div>

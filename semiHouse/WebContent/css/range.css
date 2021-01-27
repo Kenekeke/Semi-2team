@@ -280,12 +280,12 @@ input[type=range]::-webkit-slider-thumb {
 	margin-top: -0.55rem;
 }
 
-.left {
+.tleft {
 	left: 0;
 	margin-left: -0.5rem;
 }
 
-.right {
+.tright {
 	right: 0;
 	margin-right: -0.5rem;
 }
@@ -332,6 +332,9 @@ input[type=range]::-webkit-slider-thumb {
 .titleList {
 	padding: 1rem 1.5rem;
 	border-bottom: 15px solid lightgray;
+}
+.titleList-broker {
+	padding: 1rem 1.5rem;
 }
 
 .displayList {
@@ -391,26 +394,12 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .image-box {
-	padding-top: 5px;
 	height:300px;
+	margin-top:0.5rem;
 }
 
 .listDetail {
 	height: calc(100vh - 130px);
-}
-.detail-image-nextBtn{
-	display:none;
-}
-.detail-image-nextBtn:hover > .image-back,
-.detail-image-nextBtn:hover > .image-next{
-	background-color:rgba(000,000,000,0.3);
-	color:white;
-	font-weight:bold;
-}
-.image-back, .image-next{
-	width:50px;
-	height:100%;
-	text-align:center;
 }
 .detail-house-price, .detail-broker-name{
 	font-size:25px;
@@ -472,4 +461,23 @@ input[type=range]::-webkit-slider-thumb {
 	border:none;
 	outline: none;
 	cursor: pointer;
+}
+.detail-imagebtn-box{
+    width:383px;
+    height:300px;
+    position:absolute;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.detail-image-prevBtn, .detail-image-nextBtn{
+    height:150px;
+    padding:0 10px;
+    color:white;
+    background-color: rgba(0,0,0,0.2);
+    font-weight: bold;
+    font-size:30px;
+    display:flex;
+    align-items: center;
+    cursor:pointer;
 }
