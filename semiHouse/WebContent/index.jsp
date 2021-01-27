@@ -40,7 +40,8 @@
 	
 	        // 지도에 사각형을 표시합니다
 	        rectangle.setMap(map);
-	        map.setDraggable(false);
+	        map.setDraggable(false); 
+	        map.setZoomable(zoomable);
 
 
             $.getJSON("./house/sources/seoul.json", function (geojson) {
