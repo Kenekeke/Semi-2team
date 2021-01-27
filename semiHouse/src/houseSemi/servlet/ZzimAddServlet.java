@@ -27,8 +27,10 @@ public class ZzimAddServlet extends HttpServlet{
 			HouseDao houseDao = new HouseDao();
 			HouseDto houseDto = houseDao.find(house_no);
 			
+			boolean zzim;
 			if(likesDao.check(house_no)) {
 				likesDao.delete(house_no);
+				zzim=false;
 			}
 			else {
 				LikesDto likesDto =new LikesDto();
@@ -39,7 +41,10 @@ public class ZzimAddServlet extends HttpServlet{
 				likesDto.setMember_no(memberDto.getMember_no());
 				likesDto.setBroker_no(houseDto.getBroker_no());
 				likesDao.add(likesDto);
+				zzim=true;
 			}
+			resp.setHeader("Content-Encoding", "UTF-8");
+			resp.getWriter().print(zzim);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
