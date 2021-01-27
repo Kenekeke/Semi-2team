@@ -37,8 +37,9 @@ public class LikesDao {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, house_no);
 		ResultSet rs= ps.executeQuery();
+		boolean result = rs.next();
 		con.close();
-		return rs.next();
+		return result;
 	}
 	public boolean delete(int house_no) throws Exception {
 		Connection con=JdbcUtil.getConnection(USERNAME, PASSWORD);

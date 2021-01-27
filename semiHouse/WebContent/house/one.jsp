@@ -176,6 +176,7 @@
       			var template = $("#template").html();
       			var template_img = $("#image-template").html();
       			var listCount=0;
+      			var zzimzzim = 0;
       			$.each(markers, function(index, marker){
       				if(bounds.contain(marker.getPosition())){
       					listCount = listCount+1;
@@ -299,8 +300,15 @@
    	       				        	$(".call-broker-name").text(resp[0].broker_name);
    	       				        	$(".listDetail").show();
    	       				        	$(".ListAndFilter").hide();
-   	       				        	$(".zzimSpace").click(function(){
+   	       				        	console.log($(".list").children().last());
+   	       				      		$(".list").children().last().parent().next().find(".zzimSpace").click(function(){
    		       				         	zzimAdd(resp[0].house_no);
+   		       				      		if(zzimzzim=1){
+   		       				      			$(this).children().prop("src","../img/zzima.png");
+   		       				      		}
+   		       				      		else{
+   		       				      			$(this).children().prop("src","../img/zzim.png");
+   		       				      		}
    		       				        });
     	       				    });
         					},
@@ -320,27 +328,20 @@
    					data : {
    						house_no : house_no
    					},
-   					success:function(resp){
-			        	alert("찜목록에 추가되었습니다.");
+   					success:function(zzim){
+   						console.log(zzim);
+   						
+			        	if(zzim==="true"){
+			        		alert("찜목록에 추가되었습니다.");
+			        		zzimzzim=1;
+			        	}
+			        	else{
+			        		alert("찜목록에서 삭제되었습니다.");
+			        		zzimzzim=2;
+			        	}
    					},
 					error:function(){
-						
-					}
-        		});
-        	};
-        	function zzimRemove(house_no){
-        		$.ajax({
-   					async:false,//순차적으로실행되도록 설정
-   					url : "<%=request.getContextPath()%>/like/zzim_add.do",
-   					type : "POST",
-   					data : {
-   						house_no : house_no
-   					},
-   					success:function(resp){
-			        	alert("찜목록에서 삭제되었습니다.");
-   					},
-					error:function(){
-						
+						alert("로그인후에 이용가능합니다.");
 					}
         		});
         	};
