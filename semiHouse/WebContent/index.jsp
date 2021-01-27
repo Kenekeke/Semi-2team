@@ -41,7 +41,7 @@
 	        // 지도에 사각형을 표시합니다
 	        rectangle.setMap(map);
 	        map.setDraggable(false); 
-	        map.setZoomable(zoomable);
+	        map.setZoomable(false);
 
 
             $.getJSON("./house/sources/seoul.json", function (geojson) {
@@ -156,7 +156,7 @@
         	document.centerForm.action="./house/office.jsp";
         };
     };
-     document.getElementById('type_bt').addEventListener('onchange',click);
+     //document.getElementById('type_bt').addEventListener('onchange',function(){콜백함수});
 	</script>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <div class="all_wrapper">
