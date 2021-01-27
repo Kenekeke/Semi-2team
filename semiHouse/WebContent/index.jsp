@@ -51,7 +51,7 @@
                     coordinates = element.geometry.coordinates[0];
                     name = element.properties.SIG_KOR_NM;
                     displayArea(coordinates, name);
-                })
+                }) 
 
             })
  
