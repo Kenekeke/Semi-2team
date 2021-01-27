@@ -5,62 +5,66 @@
 		font-size: 15px;
 	}
 </style>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=services"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 var map;
 $(function(){
 		//지도
+		var mapAddress = document.querySelector(".mapAddress");
 		$(".check-location").click(function(){
-			$("#map").show();
-			//지도 생성
-			var mapContainer = document.querySelector("#map"),
-            mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667),
-                level: 3
-            };  
-
-			 map = new kakao.maps.Map(mapContainer, mapOption); 
-            
+	        var address = document.querySelector("input[name=address]").value;
 			 //입력창의 값을 불러오는 코드
-            var address = document.querySelector("input[name=address]").value;
             if(!address){
                 alert("주소를 입력하세요");
                 return;
+            }else{
+				$("#map").show();
+				//지도 생성
+				var mapContainer = document.querySelector("#map"),
+	            mapOption = {
+	                center: new kakao.maps.LatLng(33.450701, 126.570667),
+	                level: 3
+	            };  
+	
+				map = new kakao.maps.Map(mapContainer, mapOption); 
+	            
+	            var geocoder = new kakao.maps.services.Geocoder();
+				
+	            geocoder.addressSearch(address, function(result, status) {
+	                if (status === kakao.maps.services.Status.OK) {
+	                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);                    
+	                    //마커 생성
+	                    var marker = new kakao.maps.Marker({
+	                        map: map,
+	                        position: coords
+	                    });
+	                    
+	                 	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	                    map.setCenter(coords);
+	                 	
+	                    mapAddress.value = result[0].road_address.address_name;
+	                 	$(".address").val(result[0].road_address.address_name);
+	                 	var iwContent = '<div style=" width: 150px; height: 40px; padding:5px; font-size:12px;">주소:' + result[0].road_address.address_name + '</div>';
+	                 	iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+	                	// 인포윈도우를 생성합니다
+	                	var infowindow = new kakao.maps.InfoWindow({
+	                    position : iwPosition, 
+	                    content : iwContent 
+	                	});
+	                  
+	                	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+	                	infowindow.open(map, marker); 
+	                }
+	            });
+	
+		        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+	            var zoomControl = new kakao.maps.ZoomControl();
+	            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);	
             }
-            
-            var geocoder = new kakao.maps.services.Geocoder();
-			
-            geocoder.addressSearch(address, function(result, status) {
-                if (status === kakao.maps.services.Status.OK) {
-                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);                    
-                    //마커 생성
-                    var marker = new kakao.maps.Marker({
-                        map: map,
-                        position: coords
-                    });
-                    
-                 	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                    map.setCenter(coords);
-                 	
-                 	$(".address").val(result[0].road_address.address_name);
-                    
-                 	var iwContent = '<div style=" width: 150px; height: 40px; padding:5px; font-size:12px;">주소:' + result[0].road_address.address_name + '</div>';
-                    iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
-                	// 인포윈도우를 생성합니다
-                	var infowindow = new kakao.maps.InfoWindow({
-                    position : iwPosition, 
-                    content : iwContent 
-                	});
-                  
-                	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-                	infowindow.open(map, marker); 
-                } 
-            });
-
-	        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-            var zoomControl = new kakao.maps.ZoomControl();
-            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 		});
 		//관리비 및 입주일 check값 연결
 		$(".bill-check").change(function(){
@@ -96,19 +100,36 @@ $(function(){
                 alert("제목은 20자 이내로 작성해주세요");
             }
         });
-		//날짜 선택
+		//날짜
+		$( "#datepicker" ).datepicker({
+                dateFormat: "yy/mm/dd"
+        });
 		
 		//form 이벤트 검사 추가
-		var count = 0;
+		var location_count = 0;
 		$(".check-location").click(function(){
-			count++;
-		}); 			
+			location_count++;
+		});
 		$(".form").submit(function(e){
  			e.preventDefault();
- 			if(count == 0){
+ 			if(location_count == 0){
  				alert("위치 확인 버튼을 눌러주세요")
+                $('html, body').animate({scrollTop : $('body').offset().top}, 300);
+ 				return;
  			}else{
- 				this.submit();
+ 				if($(".address").val() != mapAddress.value){
+ 					alert("입력 주소와 지도 주소가 같지 않습니다.")
+					$('html, body').animate({scrollTop : $('body').offset().top}, 300);
+ 					return;
+ 				}else{
+ 					if($("input[name=f1]").val().length == 0 || $("input[name=f2]").val().length == 0){
+ 						alert("사진을 추가해주세요")
+ 						$('html, body').animate({scrollTop : $('table').offset().top}, 300);
+ 	 					return;
+ 					}else{
+	 						this.submit(); 					 					 					 						
+ 					}
+ 				}
  			}
 		});
 	});
@@ -121,6 +142,9 @@ $(function(){
 <form class="form" action="insert-room.do" method="post" enctype="multipart/form-data" >
 <!-- 추후 타입 히든으로 변경 -->
 <input type="hidden" name="house_type" value="villatwo">
+<div>
+	<h2>빌라/투룸 방 등록하기</h2>
+</div>
 <div class="add-adress" style="width: 600px;">
 	<h4>위치정보</h4>
 		<table style="width: 600px;">
@@ -130,12 +154,14 @@ $(function(){
 				<div>
 					<span>
 						<input class="inline-input address" type="text" name="address" required style="width: 350px;">
+						<input class="mapAddress" type="text" style="display: none;">
 					</span>
 					<span>
 						<input class="check-location" type="button" value="위치확인하기">
 					</span>
 				</div>
 				<div>
+					<span style="color: red;">※주소 입력후 위치 확인을 꼭 눌러주세요.</span><br>							
 					· 주소와 단지명 모두 검색이 가능합니다.<br>
 					· 주소 입력 시에는 동/읍/면 으로 검색해 주세요. 예) 자곡동, 동읍면, 신월읍<br>
 					· 오피스텔을 검색할 때에는 동/읍/면 이름과 단지 명을 함께 입력하면 좀 더<br>
@@ -159,10 +185,8 @@ $(function(){
 	<h4>사진 등록</h4>
 	<p class="photo-txt">
 		· 대표사진 및 방사진을 등록해주세요.<br>
-	<span>
 		· 직접 찍은 실제 방 사진의 원본을 등록해야 합니다.<br>                
 		· 워터마크, 날짜, 전화번호 등이 포함된 사진이나 방과 관련없는 사진을 등록할 경우 중개가 종료될 수 있습니다.
-	</span>
 	</p>
 	<table style="width: 600px;">
 		<tr>
@@ -228,6 +252,7 @@ $(function(){
 						<option value="옥탑방">옥탑방</option>
 					</select>
 					<span style="color: red;">※지상층일 경우, 상세정보에 층 수를 입력해주세요.</span>							
+
 				</td>
 			</tr>
 			<tr>
@@ -294,7 +319,7 @@ $(function(){
 			<tr>
 				<th width="20%">입주 가능일 </th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="date" name="move_in">
+					<input class="inline-input" type="text" name="move_in" id="datepicker">
 					<label>					
 						<input class="inline-input move_in-check" type="checkbox">협의가능					
 					</label><br>
