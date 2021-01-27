@@ -463,7 +463,7 @@ public class VillatwoDao {
 	}
 
 	
-	public VillatwoVO select(int villatwo_no) throws Exception{
+	public List<VillatwoVO> select(int villatwo_no) throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 		String sql = "select * from(villatwo V inner join photo P on V.house_no = P.house_no " + 
 				"inner join broker B on V.broker_no = B.broker_no " + 
@@ -471,8 +471,9 @@ public class VillatwoDao {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, villatwo_no);
 		ResultSet rs = ps.executeQuery();
-		VillatwoVO vo = new VillatwoVO();
-		if(rs.next()) {
+		List<VillatwoVO> villalist = new ArrayList<>();
+		while(rs.next()) {
+			VillatwoVO vo = new VillatwoVO();
 			vo.setVillatwo_no(rs.getInt("villatwo_no"));
 			vo.setHouse_no(rs.getInt("house_no"));
 			vo.setMember_no(rs.getInt("member_no"));
@@ -503,12 +504,10 @@ public class VillatwoDao {
 			vo.setBroker_landline(rs.getString("broker_landline"));
 			vo.setMember_email(rs.getString("member_email"));
 			vo.setMember_phone(rs.getString("member_phone"));
-		}
-		else {
-			vo = null;
+			villalist.add(vo);
 		}
 		con.close();
-		return vo;
+		return villalist;
 	}
 	
 	public VillaTwoTypeVO type(int house_no) throws Exception {
@@ -549,4 +548,5 @@ public class VillatwoDao {
 		con.close();
 		return VO;
 	}
+	
 }

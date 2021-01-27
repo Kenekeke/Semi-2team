@@ -1,5 +1,7 @@
 .outbox {
 	height: 80px;
+	z-index:9999;
+	position:relative;
 }
 
 .outbox div {
@@ -58,7 +60,7 @@
 .menu ul {
 	background: white;
 	display: none;
-	z-index: 500;
+	z-index: 1000;
 	position: absolute;
 	width: 8rem;
 	top: 70px;

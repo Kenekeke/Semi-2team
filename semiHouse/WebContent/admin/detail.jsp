@@ -77,6 +77,7 @@
 		<input type="hidden" name="member_no" value="<%=vo.getMember_no()%>">
 		<a href="list.jsp?type=member_auth&key=broker">목록</a>
 		<a href="delete.do?member_no=<%=vo.getMember_no()%>">탈퇴</a>
+		<a href="pw.do?member_no=<%=vo.getMember_no()%>">임시</a>
 	</div>  
 	</div> 
 </div>
@@ -125,6 +126,7 @@
 		<input type="submit" value="수정">
 		<a href="list.jsp">목록</a>
 		<a href="delete.do?member_no=<%=dto.getMember_no()%>">탈퇴</a>
+		<a href="pw.do?member_no=<%=vo.getMember_no()%>">임시</a>
 	</div> 
 	</div> 
 </form>
