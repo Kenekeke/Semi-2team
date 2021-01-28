@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="houseSemi.beans.*"%>
+<%@page import="java.util.List"%>
 
-
+<%
+	int start = 1;
+	int end = 5;
+	BoardDao boardDao = new BoardDao();
+	List<BoardDto> boardlist = boardDao.indexselect(start, end);
+	
+%>
 <script type="text/javascript"
     	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -158,6 +166,8 @@
     };
      //document.getElementById('type_bt').addEventListener('onchange',function(){콜백함수});
 	</script>
+
+
 <jsp:include page="/template/header.jsp"></jsp:include>
 <div class="all_wrapper">
 		<div class="type_selector">
@@ -183,13 +193,22 @@
 		<div class="home_lower">
 			<div class="home_keeper">
 				<h2>뉴스</h2>
+				<ul>
+					<li>지난 밤 무슨일이..</li>
+					<li>내일 밤 무슨일이..</li>
+				</ul>
 			</div>
 		</div>
 		<div class="home_lower">
 			<div class="home_keeper">
 				<h2>공지사항</h2>
+				<%for(BoardDto dto : boardlist){ %>
+				<ul>
+					<li><a href="board/boardDetail.jsp?board_no=<%=dto.getBoard_no()%>"><%=dto.getBoard_title()%></a></li>
+				</ul>
+				<%} %>
 			</div>
-		</div>
+		</div> 
 	</div>
 </div>
 

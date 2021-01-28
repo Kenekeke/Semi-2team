@@ -356,4 +356,26 @@ public class BoardDao {
 		ps.execute();
 		con.close();
 	}
+	
+	public List<BoardDto> indexselect(int start, int end) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql ="select * from (" + 
+				" select rownum rn, TMP.* from (" + 
+				" select board_title,board_no from board where board_header ='공지사항' order by board_no asc" + 
+				" )TMP" + 
+				" ) where rn between ? and ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, start);
+		ps.setInt(2, end);
+		ResultSet rs = ps.executeQuery();
+		List<BoardDto> boardlist = new ArrayList<>();
+		while(rs.next()) {
+			BoardDto dto = new BoardDto();
+			dto.setBoard_no(rs.getInt("board_no"));
+			dto.setBoard_title(rs.getString("board_title"));
+			boardlist.add(dto);
+		}
+		con.close();
+		return boardlist;
+	}
 }
