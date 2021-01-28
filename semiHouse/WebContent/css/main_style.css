@@ -1,31 +1,37 @@
+		@font-face {
+		    font-family: 'ng';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		    
+		}
+			
 		.outbox {
             height: 80px;
             z-index: 9999;
-   			position: relative;
+   			position: fixed;
+   			width:1900px;
             
         }
         .outbox div {
             height: inherit;
             display: inline-block;
-            position: fixed;
+            position: absolute;
             top: 0;
         }
-        
-        .menu-bar {
-            left: 230px;
-        }
-
         .empty {
             right: 800px;
         }
 
         .login-btn {
             right: 260px;
+            width:126px;
         }
 
         .ad {
             right: 10px;
-            position: fixed;
+            bottom: 10px; 
+			width: 224px;           
         }
 
         /*전체 메뉴*/
@@ -41,6 +47,8 @@
             position: relative;
             /*relative로 내부의 absolute를 가둔다*/
             bottom: 38px;
+            left: 230px;
+            width:1288px;
         }
 
         .menu>li {
@@ -79,7 +87,7 @@
         }
 
         .menu ul>li>a:hover {
-            color: red;
+            color: #FFDFDE;
         }
 
         /*전체 메뉴에 마우스가 올라간 경우의 하위 메뉴*/
@@ -92,18 +100,9 @@
             text-decoration: none;
             color: black;
         }
-
-        /*로그인 버튼 및 ad*/
-        .login-btn {
-            position: relative;
-            bottom: 50px;
+        .logo-wrap{
+        	width:202px;
         }
-
-        .ad {
-            position: relative;
-            bottom: 10px;
-        }
-
         .login-btn input {
             position: relative;
             top: 18px;
@@ -297,23 +296,25 @@
 		.home_wrapper{
 			position: relative;
 			height:390px;
-			width:100%;
+			width:1900px;
 			min-height:390px;
 			min-width:1400px;
 		}
 		.home_lower{
 			position: relative;
 			display: inline-block;
-			width: 32%;
+			width: 608px;
 			min-height: 387px;
 			min-width: 300px;
 			border: 1px solid gray;
 			margin: 0px 0px 0px 15px;
 		}
 		.home_keeper{
-			min-width:300px;
+			min-width:606px;
 			min-height:387px;
+			width:300px;
 			text-align:center;
+			postion:absolute;
 		}
 		.all_wrapper{
 			height:922px;
