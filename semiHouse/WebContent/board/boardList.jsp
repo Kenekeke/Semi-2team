@@ -15,7 +15,7 @@
 	catch(Exception e){
 		n = 1;
 	}
-	int boardSize = 10;
+	int boardSize = 15;
 	int endB = n * boardSize;
 	int startB = endB - boardSize +1;
 	
@@ -74,6 +74,7 @@
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <script>
 	$(function(){
 		$(".board_write_btn").click(function(){
@@ -127,9 +128,9 @@
 		});
 	});
 </script>
-	<div class="board-outbox">
+	<div class="board-outbox nanumsquare">
         <div>
-        	<input type="button" value="글쓰기" class="board_write_btn">
+        	<input type="button" value="글쓰기" class="board_write_btn boardbtnc">
         </div>
         <div class="type_radio">
         	<input type="radio" name="board_header_check" id="board-total" value="전체" <%if(board_header==null){%>checked<%}%>>
@@ -160,7 +161,7 @@
 				<%for(BoardVO boardVO : boardlist){%>
                     <tr class="listItem">
                         <td><%=boardVO.getBoard_header()%></td>
-                        <td><a href="boardDetail.jsp?board_no=<%=boardVO.getBoard_no()%>"><%=boardVO.getBoard_title()%><%if(boardVO.getReplycount()>0){%>[<%=boardVO.getReplycount()%>]<%}%></a></td>
+                        <td><a class="boardlisttitle" href="boardDetail.jsp?board_no=<%=boardVO.getBoard_no()%>"><%=boardVO.getBoard_title()%> <%if(boardVO.getReplycount()>0){%>[<%=boardVO.getReplycount()%>]<%}%></a></td>
                         <td><%=boardVO.getMember_nick()%></td>
                         <td><%=boardVO.getBoard_count()%></td>
                         <td style="font-size:13px;"><%=boardVO.getBoard_time()%></td>
@@ -170,7 +171,7 @@
             </table>
         </div>
         <div class="center boardlistPaging">
-        	<ul class="pagination">
+        	<ul class="paginationb">
         		<%if(isSearch){ %>
         		<%if(isHeader){ %>
         			<li><a href="boardList.jsp?n=<%=startN-1%>&type=<%=type%>&key=<%=key%>&board_header=<%=board_header%>">&lt;</a></li>
@@ -234,7 +235,7 @@
         		}%>
         	</ul>
         </div>
-        <div class="center">
+        <div class="boardlist-searchbox">
         	<form action="boardList.jsp" method="post">
         		<select name="type" class="board_search_type">
         			<option value="board_title" <%if(type!=null&&type.equals("board_title")){%>selected<%}%>>제목</option>
@@ -249,7 +250,7 @@
         		<%if(isHeader){%>
         			<input type="hidden" name="board_header" value=<%=board_header%>>
         		<%}%>
-        		<input type="submit" value="검색">
+        		<input type="submit" value="검색" class="board-searchbtn-typekey">
         	</form>
         </div>
     </div>
