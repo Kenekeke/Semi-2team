@@ -116,6 +116,7 @@
 	    	   	loan : '<%=request.getParameter("loan")%>'     		
         	},
         	success: function(resp){
+        		console.log(resp);
         		datas=resp;
         		onMap(datas);
         	},
