@@ -167,6 +167,7 @@
         		clusterer.addMarkers(markers);
         	}    
         	// 지도의 경계좌표를 받아 지도 위 마커정보를 사이드바에 표시합니다.
+        	var house_no;
         	function onBounds(){
         		var bounds=map.getBounds();//맵의 영역을 받아온다.
         		var Lat = map.getCenter().getLat();
@@ -176,7 +177,6 @@
       			var template = $("#template").html();
       			var template_img = $("#image-template").html();
       			var listCount=0;
-      			var zzimzzim = 0;
       			$.each(markers, function(index, marker){
       				if(bounds.contain(marker.getPosition())){
       					listCount = listCount+1;
@@ -300,16 +300,8 @@
    	       				        	$(".call-broker-name").text(resp[0].broker_name);
    	       				        	$(".listDetail").show();
    	       				        	$(".ListAndFilter").hide();
-   	       				        	console.log($(".list").children().last());
-   	       				      		$(".list").children().last().parent().next().find(".zzimSpace").click(function(){
-   		       				         	zzimAdd(resp[0].house_no);
-   		       				      		if(zzimzzim=1){
-   		       				      			$(this).children().prop("src","../img/zzima.png");
-   		       				      		}
-   		       				      		else{
-   		       				      			$(this).children().prop("src","../img/zzim.png");
-   		       				      		}
-   		       				        });
+   	       				      		zzimCheck(resp[0].house_no);
+	       				      		house_no = resp[0].house_no;
     	       				    });
         					},
         					error:function(){
@@ -320,32 +312,59 @@
       			});
       			$(".total-list").text("지역 목록 "+listCount+"개");
         	};
-        	function zzimAdd(house_no){
-        		$.ajax({
-   					async:false,//순차적으로실행되도록 설정
-   					url : "<%=request.getContextPath()%>/like/zzim_add.do",
-   					type : "POST",
-   					data : {
-   						house_no : house_no
-   					},
-   					success:function(zzim){
-   						console.log(zzim);
-   						
-			        	if(zzim==="true"){
+        	$(".zzimSpace").click(function(){
+         		zzimAdd(house_no);
+        	});
+	    	function zzimAdd(house_no){
+	    		var y;
+	    		$.ajax({
+						async:false,//순차적으로실행되도록 설정
+						url : "<%=request.getContextPath()%>/like/zzim_add.do",
+						type : "POST",
+						data : {
+							house_no : house_no
+						},
+						success:function(zzim){
+							console.log(zzim);
+			        	if(zzim==="add"){
 			        		alert("찜목록에 추가되었습니다.");
-			        		zzimzzim=1;
+			        		y="../img/zzima.png";
 			        	}
 			        	else{
 			        		alert("찜목록에서 삭제되었습니다.");
-			        		zzimzzim=2;
+			        		y="../img/zzim.png";
 			        	}
-   					},
+						},
 					error:function(){
 						alert("로그인후에 이용가능합니다.");
 					}
-        		});
-        	};
-        	//클러스터 클릭 시 지도의 중심이 클러스터로 이동하는 이벤트 
+	    		});
+	    		$(".zzimSpace").children().prop("src", y);
+	    	};
+	    	function zzimCheck(house_no){
+	    		var z;
+	    		$.ajax({
+						async:false,//순차적으로실행되도록 설정
+						url : "<%=request.getContextPath()%>/like/zzim_check.do",
+						type : "POST",
+						data : {
+							house_no : house_no
+						},
+						success:function(zzim){
+			        	if(zzim==="yes"){
+			        		z="../img/zzima.png";
+			        	}
+			        	else{
+			        		z="../img/zzim.png";
+			        	}
+						},
+					error:function(){
+						
+					}
+	    		});
+	    		$(".zzimSpace").children().prop("src", z);
+	    	};
+	        //클러스터 클릭 시 지도의 중심이 클러스터로 이동하는 이벤트 
         	kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
         		//클러스터의 위도와 경도를 변수화한다.
         		var Lat=cluster.getCenter().Ma;
