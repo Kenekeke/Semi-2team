@@ -14,134 +14,112 @@ public class OneDao {
 	String PASSWORD="house";
 	
 	//매물 등록
-		public void insert(OneDto oneDto) throws Exception{
-			Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+	public void insert(OneDto oneDto) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "insert into one "
+				+ "values(one_seq.nextval,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,? ,0 ,?, ?, ?, ?)";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, oneDto.getHouse_no());
+		ps.setInt(2, oneDto.getMember_no());
+		ps.setInt(3, oneDto.getBroker_no());
+		ps.setInt(4, oneDto.getDeposit());
+		ps.setInt(5, oneDto.getMonthly());
+		ps.setString(6, oneDto.getAddress());
+		ps.setString(7, oneDto.getAddress2());
+		ps.setString(8, oneDto.getFloor());
+		ps.setString(9, oneDto.getLoan());
+		ps.setString(10, oneDto.getAnimal());
+		ps.setString(11, oneDto.getElevator());
+		ps.setString(12, oneDto.getParking());
+		ps.setString(13, oneDto.getMove_in());
+		ps.setString(14, oneDto.getEtc());
+		ps.setString(15, oneDto.getArea());
+		ps.setInt(16, oneDto.getBill());
+		ps.setString(17, oneDto.getDirection());
+		ps.setString(18, oneDto.getTitle());
+		
+		ps.execute();
+		
+		con.close();
+	}
+	//수정
+	public boolean updateOne(OneDto oneDto)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "update one set "
+				+ "deposit=?, monthly=?, address=?, address2=?, floor=?, loan=?, animal=?, elevator=?, "
+				+ "parking=?, move_in=?, etc=?, area=?, bill=?, direction=?, title=? where house_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, oneDto.getDeposit());
+		ps.setInt(2, oneDto.getMonthly());
+		ps.setString(3, oneDto.getAddress());
+		ps.setString(4, oneDto.getAddress2());
+		ps.setString(5, oneDto.getFloor());
+		ps.setString(6, oneDto.getLoan());
+		ps.setString(7, oneDto.getAnimal());
+		ps.setString(8, oneDto.getElevator());
+		ps.setString(9, oneDto.getParking());
+		ps.setString(10, oneDto.getMove_in());
+		ps.setString(11, oneDto.getEtc());
+		ps.setString(12, oneDto.getArea());
+		ps.setInt(13, oneDto.getBill());
+		ps.setString(14, oneDto.getDirection());
+		ps.setString(15, oneDto.getTitle());
+		ps.setInt(16, oneDto.getHouse_no());
+		
+		int count = ps.executeUpdate();
+		con.close();
+		return count>0;
+	}
+	public boolean updateOneBrokerA(String broker_agree, int house_no)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "update one set broker_agree=? where house_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, broker_agree);
+		ps.setInt(2, house_no);
+		
+		int count = ps.executeUpdate();
+		con.close();
+		return count>0;
+	}
+	//단일 조회
+	public OneDto find(int house_no)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "select * from one where house_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, house_no);
+		
+		ResultSet rs = ps.executeQuery();
+		OneDto dto;
+		if(rs.next()) {
+			dto = new OneDto();
+			dto.setHouse_no(rs.getInt("house_no"));
+			dto.setDeposit(rs.getInt("deposit"));
+			dto.setMonthly(rs.getInt("monthly"));
+			dto.setAddress(rs.getString("address"));
+			dto.setAddress2(rs.getString("address2"));
+			dto.setFloor(rs.getString("floor"));
+			dto.setLoan(rs.getString("loan"));
+			dto.setAnimal(rs.getString("animal"));
+			dto.setElevator(rs.getString("elevator"));
+			dto.setParking(rs.getString("parking"));
+			dto.setMove_in(rs.getString("move_in"));
+			dto.setEtc(rs.getString("etc"));
+			dto.setArea(rs.getString("area"));
+			dto.setBill(rs.getInt("bill"));
+			dto.setDirection(rs.getString("direction"));
+			dto.setTitle(rs.getString("title"));
 			
-			String sql = "insert into one "
-					+ "values(one_seq.nextval,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,? ,0 ,?, ?, ?, ?)";
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, oneDto.getHouse_no());
-			ps.setInt(2, oneDto.getMember_no());
-			ps.setInt(3, oneDto.getBroker_no());
-			ps.setInt(4, oneDto.getDeposit());
-			ps.setInt(5, oneDto.getMonthly());
-			ps.setString(6, oneDto.getAddress());
-			ps.setString(7, oneDto.getAddress2());
-			ps.setString(8, oneDto.getFloor());
-			ps.setString(9, oneDto.getLoan());
-			ps.setString(10, oneDto.getAnimal());
-			ps.setString(11, oneDto.getElevator());
-			ps.setString(12, oneDto.getParking());
-			ps.setString(13, oneDto.getMove_in());
-			ps.setString(14, oneDto.getEtc());
-			ps.setString(15, oneDto.getArea());
-			ps.setInt(16, oneDto.getBill());
-			ps.setString(17, oneDto.getDirection());
-			ps.setString(18, oneDto.getTitle());
-			
-			ps.execute();
-			
-			con.close();
+		}else {
+			dto = null;
 		}
-		//수정
-		public boolean updateOne(OneDto oneDto)throws Exception{
-			Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-			String sql = "update one set "
-					+ "deposit=?, monthly=?, address=?, address2=?, floor=?, loan=?, animal=?, elevater=?, "
-					+ "parking=?, move_in=?, etc=?, area=?, bill=?, direction=?, title=? where house_no=?";
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, oneDto.getDeposit());
-			ps.setInt(2, oneDto.getMonthly());
-			ps.setString(3, oneDto.getAddress());
-			ps.setString(4, oneDto.getAddress2());
-			ps.setString(5, oneDto.getFloor());
-			ps.setString(6, oneDto.getLoan());
-			ps.setString(7, oneDto.getAnimal());
-			ps.setString(8, oneDto.getElevator());
-			ps.setString(9, oneDto.getParking());
-			ps.setString(10, oneDto.getMove_in());
-			ps.setString(11, oneDto.getEtc());
-			ps.setString(12, oneDto.getArea());
-			ps.setInt(13, oneDto.getBill());
-			ps.setString(14, oneDto.getDirection());
-			ps.setString(15, oneDto.getTitle());
-			ps.setInt(16, oneDto.getHouse_no());
-			
-			int count = ps.executeUpdate();
-			con.close();
-			return count>0;
-		}
-		//단일 조회
-		public OneDto find(int house_no)throws Exception{
-			Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-			String sql = "select * from one where house_no=?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, house_no);
-			
-			ResultSet rs = ps.executeQuery();
-			OneDto dto;
-			if(rs.next()) {
-				dto = new OneDto();
-				dto.setOne_no(rs.getInt("one_no"));
-				dto.setMember_no(rs.getInt("member_no"));
-				dto.setBroker_no(rs.getInt("broker_no"));
-				dto.setHouse_no(rs.getInt("house_no"));
-				dto.setDeposit(rs.getInt("deposit"));
-				dto.setMonthly(rs.getInt("monthly"));
-				dto.setAddress(rs.getString("address"));
-				dto.setAddress2(rs.getString("address2"));
-				dto.setFloor(rs.getString("floor"));
-				dto.setLoan(rs.getString("loan"));
-				dto.setAnimal(rs.getString("animal"));
-				dto.setElevator(rs.getString("elevator"));
-				dto.setParking(rs.getString("parking"));
-				dto.setMove_in(rs.getString("move_in"));
-				dto.setEtc(rs.getString("etc"));
-				dto.setArea(rs.getString("area"));
-				dto.setBill(rs.getInt("bill"));
-				dto.setDirection(rs.getString("direction"));
-				dto.setTitle(rs.getString("title"));
-				
-			}else {
-				dto = null;
-			}
-			con.close();
-			return dto;
-			
-		}
-		public List<OneDto> select() throws Exception{
-			Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
-			String sql = "select * from one";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			List<OneDto> onelist = new ArrayList<>();
-			while(rs.next()) {
-				OneDto oneDto = new OneDto();
-				oneDto.setOne_no(rs.getInt("one_no"));
-				oneDto.setDeposit(rs.getInt("deposit"));
-				oneDto.setMonthly(rs.getInt("monthly"));
-				oneDto.setAddress(rs.getString("address"));
-				oneDto.setFloor(rs.getString("floor"));
-				oneDto.setLoan(rs.getString("loan"));
-				oneDto.setAnimal(rs.getString("animal"));
-				oneDto.setElevator(rs.getString("elevator"));
-				oneDto.setParking(rs.getString("parking"));
-				oneDto.setHouse_no(rs.getInt("house_no"));
-				oneDto.setAddress2(rs.getString("address2"));
-				oneDto.setMove_in(rs.getString("move_in"));
-				oneDto.setEtc(rs.getString("etc"));
-				oneDto.setBroker_agree(rs.getString("broker_agree"));
-				oneDto.setArea(rs.getString("area"));
-				oneDto.setBill(rs.getInt("bill"));
-				oneDto.setDirection(rs.getString("direction"));
-				oneDto.setTitle(rs.getString("title"));
-				onelist.add(oneDto);
-			}
-			con.close();
-			return onelist;
-		}
+		con.close();
+		return dto;
+		
+	}
 		public List<OneDto> onSelect() throws Exception{
 			Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 			String sql = "select * from one where broker_agree='1'";

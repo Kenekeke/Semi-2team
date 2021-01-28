@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+	section{
+	    background-color: #f5f6fa;
+	}
+	.container{
+		background-color: white;
+		margin: 0 auto;
+		width: 700px;
+		padding: 20px;
+	}
+	.title, .add-address, .add-photo, .add-detail{
+		margin-bottom: 7px;
+	}
+	.title-main{
+		margin: 0 auto;
+		width: 630px;
+		height: 150px;
+		background-color: #7b9acc;
+		color: white;
+		text-align: center;
+	}
+	.title > p,
+	.add-photo > p,
+	.add-detail p{
+		font-size: 12px;
+		padding: 5px 50px;
+		margin: 0;
+		display: inline-block;
+	}
+	.add-detail p{
+		padding: 5px 3px 1px 3px;
+	}
+	.add-address > h3,
+	.add-photo > h3,
+	.add-detail > h3 {
+		margin: 0;
+		padding: 5px 30px;
+	}
+	.add-address > table, 
+	.add-photo > table, 
+	.add-detail > table,
+	.submit-btn{
+		width: 580px;
+		margin: 0 auto;
+	}
+	.add-address > table > tbody > tr > th,
+	.add-photo > table > tbody > tr > th,
+	.add-detail > table > tbody > tr > th,
+	.add-address > table > tbody > tr > td,
+	.add-photo > table > tbody > tr > td,
+	.add-detail > table > tbody > tr > td {
+		padding: 6px;
+	}
+	.add-address > table > tbody > tr > th,
+	.add-photo > table > tbody > tr > th,
+	.add-detail > table > tbody > tr > th{
+		background-color: #7b9acc;
+		color: white;
+	}
+	.add-address > table > tbody > tr > td > div > span, p{
+		display:inline-block;
+		font-size: 12px;
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-bottom: 0;
+	}
+	section input[type=button], .submit-btn{
+		background-color: lightgray;
+		color: black;
+		border: 2px solid lightgray;
+		border-radius: 5px;
+		margin-left: 3px;
+	}
+	section input[type=button]:hover, input[type=file]:hover, .submit-btn:hover {
+		background-color: #7b9acc;
+		color: white;
+		cursor: pointer;
+	}
+	.submit {
+		margin: 0 auto;
+		width: 630px;
+		text-align: center;
+	}
+	.submit-btn{
+		height: 40px;
+		font-size: 
+	}
+	.add-photo > table > tbody > tr > td > input{
+		display: inline-block;
+		margin-left: 10px;
+	}
