@@ -368,7 +368,6 @@
    	       				        	else{
    	       				        		$(".zzimSpace").children().prop("src", "../img/zzim.png");
    	       				        	}
-   	       				      		zzimCheck(resp[0].house_no);
 	       				      		house_no = resp[0].house_no;
     	       				    });
         					},
@@ -381,7 +380,12 @@
       			$(".total-list").text("지역 목록 "+listCount+"개");
         	};
         	$(".zzimSpace").click(function(){
-         		zzimAdd(house_no);
+        		if(<%=isMember%>){
+        			zzimAdd(house_no);
+        		}
+        		else{
+        			alert("로그인후에 이용가능합니다.");
+        		}
         	});
 	    	function zzimAdd(house_no){
 	    		var y;
@@ -393,7 +397,6 @@
 							house_no : house_no
 						},
 						success:function(zzim){
-							console.log(zzim);
 			        	if(zzim==="add"){
 			        		alert("찜목록에 추가되었습니다.");
 			        		y="../img/zzima.png";
@@ -404,7 +407,7 @@
 			        	}
 						},
 					error:function(){
-						alert("로그인후에 이용가능합니다.");
+						
 					}
 	    		});
 	    		$(".zzimSpace").children().prop("src", y);
