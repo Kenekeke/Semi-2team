@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/css/common.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main_style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 </section>
-        <footer>
+        <footer class="nanumsquare">
             <p class="center">
                 <a>회사소개</a> |
                 <a>채용정보</a> |
