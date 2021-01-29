@@ -10,12 +10,12 @@ int member_no = (int)session.getAttribute("check");
     <script>
     $(function () {
 		var searchTemplate = $("#search_template").html();
-    	$(".search").on('input', function(){
+		$(".search").on('input', function(){
         	var searchKeyword=$(".search").val();
 			$(".searchResult").remove();
     		$.ajax({
     			async: false,
-        		url: "test.do",
+        		url: "<%=request.getContextPath()%>/house/test.do",
         		type: "POST",
         		data: {
         			keyword : searchKeyword
@@ -33,14 +33,13 @@ int member_no = (int)session.getAttribute("check");
 	        				$(searchTemplate).find(".searchAddress").text(data.address).appendTo(($(".searchResult").children().last()));
 	        				$(searchTemplate).find(".searchLat").text(data.lat).appendTo(($(".searchResult").children().last()));
 	        				$(searchTemplate).find(".searchLng").text(data.lng).appendTo(($(".searchResult").children().last()));
-	
 	        				$("<hr>").appendTo(($(".searchResult").children().last()));        	
 		    			});
         			}
-					$(".searchResult").css("display","block");
+					$(".searchResult").css("display","block");			
         		},
         		error: function(){
-        			console.log('실패');
+        			console.log('false');
         		}
         	});
     		if($(".search").val().length==0){$(".searchResult").remove();}
@@ -51,14 +50,79 @@ int member_no = (int)session.getAttribute("check");
     			var searchLat=$(this).find(".searchLat").text();
             	var searchLng=$(this).find(".searchLng").text();
     			map.setCenter(new kakao.maps.LatLng(searchLat,searchLng));
-    			map.setLevel(4);	
+    			map.setLevel(4);
     		});
-    		//색깔 변경 이벤트
     		$(".floatBox").find(".searchItem").bind('mouseover', function(e){
+    			$(".searchItem").css("background-color","transparent");
     			$(this).css("background-color","lightgray");
     		});
     		$(".floatBox").find(".searchItem").bind('mouseleave', function(e){
     			$(this).css("background-color","transparent");
+    		});
+    		$(".floatBox").find(".searchBtn").on("click", function(){
+    			if($(".searchResult").length!=0){
+        			$(".search").val($(".searchResult").children().first().find(".searchName").text());
+        			var searchLat=$(".searchResult").children().first().find(".searchLat").text();
+                	var searchLng=$(".searchResult").children().first().find(".searchLng").text();
+    				map.setCenter(new kakao.maps.LatLng(searchLat,searchLng));
+        			map.setLevel(4);
+        			$(".searchResult").remove();
+    			}
+    		});			
+    		$(".search").on("click",function(){
+    			index=-1;
+    			$(".searchResult").children().blur();
+	    		$(".searchResult").children().css("background-color","transparent");
+    		})
+   			var index=-1;
+    		window.addEventListener("keyup", function(e){
+				if($(".search").focus()){
+				
+	 	  			if(e.keyCode==13 && $(".searchItem").length!=0){
+	 	  				if(index==-1){
+	 	  					$(".search").val($(".searchResult").children().first().find(".searchName").text());
+		        			var searchLat=$(".searchResult").children().first().find(".searchLat").text();
+		                	var searchLng=$(".searchResult").children().first().find(".searchLng").text();
+		    				map.setCenter(new kakao.maps.LatLng(searchLat,searchLng));
+		        			map.setLevel(4);
+		        			$(".searchResult").remove();
+	 	  				}
+	 	  				else{
+		 	  				$(".search").val($(".searchResult").children().eq(index).find(".searchName").text());
+		        			var searchLat=$(".searchResult").children().eq(index).find(".searchLat").text();
+		                	var searchLng=$(".searchResult").children().eq(index).find(".searchLng").text();
+		    				map.setCenter(new kakao.maps.LatLng(searchLat,searchLng));
+		        			map.setLevel(4);
+		        			$(".searchResult").remove();
+	 	  				}
+	    				
+	    			}
+	 	  			else if(e.keyCode==40){
+	 	  				if(index==$(".searchItem").length-1){
+	 	  					index=-1;
+	 	  				}
+	 	  				index++;	
+	 	  				$(".searchResult").children().not(index).blur();
+	 	    			$(".searchResult").children().not(index).css("background-color","transparent");
+	
+	 	  				$(".searchResult").children().eq(index).focus();
+	 	    			$(".searchResult").children().eq(index).css("background-color","lightgray");
+	 	    			
+	 	  			}
+	 	  			else if(e.keyCode==38){
+	 	  				console.log(index);
+	 	  				if(index<=0){
+	 	  					index=$(".searchItem").length;
+	 	  				}
+	 	  				index--;
+	 	  				$(".searchResult").children().not(index).blur();
+	 	    			$(".searchResult").children().not(index).css("background-color","transparent");
+	 	    			
+	 	  				$(".searchResult").children().eq(index).focus();
+	 	    			$(".searchResult").children().eq(index).css("background-color","lightgray");
+	 	  				
+	 	  			}
+				}
     		});
     	});
         $(".list").show();
