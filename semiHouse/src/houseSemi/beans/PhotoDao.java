@@ -27,22 +27,20 @@ public class PhotoDao {
 		
 		con.close();
 	}
-	//수정
-	public boolean updatePhoto(PhotoDto photoDto)throws Exception{
+	
+	public boolean delete(int house_no) throws Exception {
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql = "update photo set "
-				+ "upload_name=?, save_name=?, photo_type=?, photo_size=? "
-				+ "where photo_no=? order by photo_no asc";
+		String sql = "delete photo where house_no = ?";
+		
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, photoDto.getUpload_name());
-		ps.setString(2, photoDto.getSave_name());
-		ps.setString(3, photoDto.getPhoto_type());
-		ps.setLong(4, photoDto.getPhoto_size());
-		ps.setInt(5, photoDto.getPhoto_no());
+		
+		ps.setInt(1, house_no);
 		int count = ps.executeUpdate();
+		
 		con.close();
 		return count >0;
 	}
+	
 	//단일 조회
 	public PhotoDto find(int house_no, int photo_no)throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);

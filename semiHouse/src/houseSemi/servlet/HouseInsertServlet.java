@@ -37,7 +37,8 @@ public class HouseInsertServlet extends HttpServlet{
 		try {
 			req.setCharacterEncoding("UTF-8");
 			// 수신
-			String path = "D:\\upload"; //저장 장소
+			String path = "아래 처럼 해당 경로를 설정 하세요";
+			//String path = "C:\\Users\\mikyo\\git\\Semi-2team\\Semi-2team\\semiHouse\\WebContent\\img"; //저장 장소
 			int max = 10 * 1024 * 1024; //10MB
 			String encoding = "UTF-8";  //encoding
 			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();//같은 파일 업로드시 덮어쓰기 방지
@@ -92,7 +93,6 @@ public class HouseInsertServlet extends HttpServlet{
 			dir.mkdir();
 			
 			//계산
-			
 			PhotoDao photoDao = new PhotoDao();
 			for(int i=1; i <=2 ; i++) {
 				PhotoDto photoDto = new PhotoDto();

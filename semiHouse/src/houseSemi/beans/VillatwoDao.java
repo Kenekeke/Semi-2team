@@ -41,7 +41,7 @@ public class VillatwoDao {
 			dto.setTitle(rs.getString("title"));
 			dto.setBill(rs.getInt("bill"));
 			dto.setDirection(rs.getString("direction"));
-			dto.setVillatwo_no(rs.getInt("villaTwo_no"));
+			dto.setVillatwo_no(rs.getInt("villatwo_no"));
 		}
 		else {
 			dto=null;
@@ -79,38 +79,46 @@ public class VillatwoDao {
 		
 		con.close();
 	}
-	public List<VillatwoDto> select() throws Exception{
-		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
-		String sql = "select * from villatwo";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ResultSet rs = ps.executeQuery();
-		List<VillatwoDto> villalist = new ArrayList<>();
-		while(rs.next()) {
-			VillatwoDto villatwoDto = new VillatwoDto();
-			villatwoDto.setVillatwo_no(rs.getInt("villatwo_no"));
-			villatwoDto.setDeposit(rs.getInt("deposit"));
-			villatwoDto.setMonthly(rs.getInt("monthly"));
-			villatwoDto.setAddress(rs.getString("address"));
-			villatwoDto.setFloor(rs.getString("floor"));
-			villatwoDto.setLoan(rs.getString("loan"));
-			villatwoDto.setAnimal(rs.getString("animal"));
-			villatwoDto.setElevator(rs.getString("elevator"));
-			villatwoDto.setParking(rs.getString("parking"));
-			villatwoDto.setHouse_no(rs.getInt("house_no"));
-			villatwoDto.setAddress2(rs.getString("address2"));
-			villatwoDto.setMove_in(rs.getString("move_in"));
-			villatwoDto.setEtc(rs.getString("etc"));
-			villatwoDto.setBroker_agree(rs.getString("broker_agree"));
-			villatwoDto.setArea(rs.getString("area"));
-			villatwoDto.setBill(rs.getInt("bill"));
-			villatwoDto.setDirection(rs.getString("direction"));
-			villatwoDto.setTitle(rs.getString("title"));
-			villalist.add(villatwoDto);
+	//수정
+		public boolean update(VillatwoDto villatwoDto) throws Exception{
+			Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+			String sql = "update villatwo set "
+					+ "deposit=?, monthly=?, address=?, address2=?, floor=?, loan=?, animal=?, elevator=?, "
+					+ "parking=?, move_in=?, etc=?, area=?, bill=?, direction=?, title=? where house_no=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, villatwoDto.getDeposit());
+			ps.setInt(2, villatwoDto.getMonthly());
+			ps.setString(3, villatwoDto.getAddress());
+			ps.setString(4, villatwoDto.getAddress2());
+			ps.setString(5, villatwoDto.getFloor());
+			ps.setString(6, villatwoDto.getLoan());
+			ps.setString(7, villatwoDto.getAnimal());
+			ps.setString(8, villatwoDto.getElevator());
+			ps.setString(9, villatwoDto.getParking());
+			ps.setString(10, villatwoDto.getMove_in());
+			ps.setString(11, villatwoDto.getEtc());
+			ps.setString(12, villatwoDto.getArea());
+			ps.setInt(13, villatwoDto.getBill());
+			ps.setString(14, villatwoDto.getDirection());
+			ps.setString(15, villatwoDto.getTitle());
+			ps.setInt(16, villatwoDto.getHouse_no());
+			
+			int count = ps.executeUpdate();
+			con.close();
+			return count>0;
 		}
-		con.close();
-		return villalist;
-	}
-	
+		public boolean updateVillatwoBrokerA(String broker_agree, int house_no)throws Exception{
+			Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+			String sql = "update villatwo set broker_agree=? where house_no=?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, broker_agree);
+			ps.setInt(2, house_no);
+			
+			int count = ps.executeUpdate();
+			con.close();
+			return count>0;
+		}	
 
 	public List<VillatwoDto> onSelect() throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
