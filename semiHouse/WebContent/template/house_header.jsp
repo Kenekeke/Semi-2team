@@ -77,11 +77,11 @@ aside{
 </div>
     <main>
     	<%if(!isLogin){ %>
-        <header>
+        <header style="font-family:'samlib'; font-size: 23px;">
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="https://via.placeholder.com/200x70" alt="홈으로">
+                        <img class="logo" src="<%=request.getContextPath()%>/img/Logo.jpg/" style="width:150px; margin-left:30px;">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -114,9 +114,9 @@ aside{
                     <input type="button" value="로그인 및 회원 가입" onClick="location.href='<%=request.getContextPath()%>/member/login.jsp'">
                 </div>
                 <div class="ad">
-                    <a href="#">
+                    <a href="https://www.iei.or.kr/main/main.kh">
                         <span style="display: block;">개발자문의</span>
-                        <img class="logo" src="https://via.placeholder.com/200x40" alt="홈으로">
+                        <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>
             </div>
@@ -131,11 +131,11 @@ aside{
             </div>
             </nav>
             <%}if(isnormal || isBroker){%>
-            <header>
+            <header style="font-family:'samlib'; font-size: 23px;">
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="https://via.placeholder.com/200x70" alt="홈으로">
+                        <img class="logo" src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px; margin-left:30px;">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -175,9 +175,9 @@ aside{
                     <input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
                 </div>
                 <div class="ad">
-                    <a href="#">
+                    <a href="https://www.iei.or.kr/main/main.kh">
                         <span style="display: block;">개발자문의</span>
-                        <img class="logo" src="https://via.placeholder.com/200x40" alt="홈으로">
+                        <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>
             </div>
@@ -192,11 +192,11 @@ aside{
             </div>
             </nav>
             <%}if(isAdmin){%>
-            <header>
+            <header style="font-family:'samlib'; font-size: 23px;">
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="https://via.placeholder.com/200x70" alt="홈으로">
+                        <img class="logo" src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px; margin-left:30px;">
                     </a>
                 </div>
                 <div class="menu-bar">
