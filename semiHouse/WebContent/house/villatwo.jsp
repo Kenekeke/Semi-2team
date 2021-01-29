@@ -13,8 +13,6 @@
 		Lat = 37.50042814760636;
 		Lng = 127.037188602163;
 	}
-	//session.setAttribute("check", 2);
-	//session.setAttribute("auth", "member");
 %>
 
 <jsp:include page="/template/house_header.jsp"></jsp:include>
@@ -137,10 +135,6 @@
 				}
     		});
     	});
-    	$(".active").hide();
-        $(".list").show();
-		$("#charter-range").hide();
-		$(".listDetail").hide();
         var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
             center: new kakao.maps.LatLng(<%=Lat%>,<%=Lng%>), // 지도의 중심좌표 
             level: 6 // 지도의 확대 레벨 

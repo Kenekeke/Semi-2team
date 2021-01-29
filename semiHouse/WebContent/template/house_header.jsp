@@ -61,6 +61,14 @@ aside{
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="<%=request.getContextPath()%>/js/pricechoice.js"></script>	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=clusterer,services"></script>
+<script>
+	$(function(){
+		$(".active").hide();
+		$("#charter-range").hide();
+		$(".listDetail").hide();
+		$(".list").show();
+	});
+</script>
 </head>
 
 <body>

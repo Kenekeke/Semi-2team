@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <% //초기 지도의 중심좌표로 사용할 위도, 경도 불어오기
 	request.setCharacterEncoding("UTF-8");
+	boolean isMember = request.getSession().getAttribute("check")!=null;
 	boolean isLatLng = request.getParameter("Lat") !=null && request.getParameter("Lng") !=null;
 	double Lat;
 	double Lng;
@@ -135,10 +136,6 @@
 				}
     		});
     	});
-    	$(".active").hide();
-        $(".list").show();
-		$("#charter-range").hide();
-		$(".listDetail").hide();
         var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
             center: new kakao.maps.LatLng(<%=Lat%>,<%=Lng%>), // 지도의 중심좌표 
             level: 6 // 지도의 확대 레벨 
@@ -365,6 +362,12 @@
    	       				        	$(".call-broker-name").text(resp[0].broker_name);
    	       				        	$(".listDetail").show();
    	       				        	$(".ListAndFilter").hide();
+   	       				        	if(<%=isMember%>){
+   	       				        		zzimCheck(resp[0].house_no);
+   	       				        	}
+   	       				        	else{
+   	       				        		$(".zzimSpace").children().prop("src", "../img/zzim.png");
+   	       				        	}
    	       				      		zzimCheck(resp[0].house_no);
 	       				      		house_no = resp[0].house_no;
     	       				    });
