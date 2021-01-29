@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet{
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			resp.sendError(500);
+			resp.sendRedirect("login.jsp?error");
 			}
 		}
 		if(LoginGubun.equals("b")) {
@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet{
 			}
 		catch(Exception e) {
 			e.printStackTrace();
-			resp.sendError(500);
+			resp.sendRedirect("login.jsp?error");
 			}
 		}
 	}

@@ -305,15 +305,15 @@
 		}
 		.home_lower{
 			position: relative;
-			display: inline-block;
-			width: 608px;
-			min-height: 387px;
-			min-width: 300px;
-			border: 1px solid gray;
-			margin: 0px 0px 0px 15px;
+		    display: inline-block;
+		    width: 300px;
+		    min-height: 387px;
+		    min-width: 300px;
+		    margin: 0px 0px 0px 15px;
+		    left: 475px;
 		}
 		.home_keeper{
-			min-width:606px;
+			min-width:300px;
 			min-height:387px;
 			width:300px;
 			text-align:center;
@@ -324,14 +324,23 @@
 			width:100%;
 		}
 		.indexhold{
-		    width: 200px;
+		    width: 220px;
 		    white-space: nowrap;
 		    overflow: hidden;
 		    text-overflow: ellipsis;
 		    text-align: initial;
-		    margin-left: 200px;
 		    margin-top: 5px;
-		    font-size: 14px
+		    font-size: 14px;
+		    margin-left: 40px;
+		}
+		.index_menu{
+			padding-top: 25px;
+		    padding-bottom: 10px;
+		    border-bottom: #7b9acc 3px solid;
+		    width: 220px;
+		    font-size: 20px;
+		    font-weight: bold;
+		    margin-left: 40px;
 		}
 		a{
 		text-decoration:none ;
