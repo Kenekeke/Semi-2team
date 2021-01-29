@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <% //초기 지도의 중심좌표로 사용할 위도, 경도 불어오기
 	request.setCharacterEncoding("UTF-8");
+	boolean isMember = request.getSession().getAttribute("check")!=null;
 	boolean isLatLng = request.getParameter("Lat") !=null && request.getParameter("Lng") !=null;
 	double Lat;
 	double Lng;
@@ -135,10 +136,6 @@
 				}
     		});
     	});
-    	$(".active").hide();
-        $(".list").show();
-		$("#charter-range").hide();
-		$(".listDetail").hide();
         var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
             center: new kakao.maps.LatLng(<%=Lat%>,<%=Lng%>), // 지도의 중심좌표 
             level: 6 // 지도의 확대 레벨 
@@ -365,7 +362,12 @@
    	       				        	$(".call-broker-name").text(resp[0].broker_name);
    	       				        	$(".listDetail").show();
    	       				        	$(".ListAndFilter").hide();
-   	       				      		zzimCheck(resp[0].house_no);
+   	       				        	if(<%=isMember%>){
+   	       				        		zzimCheck(resp[0].house_no);
+   	       				        	}
+   	       				        	else{
+   	       				        		$(".zzimSpace").children().prop("src", "../img/zzim.png");
+   	       				        	}
 	       				      		house_no = resp[0].house_no;
     	       				    });
         					},
@@ -378,7 +380,12 @@
       			$(".total-list").text("지역 목록 "+listCount+"개");
         	};
         	$(".zzimSpace").click(function(){
-         		zzimAdd(house_no);
+        		if(<%=isMember%>){
+        			zzimAdd(house_no);
+        		}
+        		else{
+        			alert("로그인후에 이용가능합니다.");
+        		}
         	});
 	    	function zzimAdd(house_no){
 	    		var y;
@@ -390,7 +397,6 @@
 							house_no : house_no
 						},
 						success:function(zzim){
-							console.log(zzim);
 			        	if(zzim==="add"){
 			        		alert("찜목록에 추가되었습니다.");
 			        		y="../img/zzima.png";
@@ -401,7 +407,7 @@
 			        	}
 						},
 					error:function(){
-						alert("로그인후에 이용가능합니다.");
+						
 					}
 	    		});
 	    		$(".zzimSpace").children().prop("src", y);

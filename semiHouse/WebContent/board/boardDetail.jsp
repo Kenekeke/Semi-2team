@@ -109,7 +109,7 @@
         	</div>
             <a href="boardList.jsp" class="go-list" style="float:right;">≡목록</a>
         </div>
-        <div class="row">
+        <div class="board-detail-info-margin">
             <div class="board-detail-th">[<%=boardVO.getBoard_header()%>] <%=boardVO.getBoard_title()%></div>
             <div class="board-detail-info">
             	<div class="board-member-nick-detail"><%=boardVO.getMember_nick()%></div>
@@ -120,14 +120,14 @@
             	</div>
             </div>
         </div>
-        <div class="row detail-board-content">
+        <div class="detail-board-content">
         <%
         	String board_content = boardVO.getBoard_content();
         	board_content = board_content.replace("\r\n", "<br>");
         %>
             <%=board_content%>
         </div>
-        <div class="row">
+        <div class="row replyreplybox">
             <div class="replycount-detail">댓글 <%=count%>개</div>
 
             <form id="reply-form" action="replywrite.do" method="post">
@@ -166,16 +166,16 @@
         <%if(count>0){%>
         <div class="center boardlistPaging">
         	<ul class="paginationr">
+        		<%if(startN!=1){ %>
        			<li><a href="boardList.jsp?n=<%=startN-1%>">&lt;</a></li>
+       			<%} %>
         		<%for(int i=startN; i<=endN; i++){ %>
         		<%if(n==i){ %><li class="active"><%}
         		else{%><li><%}%>
         			<a href="boardList.jsp?n=<%=i%>"><%=i%></a>
         			</li>
         		<%} %>
-      			<%if(endN==pagelast){ %>
-      				<li><a href="boardList.jsp?n=<%=endN%>">&gt;</a></li>
-      			<%} else{%>
+      			<%if(endN!=pagelast){%>
       				<li><a href="boardList.jsp?n=<%=endN+1%>">&gt;</a></li>
       			<%} %>
         	</ul>

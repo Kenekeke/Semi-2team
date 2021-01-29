@@ -15,12 +15,15 @@ html, body{
  }
  .board-outbox{
      width: 800px;
-     height:900px;
+     height:100%;
      margin: 0 auto;
      padding:20px 0;
  }
  .board-outbox > .row{
      margin:1rem 0;
+ }
+  .board-detail-info-margin{
+ 	margin:1rem 0 0 0;
  }
  .table-box{
      width : 100%;
@@ -31,10 +34,11 @@ html, body{
      background-color: #7b9acc;
      color:white;
      font-weight:bold;
+     font-size:18px;
  }
  .table-box > tbody > tr > td{
      border-bottom: 1px solid gray;
-     height:40px;
+     height:43px;
  }
  .left {
      text-align: left !important;
@@ -104,13 +108,19 @@ html, body{
     color: #7b9acc;
 }
 .listItem td{
-	font-size:15px;	
+	font-size:17px;	
 }
 .board_write_btn{
 	margin:10px 0 5px 0;
 }
+.rightwritebtn{
+	text-align:right;
+}
 input[name=board_header_check]+label{
 	margin:0 25px 0 0;
+}
+.replyreplybox{
+	min-height:300px;
 }
 .boardlistPaging{
 	margin:20px 0 10px 0;
@@ -167,6 +177,7 @@ input[name=board_header_check]+label{
 	display:inline-block;
 	text-align:center;
 	margin:10px 0;
+	font-size:20px;
 }
 input[name=board_header]+label{
 	margin: 0 33px 0 0;
@@ -195,6 +206,7 @@ input[name=board_header]+label{
 	display:flex;
 	align-items:center;
 	justify-content:center;
+	margin-bottom:50px;
 }
 .board-searchbtn-typekey{
 	width:50px;
@@ -205,9 +217,14 @@ input[name=board_header]+label{
 	border:none;
 	outline:none;
 }
+.boardlisttitle,
+.headerboardlist{
+	font-size:17px;
+}
 .boardlisttitle:hover{
 	color:#7b9acc;
 	border-bottom:1px solid #7b9acc;
+	font-weight:bold;
 }
 .detail-info-top{
 	display:flex;
@@ -217,7 +234,7 @@ input[name=board_header]+label{
 }
 .board-detail-info{
 	padding:0.5rem 1rem;
-	margin:0.5rem 0;
+	margin:0.5rem 0 0 0;
 	border-bottom:1px solid #7b9acc;
 	display:flex;
 	justify-content:space-between;
@@ -226,7 +243,7 @@ input[name=board_header]+label{
 	text-decoration:none;
 	color:#7b9acc;
 	margin-right:0.5rem;
-	font-size:18px;
+	font-size:20px;
 }
 .go-list:hover{
 	font-weight:bold;
@@ -234,21 +251,24 @@ input[name=board_header]+label{
 .board-cbt{
 	display:flex;
 	justify-content:space-around;
-	font-size:15px;
+	font-size:16px;
 }
 .detail-board-content{
-    height:500px;
+    min-height:600px;
+    margin-bottom:1rem;
     padding:40px 30px;
     border-bottom:1px solid #7b9acc;
+    border-left: 1px solid #7b9acc;
+    border-right: 1px solid #7b9acc;
     font-size:18px;
 }
 .board-detail-th{
 	padding:0 1rem;
 	font-weight:bold;
-	font-size:20px;
+	font-size:22px;
 }
 .board-member-nick-detail{
-	font-size:18px;
+	font-size:19px;
 	color:#7b9acc;
 }
 .reply-textarea{
@@ -259,7 +279,7 @@ input[name=board_header]+label{
 .replycount-detail{
 	padding-left:0.5rem;
 	margin-bottom:0.5rem;
-	font-size:14px;
+	font-size:15px;
 }
 .replylist-list{
 	margin-top:1rem;
@@ -299,6 +319,7 @@ input[name=board_header]+label{
 	background-color:#7b9acc;
 	color:white;
 	font-weight:bold;
+	font-size:16px;
 	border:none;
 	outline:none;
 }
@@ -306,12 +327,19 @@ input[name=board_header]+label{
 	font-size:17px;
 }
 .boardbtnc{
-	width:60px;
-	height:35px;
+	width:62px;
+	height:40px;
 	background-color:#7b9acc;
 	color:white;
+	font-size:15px;
 	font-weight:bold;
 	border:none;
 	outline:none;
 	border-radius:0.5rem;
+}
+.noticeItem{
+	background-color:#f5f6fa;
+}
+.headerbold{
+	font-weight:bold;
 }
