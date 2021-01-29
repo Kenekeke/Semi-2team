@@ -39,7 +39,9 @@ html, body{
  .left {
      text-align: left !important;
  }
-
+.left > h3{
+	color:#7b9acc;
+}
  .center {
      text-align: center !important;
  }
@@ -184,6 +186,9 @@ input[name=board_header]+label{
 	height: 30px;
 	font-size: 16px;
 	margin:0 10px;
+	background-color:#7b9acc;
+	border: 1px solid #7b9acc;
+	color: white;
 }
 
 .boardlist-searchbox{

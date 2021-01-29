@@ -14,10 +14,9 @@ public class SearchDao {
 	String PASSWORD="house";
 	public List<SearchDto> select(String keyword) throws Exception{
 		Connection con=JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql="select * from search where instr(name,?) > 0 or instr(address,?) > 0";
+		String sql="select * from search where instr(name,?) > 0";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
-		ps.setString(2, keyword);
 		ResultSet rs= ps.executeQuery();
 		List<SearchDto> list= new ArrayList<>();
 		while(rs.next()) {
