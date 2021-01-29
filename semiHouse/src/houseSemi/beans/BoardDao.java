@@ -85,7 +85,6 @@ public class BoardDao {
 		return vo;
 	}
 	
-	//목록
 	public List<BoardVO> List(int start, int end) throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
 		String sql = "select * from(select rownum rn, T.* from("
@@ -93,6 +92,7 @@ public class BoardDao {
 				+ "B.board_content, B.board_count, B.board_time, count(R.reply_no) replycount, M.member_nick "
 				+ "from(board B left outer join reply R on B.board_no = R.board_no "
 				+ "inner join member M on B.member_no = M.member_no) "
+				+ "where board_header in ('인테리어/DIY','전/월세 장터','집수리/이사','기타') "
 				+ "group by B.board_no, B.member_no, B.board_header, B.board_title, B.board_content, B.board_count, B.board_time, M.member_nick "
 				+ "order by B.board_no desc) T) where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -162,7 +162,7 @@ public class BoardDao {
 					+ "B.board_content, B.board_count, B.board_time, count(R.reply_no) replycount, M.member_nick "
 					+ "from(board B left outer join reply R on B.board_no = R.board_no "
 					+ "inner join member M on B.member_no = M.member_no) "
-					+ "where instr(board_title,?) > 0 or instr(board_content,?) > 0 "
+					+ "where (instr(board_title,?) > 0 or instr(board_content,?) > 0) and board_header in ('인테리어/DIY','전/월세 장터','집수리/이사','기타') "
 					+ "group by B.board_no, B.member_no, B.board_header, B.board_title, B.board_content, B.board_count, B.board_time, M.member_nick "
 					+ "order by B.board_no desc) T) where rn between ? and ?";
 			ps = con.prepareStatement(sql);
@@ -177,7 +177,7 @@ public class BoardDao {
 					+ "B.board_content, B.board_count, B.board_time, count(R.reply_no) replycount, M.member_nick "
 					+ "from(board B left outer join reply R on B.board_no = R.board_no "
 					+ "inner join member M on B.member_no = M.member_no) "
-					+ "where instr(#1,?) > 0 "
+					+ "where instr(#1,?) > 0  and board_header in ('인테리어/DIY','전/월세 장터','집수리/이사','기타') "
 					+ "group by B.board_no, B.member_no, B.board_header, B.board_title, B.board_content, B.board_count, B.board_time, M.member_nick "
 					+ "order by B.board_no desc) T) where rn between ? and ?";
 			sql = sql.replace("#1", type);
@@ -263,11 +263,13 @@ public class BoardDao {
 	//게시물 총 개수
 	public int count() throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql = "select count(*) count from board";
+		String sql = "select count(*) count from board where board_header in ('인테리어/DIY','전/월세 장터','집수리/이사','기타')";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		return rs.getInt("count");
+		int count = rs.getInt("count");
+		con.close();
+		return count;
 	}
 	//헤더
 	public int count(String header) throws Exception{
@@ -277,7 +279,9 @@ public class BoardDao {
 		ps.setString(1, header);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		return rs.getInt("count");
+		int count = rs.getInt("count");
+		con.close();
+		return count;
 	}
 	//검색일때
 	public int count(String type, String key) throws Exception{
@@ -285,20 +289,22 @@ public class BoardDao {
 		String sql;
 		PreparedStatement ps;
 		if(type.equals("board_title_content")) {
-			sql = "select count(*) count from board where instr(board_title,?)>0 or instr(board_content,?)>0";
+			sql = "select count(*) count from board where (instr(board_title,?)>0 or instr(board_content,?)>0) and board_header in ('인테리어/DIY','전/월세 장터','집수리/이사','기타')";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, key);
 			ps.setString(2, key);
 		}
 		else {
-			sql = "select count(*) count from (board B inner join member M on B.member_no = M.member_no) where instr(#1,?)>0";
+			sql = "select count(*) count from (board B inner join member M on B.member_no = M.member_no) where instr(#1,?)>0 and board_header in ('인테리어/DIY','전/월세 장터','집수리/이사','기타')";
 			sql = sql.replace("#1", type);
 			ps = con.prepareStatement(sql);
 			ps.setString(1, key);
 		}
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		return rs.getInt("count");
+		int count = rs.getInt("count");
+		con.close();
+		return count;
 	}
 	//헤더+검색
 	public int count(String header, String type, String key) throws Exception{
@@ -321,7 +327,9 @@ public class BoardDao {
 		}
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		return rs.getInt("count");
+		int count = rs.getInt("count");
+		con.close();
+		return count;
 	}
 	
 	//시퀀스얻어오기
