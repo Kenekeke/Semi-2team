@@ -1,9 +1,12 @@
 		@font-face {
-		    font-family: 'ng';
-		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+		    font-family:'samlib';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
 		    font-weight: normal;
 		    font-style: normal;
-		    
+		}
+
+		.nanumsquare {
+		    font-family: 'NanumSquare', sans-serif !important;
 		}
 			
 		.outbox {
@@ -11,6 +14,7 @@
             z-index: 9999;
    			position: fixed;
    			width:1900px;
+   			background-color:white;
             
         }
         .outbox div {
@@ -87,8 +91,8 @@
         }
 
         .menu ul>li>a:hover {
-            color: #FFDFDE;
-        }
+			color: #6A7BA2;
+		}
 
         /*전체 메뉴에 마우스가 올라간 경우의 하위 메뉴*/
         .menu li:hover>ul {
@@ -143,7 +147,6 @@
 		 	width:230px;
 		 	min-height:200px;
 		 }
-	    
 	    .login_wrapper {
 			width:300px;
 		    height:300px;
@@ -202,7 +205,7 @@
 		    text-align:center;
 		    left:30%;
 		    top:50%;
-		    margin-left:-150px;
+		    margin-left:150px;
 		    margin-top:-220px;
 			border: solid 1px gray;
 			
@@ -319,6 +322,16 @@
 		.all_wrapper{
 			height:922px;
 			width:100%;
+		}
+		.indexhold{
+		    width: 200px;
+		    white-space: nowrap;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    text-align: initial;
+		    margin-left: 200px;
+		    margin-top: 5px;
+		    font-size: 14px
 		}
 		a{
 		text-decoration:none ;

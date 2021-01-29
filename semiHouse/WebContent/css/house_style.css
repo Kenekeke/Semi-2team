@@ -1,9 +1,21 @@
+@font-face {
+	font-family:'samlib';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	    
+	}
+.nanumsquare {
+	font-family: 'NanumSquare', sans-serif !important;
+		}
+	
 .outbox {
 	height: 80px;
-	z-index:9999;
-	position:fixed;
+	z-index: 9999;
+	position: fixed;
 	width:1900px;
-}
+	background-color:white;
+	}
 
 .outbox div {
 	height: inherit;
@@ -73,7 +85,7 @@
 }
 
 .menu ul>li>a:hover {
-	color: red;
+	color: #6A7BA2;
 }
 
 /*전체 메뉴에 마우스가 올라간 경우의 하위 메뉴*/

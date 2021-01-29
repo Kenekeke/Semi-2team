@@ -94,8 +94,6 @@
 					<th>아이디</th>
 					<th>닉네임</th>
 					<th>등급</th>
-					<th>관리메뉴</th>
-				</tr>
 			</thead> 
 			<tbody>
 				<%for(MemberDto dto : list){ %>
@@ -106,8 +104,6 @@
 					<%if(dto.is("member"))%><td>일반회원</td>
 				 	<%if(dto.is("broker"))%><td>중개인</td>
 				 	<%if(dto.is("admin"))%><td>관리자</td> 
-					<td>	
-					</td>
 				</tr>
 				<%} %>
 			</tbody>

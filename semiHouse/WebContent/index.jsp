@@ -5,13 +5,13 @@
 
 <%
 	int start = 1;
-	int end = 5;
+	int end = 6;
 	BoardDao boardDao = new BoardDao();
 	List<BoardDto> boardlist = boardDao.indexselect(start, end);
 	
 %>
 <script type="text/javascript"
-    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=services"></script>
+    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe6f523576b10aa9e50625a1962d3635&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
@@ -50,7 +50,6 @@
 	        rectangle.setMap(map);
 	        map.setDraggable(false); 
 	        map.setZoomable(false);
-
 
             $.getJSON("./house/sources/seoul.json", function (geojson) {
                 var data = geojson.features;
@@ -193,19 +192,25 @@
 		<div class="home_lower">
 			<div class="home_keeper">
 				<h2>뉴스</h2>
-				<ul>
-					<li>지난 밤 무슨일이..</li>
-					<li>내일 밤 무슨일이..</li>
-				</ul>
+				<div class="indexhold row">
+				<a href="https://realestate.joins.com/article/article.asp?pno=142618&ref=naver">대전 생활권에 규제 적은 단지...'계룡자이' 3월 분양</a></div>
+				<div class="indexhold row">
+				<a href="http://www.nbntv.co.kr/news/articleView.html?idxno=917248">부천시, 깡통전세 예방 등 임차인 보호에 힘쓴다</a></div>
+				<div class="indexhold row">
+				<a href="https://www.hankyung.com/realestate/article/2019011892171">부동산 앱, 신림동 가장 많이 찾았다</a></div>
+				<div class="indexhold row">
+				<a href="http://www.leaders.kr/news/articleView.html?idxno=206183">강서구, 부동산소유권 이전등기 특별조치법 시행</a></div>
+				<div class="indexhold row">
+				<a href="http://www.epnc.co.kr/news/articleView.html?idxno=113353">선시공 후분양 수유역 한원 힐트리움, 분양 문의 잇따르며 완판 예고</a></div>
 			</div>
 		</div>
 		<div class="home_lower">
 			<div class="home_keeper">
 				<h2>공지사항</h2>
 				<%for(BoardDto dto : boardlist){ %>
-				<ul>
-					<li><a href="board/boardDetail.jsp?board_no=<%=dto.getBoard_no()%>"><%=dto.getBoard_title()%></a></li>
-				</ul>
+				<div class="indexhold row">
+				<a href="board/boardDetail.jsp?board_no=<%=dto.getBoard_no()%>"><%=dto.getBoard_title()%></a>
+				</div>
 				<%} %>
 			</div>
 		</div> 
