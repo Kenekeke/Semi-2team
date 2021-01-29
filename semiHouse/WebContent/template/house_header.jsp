@@ -81,7 +81,7 @@ aside{
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="<%=request.getContextPath()%>/img/Logo.jpg/" style="width:150px; margin-left:30px;">
+                        <img class="logo" src="">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -106,7 +106,7 @@ aside{
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>
@@ -115,7 +115,7 @@ aside{
                 </div>
                 <div class="ad">
                     <a href="https://www.iei.or.kr/main/main.kh">
-                        <span style="display: block;">개발자문의</span>
+                        <span style="display: block;">광고 문의</span>
                         <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>
@@ -135,7 +135,7 @@ aside{
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px; margin-left:30px;">
+                        <img class="logo" src="">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -167,7 +167,7 @@ aside{
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>
@@ -176,7 +176,7 @@ aside{
                 </div>
                 <div class="ad">
                     <a href="https://www.iei.or.kr/main/main.kh">
-                        <span style="display: block;">개발자문의</span>
+                        <span style="display: block;">광고 문의</span>
                         <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>
@@ -196,7 +196,7 @@ aside{
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px; margin-left:30px;">
+                        <img class="logo" src="">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -207,7 +207,7 @@ aside{
                         <li class="menu-my">
                             <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>

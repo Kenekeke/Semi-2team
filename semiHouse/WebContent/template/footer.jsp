@@ -19,6 +19,7 @@
                     <br>팩스 : 02-***-****
                     <br>통신판매업 신고번호 : 제2021-서울**-****호
                     <br>서비스 이용문의 : ****-**** | 이메일 : cs@seoullive.com | 서비스제휴문의 : partnership@seoullive.com
+                    <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
                 </span>
             </div>
             <div class="center copyright">Copyright © 2tem-semi. All Rights Reserved.</div>

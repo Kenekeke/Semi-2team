@@ -117,7 +117,7 @@
                 // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
                 kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
                     polygon.setOptions({
-                        fillColor: '#09f',
+                        fillColor: '#7b9acc',
                         fillOpacity: 0.6
                     });
                 });
@@ -181,17 +181,19 @@
 		    	</select>
     		</form>
     		</div>
-  			<div id="map" style="width:100%;height:600px;">
+  			<div id="map" style="width:1400px;height:600px;margin-left:260px">
   		</div>
 	<div class="home_wrapper">
 		<div class="home_lower">
 			<div class="home_keeper">
-				<h2>사이트 소개</h2>
+				<div class="index_menu">회사소개</div>
+				<a href="https://nicetoday79.wixsite.com/my-site"><img src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px;margin-top: 15px;
+    margin-left: 15px;"></a>
 			</div>
 		</div>
 		<div class="home_lower">
 			<div class="home_keeper">
-				<h2>뉴스</h2>
+				<div class="index_menu">관련뉴스</div>
 				<div class="indexhold row">
 				<a href="https://realestate.joins.com/article/article.asp?pno=142618&ref=naver">대전 생활권에 규제 적은 단지...'계룡자이' 3월 분양</a></div>
 				<div class="indexhold row">
@@ -206,7 +208,7 @@
 		</div>
 		<div class="home_lower">
 			<div class="home_keeper">
-				<h2>공지사항</h2>
+				<div class="index_menu">공지사항</div>
 				<%for(BoardDto dto : boardlist){ %>
 				<div class="indexhold row">
 				<a href="board/boardDetail.jsp?board_no=<%=dto.getBoard_no()%>"><%=dto.getBoard_title()%></a>
