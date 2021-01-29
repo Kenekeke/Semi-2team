@@ -462,7 +462,7 @@
 
 				<div class="detailFilter">
 					<div id="charter-range" class="margin-t">
-						<div class="priceTitle">전세금</div>
+						<div class="priceTitle u">전세금</div>
 						<div class="margin-t">
 							<div class="box">
 								<div class="price-show">
@@ -485,7 +485,7 @@
 						</div>
 					</div>
 					<div id="deposit-range" class="margin-t">
-						<div class="priceTitle">보증금</div>
+						<div class="priceTitle u">보증금</div>
 						<div class="margin-t">
 							<div class="box">
 								<div class="price-show">
@@ -508,7 +508,7 @@
 						</div>
 					</div>
 					<div id="monthly-range" class="margin-t">
-						<div class="priceTitle">월세</div>
+						<div class="priceTitle u">월세</div>
 						<div class="margin-t">
 							<div class="box">
 								<div class="price-show">
@@ -532,7 +532,7 @@
 					</div>
 
 					<div class="floor margin-t">
-						<div>층수</div>
+						<div class="u">층수</div>
 						<div class="margin-t">
 							<input type="button" id="floor1" value="반지하"> <input
 								type="hidden" name="floor1" value="N"> <input
@@ -543,8 +543,8 @@
 						</div>
 					</div>
 					<div class="etc margin-t">
-						<div>기타</div>
-						<div class="margin-t">
+						<div class="u">기타</div>
+						<div class="margin-t etcbtnbtn">
 							<input type="button" id="parking" value="주차"> <input
 								type="hidden" name="parking" value="0"> <input
 								type="button" id="elevator" value="엘리베이터"> <input
@@ -576,11 +576,11 @@
 			<div class="image-box">
 				
 			</div>
-			<div class="boundaryList">
+			<div class="infoinfoList">
 				<div class="detail-house-price"></div>
 				<div class="regist-house-num"></div>
 			</div>
-			<div class="boundaryList displayList">
+			<div class="infoinfoList displayList">
 				<div>
 					<span>면적(전용)</span>
 					<div class="detail-house-area"></div>
@@ -641,7 +641,7 @@
 			</div>
 			<div class="boundaryList">상세 설명</div>
 			<div class="titleList detail-house-etc"></div>
-			<div class="titleList">
+			<div class="titleListlast">
 				<div class="detail-broker-name"></div>
 				<div class="detail-broker-landline"></div>
 				<div class="detail-broker-phone"></div>
@@ -653,7 +653,7 @@
 		<div class="callzzimSpace"></div>
 		<div class="callzzimSpace callzzim">
 			<div class="callSpace">
-				<img alt="전화이미지" src="../img/call.jpg" style="width: 30px;">
+				<img alt="전화이미지" src="../img/call.png" style="width: 30px;">
 				<div>전화하기</div>
 			</div>
 			<div class="zzimSpace">
