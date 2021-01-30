@@ -2,15 +2,12 @@ package houseSemi.servlet;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.eclipse.jdt.internal.compiler.parser.Scanner;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -37,7 +34,7 @@ public class HouseInsertServlet extends HttpServlet{
 		try {
 			req.setCharacterEncoding("UTF-8");
 			// 수신
-			String path = "C:\\Users\\mikyo\\git\\Semi-2team\\Semi-2team\\semiHouse\\WebContent\\img"; //저장 장소
+			String path = "C:\\Users\\Lee\\git\\Semi-2team\\semiHouse\\WebContent\\img";
 			int max = 10 * 1024 * 1024; //10MB
 			String encoding = "UTF-8";  //encoding
 			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();//같은 파일 업로드시 덮어쓰기 방지
