@@ -264,8 +264,8 @@
 		.type_selector{
 		    display: block;
 		    position: absolute;
-		    left: 670px;
-		    top: 185px;
+		    margin-left: 1150px;
+		    margin-top: 530px;
 		    z-index: 10;
 		}
 		.selector_type{

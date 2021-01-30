@@ -506,7 +506,7 @@
 	<div class="floatBox">
 		<div class="searchBox">
 			<input type="text" placeholder="지역, 지하철역 검색" class="search">
-			<button class="searchBtn">검색</button>
+			<button class="searchBtn"><img alt="돋보기" src="../img/search.png" style="width: 30px;"></button>
 		</div>
 	</div>
 </article>
