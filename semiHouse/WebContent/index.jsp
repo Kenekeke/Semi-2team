@@ -12,6 +12,7 @@
 %>
 <script type="text/javascript"
     	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe6f523576b10aa9e50625a1962d3635&libraries=services"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
