@@ -26,7 +26,7 @@
 			$(".searchResult").remove();
     		$.ajax({
     			async: false,
-        		url: "<%=request.getContextPath()%>/house/test.do",
+        		url: "<%=request.getContextPath()%>/house/search.do",
         		type: "POST",
         		data: {
         			keyword : searchKeyword
