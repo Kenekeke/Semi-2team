@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main_style.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 </section>
-        <footer class="nanumsquare">
+        <footer style="font-family:'nanumsquare'; font-size:14px;">
             <p class="center">
                 <a>회사소개</a> |
                 <a>채용정보</a> |

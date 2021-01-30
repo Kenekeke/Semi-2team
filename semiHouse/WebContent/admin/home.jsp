@@ -8,11 +8,5 @@
 		<a class="select_bt" href="list.jsp" >회원 목록</a>
 		</div>
 	</div>
-	<div class="admin_selector2">
-		<div class="admin_box2">
-		<input type="image" src="https://via.placeholder.com/200x200">
-		<!-- 미구현...개발자들에게 아이디어 주기! -->
-		</div>
-	</div>
 </div>
 <jsp:include page="/template/footer.jsp"></jsp:include>
