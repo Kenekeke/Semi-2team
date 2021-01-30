@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/css/common.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main_style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 </section>
-        <footer>
+        <footer class="nanumsquare">
             <p class="center">
                 <a>회사소개</a> |
                 <a>채용정보</a> |
@@ -17,6 +19,7 @@
                     <br>팩스 : 02-***-****
                     <br>통신판매업 신고번호 : 제2021-서울**-****호
                     <br>서비스 이용문의 : ****-**** | 이메일 : cs@seoullive.com | 서비스제휴문의 : partnership@seoullive.com
+                    <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
                 </span>
             </div>
             <div class="center copyright">Copyright © 2tem-semi. All Rights Reserved.</div>

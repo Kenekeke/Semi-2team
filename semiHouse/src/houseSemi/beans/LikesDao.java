@@ -31,20 +31,23 @@ public class LikesDao {
 		con.close();
 		return list;
 	}
-	public boolean check(int house_no) throws Exception {
+	public boolean check(int house_no, int member_no) throws Exception {
 		Connection con=JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql="select * from likes where house_no=?";
+		String sql="select * from likes where house_no=? and member_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, house_no);
+		ps.setInt(2, member_no);
 		ResultSet rs= ps.executeQuery();
+		boolean result = rs.next();
 		con.close();
-		return rs.next();
+		return result;
 	}
-	public boolean delete(int house_no) throws Exception {
+	public boolean delete(int house_no, int member_no) throws Exception {
 		Connection con=JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql="delete likes where house_no=?";
+		String sql="delete likes where house_no=? and member_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, house_no);
+		ps.setInt(2, member_no);
 		int count =ps.executeUpdate();
 		con.close();
 		return count>0;

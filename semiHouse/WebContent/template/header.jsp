@@ -29,7 +29,7 @@
             margin: 0;
             padding: 0;
             border: 1px solid red;
-            height: 100%;
+            height: auto;
         }
 		
 		header{
@@ -48,16 +48,22 @@
             border: 1px solid green;
             width: 400px;
         }
+        footer{
+       		height: inherit;
+            display: inline-block;
+            border: 1px solid green;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <main>
-        <header>
+        <header style="font-family:'samlib'; font-size: 23px;">
         <%if(!isLogin){ %>
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="https://via.placeholder.com/200x70" alt="홈으로">
+                        <img class="logo" src="">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -82,7 +88,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>
@@ -90,9 +96,9 @@
                     <input type="button" value="로그인 및 회원 가입" onClick="location.href='<%=request.getContextPath()%>/member/login.jsp'">
                 </div>
                 <div class="ad">
-                    <a href="#">
-                        <span style="display: block;">개발자문의</span>
-                        <img class="logo" src="https://via.placeholder.com/200x40" alt="홈으로">
+                    <a href="https://www.iei.or.kr/main/main.kh">
+                        <span style="display: block;">광고 문의</span>
+                        <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>
             </div>
@@ -100,7 +106,7 @@
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="https://via.placeholder.com/200x70" alt="홈으로">
+                        <img class="logo" src="">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -134,7 +140,7 @@
                             </ul>
                         </li>
                         <li> 
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>
@@ -142,9 +148,9 @@
                 	<input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
                 </div>
                 <div class="ad">
-                    <a href="#">
-                        <span style="display: block;">개발자문의</span>
-   						<img class="logo" src="https://via.placeholder.com/200x40" alt="홈으로">
+                    <a href="https://www.iei.or.kr/main/main.kh">
+                        <span style="display: block;">광고 문의</span>
+                        <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>		
             </div>
@@ -152,7 +158,7 @@
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="https://via.placeholder.com/200x70" alt="홈으로">
+                        <img class="logo" src="">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -163,7 +169,7 @@
                         <li class="menu-my">
                             <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>

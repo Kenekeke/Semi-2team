@@ -1,3 +1,5 @@
+<%@page import="houseSemi.beans.BrokerDto"%>
+<%@page import="houseSemi.beans.BrokerDao"%>
 <%@page import="houseSemi.beans.HouseVillatwoPhotoVO"%>
 <%@page import="houseSemi.beans.HouseOfficePhotoVO"%>
 <%@page import="houseSemi.beans.HouseOnePhotoVO"%>
@@ -15,10 +17,14 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	int member_no = (int)request.getSession().getAttribute("check");
+	BrokerDao brokerDao = new BrokerDao();
+	BrokerDto brokerDto = brokerDao.find(member_no);
+	int broker_no = brokerDto.getBroker_no();
+	
 	HouseDao houseDao = new HouseDao();
-	List<HouseOnePhotoVO> houseOneList = houseDao.selectOne(member_no);
-	List<HouseOfficePhotoVO> houseOfficeList = houseDao.selectOffice(member_no);
-	List<HouseVillatwoPhotoVO> houseVillatwoList = houseDao.selectVillatwo(member_no);
+	List<HouseOnePhotoVO> houseOneList = houseDao.selectOneBroker(broker_no);
+	List<HouseOfficePhotoVO> houseOfficeList = houseDao.selectOfficeBroker(broker_no);
+	List<HouseVillatwoPhotoVO> houseVillatwoList = houseDao.selectVillatwoBroker(broker_no);
 	int one_count = 0;
 	int villatwo_count = 0;
 	int office_count = 0;
@@ -29,39 +35,40 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script>
 	$(function(){	     
-		$(".update-link").click(function(e){
+		$(".agree-link").click(function(e){
 			e.preventDefault();
  			
- 			var confirm = window.confirm("해당 매물을 수정하시겠습니까?")
+ 			var confirm = window.confirm("해당 매물을 등록하시겠습니까?")
  			if(confirm){
  				$(location).attr("href", $(this).attr("href"));//기존에 가려고 하는 링크로 간다
  			}
 		});
- 		$(".delete-link").click(function(e){
+ 		$(".cancel-link").click(function(e){
  			e.preventDefault();
  			
- 			var confirm = window.confirm("해당 매물을 삭제하시겠습니까?")
+ 			var confirm = window.confirm("해당 매물을 취소하시겠습니까?")
  			if(confirm){
  				$(location).attr("href", $(this).attr("href"));//기존에 가려고 하는 링크로 간다
  			}
 		});
- 		
+ 		$("#one-all").change(function(){
+ 		     var all = $(this).prop("checked");
+             $("input[name=one_check]").prop("checked", all);
+             
+ 		});	
  	});	
 </script>
 
     <h4>등록 매물 리스트</h4>
-    <p>중개사가 허가할 경우 수정이 불가능 합니다.</p>
+    <p>등록된 매물 중 광고가 가능한 매물일 경우 확인 후 매물 등록 완료를 눌러주세요</p>
 	<div>
 		<table class="table table-border" border="1" style="width: 1000px;">
 			<thead>
 				<tr>
-					<td class="left" colspan="4">원룸</td>
-					<td class="right" colspan="4">
-						<button>선택 삭제</button>				
-					</td>	
+					<td class="left" colspan="8">원룸</td>
 				</tr>
 				<tr>
-					<th><input type="checkbox"></th>
+					<th><input type="checkbox" id="one-all"></th>
 					<th width="10%">등록 번호</th>
 					<th colspan="2" width="45%">주소</th>
 					<th width="15%">등록일</th>
@@ -77,7 +84,7 @@
 						house_no_save = oneVo.getHouse_no();
 				%>
 					<tr>
-						<td><input type="checkbox"></td>
+						<td><input type="checkbox" name="one_check"></td>
 						<td class="house_no"><%=oneVo.getHouse_no() %></td>
 						<td width="15%"><img src="../img/<%=oneVo.getSave_name()%>" alt="대표사진"></td>
 						<td class="left"><a href=""><%=oneVo.getAddress()%> / <%=oneVo.getAddress2() %></a></td>
@@ -88,29 +95,32 @@
 							<td>등록 완료</td>
 							<%} %>
 						<td width="8%">
-							<a class="update-link" href="<%=request.getContextPath()%>/member/update-one.jsp?house_no=<%=oneVo.getHouse_no()%>">
+							<a class="agree-link" href="<%=request.getContextPath()%>/member/update-agree.do?house_no=<%=oneVo.getHouse_no()%>">
 								<%if(oneVo.getBroker_agree().equals("0")) {%>
-									<button>수정</button>				
+									<input type="button" value="등록">
 								<%}else{ %>				
-									<button disabled>수정</button>
+									<input type="button" value="등록" disabled>
 								<%} %>
-
 							</a>
 						</td>
 						<td width="8%">
-							<a class="delete-link" href="<%=request.getContextPath()%>/member/delete-room.do?house_no=<%=oneVo.getHouse_no()%>">
-								<button>삭제</button>
+							<a class="cancel-link" href="<%=request.getContextPath()%>/member/update-cancel.do?house_no=<%=oneVo.getHouse_no()%>">
+								<%if(oneVo.getBroker_agree().equals("0")) {%>
+									<input type="button" value="취소" disabled>
+								<%}else{ %>				
+									<input type="button" value="취소">
+								<%} %>
 							</a>
 						</td>
 					</tr>
-				<%}
-					}%>
-				<%} 
+				<%		}
+					}
+				} 
 				if(one_count == 0){%>
 					<tr>
 						<td colspan="8">등록된 매물이 없습니다</td>
 					</tr>						
-				<%}%>
+				<%} %>
 			</tbody>
 		</table>
 		<br>
@@ -118,8 +128,7 @@
 		<table class="table table-border" border="1" style="width: 1000px;">
 			<thead>
 				<tr>
-					<td class="left" colspan="4">빌라/투룸</td>
-					<td class="right" colspan="4">
+					<td class="left" colspan="8">빌라/투룸</td>
 						<button>선택 삭제</button>				
 					</td>
 				</tr>
@@ -151,17 +160,22 @@
 							<td>등록 완료</td>
 							<%} %>
 						<td width="8%">
-							<a class="update-link" href="<%=request.getContextPath()%>/member/update-villatwo.jsp?house_no=<%=villatwoVo.getHouse_no()%>">
+						<td width="8%">
+							<a class="agree-link" href="<%=request.getContextPath()%>/member/update-agree.do?house_no=<%=villatwoVo.getHouse_no()%>">
 								<%if(villatwoVo.getBroker_agree().equals("0")) {%>
-									<button>수정</button>				
+									<input type="button" value="등록">
 								<%}else{ %>				
-									<button disabled>수정</button>
+									<input type="button" value="등록" disabled>
 								<%} %>
 							</a>
 						</td>
 						<td width="8%">
-							<a class="delete-link" href="<%=request.getContextPath()%>/member/delete-room.do?house_no=<%=villatwoVo.getHouse_no()%>">
-								<button>삭제</button>
+							<a class="cancel-link" href="<%=request.getContextPath()%>/member/update-cancel.do?house_no=<%=villatwoVo.getHouse_no()%>">
+								<%if(villatwoVo.getBroker_agree().equals("0")) {%>
+									<input type="button" value="취소" disabled>
+								<%}else{ %>				
+									<input type="button" value="취소">
+								<%} %>
 							</a>
 						</td>
 					</tr>
@@ -180,8 +194,7 @@
 		<table class="table table-border" border="1" style="width: 1000px;">
 			<thead>
 				<tr>
-					<td class="left" colspan="4">오피스텔</td>
-					<td class="right" colspan="4">
+					<td class="left" colspan="8">오피스텔</td>
 						<button>선택 삭제</button>				
 					</td>
 				</tr>
@@ -213,17 +226,21 @@
 							<td>등록 완료</td>
 							<%} %>
 						<td width="8%">
-							<a class="update-link" href="<%=request.getContextPath()%>/member/update-office.jsp?house_no=<%=officeVo.getHouse_no()%>">
+							<a class="agree-link" href="<%=request.getContextPath()%>/member/update-agree.do?house_no=<%=officeVo.getHouse_no()%>">
 								<%if(officeVo.getBroker_agree().equals("0")) {%>
-									<button>수정</button>				
+									<input type="button" value="등록">
 								<%}else{ %>				
-									<button disabled>수정</button>
+									<input type="button" value="등록" disabled>
 								<%} %>
 							</a>
 						</td>
 						<td width="8%">
-							<a class="delete-link" href="<%=request.getContextPath()%>/member/delete-room.do?house_no=<%=officeVo.getHouse_no()%>">
-								<button>삭제</button>
+							<a class="cancel-link" href="<%=request.getContextPath()%>/member/update-cancel.do?house_no=<%=officeVo.getHouse_no()%>">
+								<%if(officeVo.getBroker_agree().equals("0")) {%>
+									<input type="button" value="취소" disabled>
+								<%}else{ %>				
+									<input type="button" value="취소">
+								<%} %>
 							</a>
 						</td>
 					</tr>

@@ -1,3 +1,6 @@
+.nanumsquare {
+    font-family: 'NanumSquare', sans-serif !important;
+}
 html, body{
      margin: 0;
      padding: 0;
@@ -12,8 +15,15 @@ html, body{
  }
  .board-outbox{
      width: 800px;
+     height:100%;
      margin: 0 auto;
      padding:20px 0;
+ }
+ .board-outbox > .row{
+     margin:1rem 0;
+ }
+  .board-detail-info-margin{
+ 	margin:1rem 0 0 0;
  }
  .table-box{
      width : 100%;
@@ -21,16 +31,21 @@ html, body{
      border-spacing: 0;
  }
  .table-box > thead > tr{
-     background-color: lightgray;
+     background-color: #7b9acc;
+     color:white;
+     font-weight:bold;
+     font-size:18px;
  }
  .table-box > tbody > tr > td{
      border-bottom: 1px solid gray;
-     height:40px;
+     height:43px;
  }
  .left {
      text-align: left !important;
  }
-
+.left > h3{
+	color:#7b9acc;
+}
  .center {
      text-align: center !important;
  }
@@ -38,60 +53,89 @@ html, body{
  .right {
      text-align: right !important;
  }
- .pagination {
+ .paginationb,
+ .paginationr {
     margin: 0;
     padding: 1rem;
-    color: darkgray;
 }
-.pagination > li {
+.paginationb > li {
     list-style: none;
     display: inline-block;
-    padding: 0.5rem;
-    min-width: 40px;
+    padding: 0.3rem;
+    width: 35px;
+    text-align: center;
+    border: 2px solid transparent;
+}
+.paginationr > li {
+    list-style: none;
+    display: inline-block;
+    padding: 0.1rem;
+    width: 30px;
     text-align: center;
     border: 1px solid transparent;
 }
 
-.pagination > li.active,
-.pagination > li:hover {
-    color: red;
+.paginationb > li.active,
+.paginationb > li:hover{
+    color: #7b9acc;
     font-weight: bold;
-    border: 1px solid darkgray;
-    /*  box-shadow: 0px 0px 2px 2px gray;*/
+    border: 2px solid #7b9acc;
+    cursor: pointer;
+}
+.paginationr > li.active,
+.paginationr > li:hover {
+    color: #7b9acc;
+    font-weight: bold;
+    border: 1px solid #7b9acc;
     cursor: pointer;
 }
 
-.pagination > li > a {
+.paginationb > li > a {
     text-decoration: none;
+    width:35px;
+    height:35px;
+    color: darkgray;
+}
+.paginationr > li > a {
+    text-decoration: none;
+    width:30px;
+    height:30px;
     color: darkgray;
 }
 
-.pagination > li:hover > a {
-    color: red;
+.paginationb > li:hover > a,
+.paginationr > li:hover > a {
+    color: #7b9acc;
 }
 .listItem td{
-	font-size:15px;	
+	font-size:17px;	
 }
 .board_write_btn{
 	margin:10px 0 5px 0;
 }
+.rightwritebtn{
+	text-align:right;
+}
 input[name=board_header_check]+label{
 	margin:0 25px 0 0;
 }
+.replyreplybox{
+	min-height:300px;
+}
 .boardlistPaging{
-	margin:10px 0;
+	margin:20px 0 10px 0;
 }
 .board_search_type{
   	width: auto;
 	padding: 0.5rem;
 	outline: none;
-	border: 0.5px solid gray;
+	border: 0.5px solid #7b9acc;
 }
 .board_search_key{
   	width: auto;
 	padding: 0.5rem;
 	outline: none;
-	border: 0.5px solid gray;
+	border: 0.5px solid #7b9acc;
 }
 .board-content{
     height:500px;
@@ -133,6 +177,7 @@ input[name=board_header_check]+label{
 	display:inline-block;
 	text-align:center;
 	margin:10px 0;
+	font-size:20px;
 }
 input[name=board_header]+label{
 	margin: 0 33px 0 0;
@@ -146,12 +191,155 @@ input[name=board_header]+label{
 }
 .boardwriteBtn{
 	margin: 30px 0;
-	
 }
 .write_btn, .cancle_btn{
 	width: 80px;
 	height: 30px;
 	font-size: 16px;
 	margin:0 10px;
+	background-color:#7b9acc;
+	border: 1px solid #7b9acc;
+	color: white;
 }
 
+.boardlist-searchbox{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	margin-bottom:50px;
+}
+.board-searchbtn-typekey{
+	width:50px;
+	height:35px;
+	background-color:#7b9acc;
+	color:white;
+	font-weight:bold;
+	border:none;
+	outline:none;
+}
+.boardlisttitle,
+.headerboardlist{
+	font-size:17px;
+}
+.boardlisttitle:hover{
+	color:#7b9acc;
+	border-bottom:1px solid #7b9acc;
+	font-weight:bold;
+}
+.detail-info-top{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	padding:0 1rem;
+}
+.board-detail-info{
+	padding:0.5rem 1rem;
+	margin:0.5rem 0 0 0;
+	border-bottom:1px solid #7b9acc;
+	display:flex;
+	justify-content:space-between;
+}
+.go-list{
+	text-decoration:none;
+	color:#7b9acc;
+	margin-right:0.5rem;
+	font-size:20px;
+}
+.go-list:hover{
+	font-weight:bold;
+}
+.board-cbt{
+	display:flex;
+	justify-content:space-around;
+	font-size:16px;
+}
+.detail-board-content{
+    min-height:600px;
+    margin-bottom:1rem;
+    padding:40px 30px;
+    border-bottom:1px solid #7b9acc;
+    border-left: 1px solid #7b9acc;
+    border-right: 1px solid #7b9acc;
+    font-size:18px;
+}
+.board-detail-th{
+	padding:0 1rem;
+	font-weight:bold;
+	font-size:22px;
+}
+.board-member-nick-detail{
+	font-size:19px;
+	color:#7b9acc;
+}
+.reply-textarea{
+	padding:1rem;
+	border:2px solid #7b9acc;
+	outline:none;
+}
+.replycount-detail{
+	padding-left:0.5rem;
+	margin-bottom:0.5rem;
+	font-size:15px;
+}
+.replylist-list{
+	margin-top:1rem;
+	padding:0.6rem 0.6rem 0 0.6rem;
+	border-top:1px solid #7b9acc;
+}
+.reply-delete{
+	text-decoration:none;
+	color:#7b9acc;
+	font-size:12px;
+	cursor:pointer;
+}
+.reply-delete:hover{
+	font-weight:bold;
+}
+.reply-member-info{
+	display:flex;
+	align-items:center;
+	margin-top:0.5rem;
+}
+.reply-member-nick{
+	color:#7b9acc;
+	margin-right:30px;
+}
+.reply-regist-time{
+	font-size:13px;
+}
+.reply-active{
+	display:flex;
+	align-items:center;
+	padding:0 0.5rem;
+}
+.reply-submit-btn{
+	margin:0 0.5rem;
+	width:60px;
+	height:30px;
+	background-color:#7b9acc;
+	color:white;
+	font-weight:bold;
+	font-size:16px;
+	border:none;
+	outline:none;
+}
+.reply-detail-content{
+	font-size:17px;
+}
+.boardbtnc{
+	width:62px;
+	height:40px;
+	background-color:#7b9acc;
+	color:white;
+	font-size:15px;
+	font-weight:bold;
+	border:none;
+	outline:none;
+	border-radius:0.5rem;
+}
+.noticeItem{
+	background-color:#f5f6fa;
+}
+.headerbold{
+	font-weight:bold;
+}

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <% //초기 지도의 중심좌표로 사용할 위도, 경도 불어오기
 	request.setCharacterEncoding("UTF-8");
+	boolean isMember = request.getSession().getAttribute("check")!=null;
 	boolean isLatLng = request.getParameter("Lat") !=null && request.getParameter("Lng") !=null;
 	double Lat;
 	double Lng;
@@ -63,17 +64,78 @@
     			map.setLevel(4);
     		});
     		$(".floatBox").find(".searchItem").bind('mouseover', function(e){
+    			$(".searchItem").css("background-color","transparent");
     			$(this).css("background-color","lightgray");
     		});
     		$(".floatBox").find(".searchItem").bind('mouseleave', function(e){
     			$(this).css("background-color","transparent");
     		});
-    		
+    		$(".floatBox").find(".searchBtn").on("click", function(){
+    			if($(".searchResult").length!=0){
+        			$(".search").val($(".searchResult").children().first().find(".searchName").text());
+        			var searchLat=$(".searchResult").children().first().find(".searchLat").text();
+                	var searchLng=$(".searchResult").children().first().find(".searchLng").text();
+    				map.setCenter(new kakao.maps.LatLng(searchLat,searchLng));
+        			map.setLevel(4);
+        			$(".searchResult").remove();
+    			}
+    		});			
+    		$(".search").on("click",function(){
+    			index=-1;
+    			$(".searchResult").children().blur();
+	    		$(".searchResult").children().css("background-color","transparent");
+    		})
+   			var index=-1;
+    		window.addEventListener("keyup", function(e){
+				if($(".search").focus()){
+				
+	 	  			if(e.keyCode==13 && $(".searchItem").length!=0){
+	 	  				if(index==-1){
+	 	  					$(".search").val($(".searchResult").children().first().find(".searchName").text());
+		        			var searchLat=$(".searchResult").children().first().find(".searchLat").text();
+		                	var searchLng=$(".searchResult").children().first().find(".searchLng").text();
+		    				map.setCenter(new kakao.maps.LatLng(searchLat,searchLng));
+		        			map.setLevel(4);
+		        			$(".searchResult").remove();
+	 	  				}
+	 	  				else{
+		 	  				$(".search").val($(".searchResult").children().eq(index).find(".searchName").text());
+		        			var searchLat=$(".searchResult").children().eq(index).find(".searchLat").text();
+		                	var searchLng=$(".searchResult").children().eq(index).find(".searchLng").text();
+		    				map.setCenter(new kakao.maps.LatLng(searchLat,searchLng));
+		        			map.setLevel(4);
+		        			$(".searchResult").remove();
+	 	  				}
+	    				
+	    			}
+	 	  			else if(e.keyCode==40){
+	 	  				if(index==$(".searchItem").length-1){
+	 	  					index=-1;
+	 	  				}
+	 	  				index++;	
+	 	  				$(".searchResult").children().not(index).blur();
+	 	    			$(".searchResult").children().not(index).css("background-color","transparent");
+	
+	 	  				$(".searchResult").children().eq(index).focus();
+	 	    			$(".searchResult").children().eq(index).css("background-color","lightgray");
+	 	    			
+	 	  			}
+	 	  			else if(e.keyCode==38){
+	 	  				console.log(index);
+	 	  				if(index<=0){
+	 	  					index=$(".searchItem").length;
+	 	  				}
+	 	  				index--;
+	 	  				$(".searchResult").children().not(index).blur();
+	 	    			$(".searchResult").children().not(index).css("background-color","transparent");
+	 	    			
+	 	  				$(".searchResult").children().eq(index).focus();
+	 	    			$(".searchResult").children().eq(index).css("background-color","lightgray");
+	 	  				
+	 	  			}
+				}
+    		});
     	});
-    	$(".active").hide();
-        $(".list").show();
-		$("#charter-range").hide();
-		$(".listDetail").hide();
         var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
             center: new kakao.maps.LatLng(<%=Lat%>,<%=Lng%>), // 지도의 중심좌표 
             level: 6 // 지도의 확대 레벨 
@@ -167,6 +229,7 @@
         		clusterer.addMarkers(markers);
         	}    
         	// 지도의 경계좌표를 받아 지도 위 마커정보를 사이드바에 표시합니다.
+        	var house_no;
         	function onBounds(){
         		var bounds=map.getBounds();//맵의 영역을 받아온다.
         		var Lat = map.getCenter().getLat();
@@ -299,18 +362,13 @@
    	       				        	$(".call-broker-name").text(resp[0].broker_name);
    	       				        	$(".listDetail").show();
    	       				        	$(".ListAndFilter").hide();
-   	       				        	$(".zzimSpace").click(function(){
-   		       				         	if($(this).hasClass("zzimDo")){
-   		       				         		$(this).children().prop("src","../img/zzim.png");
-   		       				         		$(this).removeClass("zzimDo");
-   		       				         		//location.href="찜삭제";
-   		       				         	}
-   		       				         	else{
-   		       				         		$(this).children().prop("src","../img/zzima.png");
-   		       				         		$(this).addClass("zzimDo");
-   		       				         		//location.href="찜등록";
-   		       				         	}
-   		       				        });
+   	       				      		if(<%=isMember%>){
+	       				        		zzimCheck(resp[0].house_no);
+	       				        	}
+	       				        	else{
+	       				        		$(".zzimSpace").children().prop("src", "../img/zzim.png");
+	       				        	}
+     				      			house_no = resp[0].house_no;
     	       				    });
         					},
         					error:function(){
@@ -321,6 +379,62 @@
       			});
       			$(".total-list").text("지역 목록 "+listCount+"개");
         	};
+        	$(".zzimSpace").click(function(){
+        		if(<%=isMember%>){
+        			zzimAdd(house_no);
+        		}
+        		else{
+        			alert("로그인후에 이용가능합니다.");
+        		}
+        	});
+	    	function zzimAdd(house_no){
+	    		var y;
+	    		$.ajax({
+						async:false,//순차적으로실행되도록 설정
+						url : "<%=request.getContextPath()%>/like/zzim_add.do",
+						type : "POST",
+						data : {
+							house_no : house_no
+						},
+						success:function(zzim){
+			        	if(zzim==="add"){
+			        		alert("찜목록에 추가되었습니다.");
+			        		y="../img/zzima.png";
+			        	}
+			        	else{
+			        		alert("찜목록에서 삭제되었습니다.");
+			        		y="../img/zzim.png";
+			        	}
+						},
+					error:function(){
+						
+					}
+	    		});
+	    		$(".zzimSpace").children().prop("src", y);
+	    	};
+	    	function zzimCheck(house_no){
+	    		var z;
+	    		$.ajax({
+						async:false,//순차적으로실행되도록 설정
+						url : "<%=request.getContextPath()%>/like/zzim_check.do",
+						type : "POST",
+						data : {
+							house_no : house_no
+						},
+						success:function(zzim){
+			        	if(zzim==="yes"){
+			        		z="../img/zzima.png";
+			        	}
+			        	else{
+			        		z="../img/zzim.png";
+			        	}
+						},
+					error:function(){
+						
+					}
+	    		});
+	    		$(".zzimSpace").children().prop("src", z);
+	    	};
         	//클러스터 클릭 시 지도의 중심이 클러스터로 이동하는 이벤트 
         	kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
         		//클러스터의 위도와 경도를 변수화한다.
@@ -417,7 +531,7 @@
 
 				<div class="detailFilter">
 					<div id="charter-range" class="margin-t">
-						<div class="priceTitle">전세금</div>
+						<div class="priceTitle u">전세금</div>
 						<div class="margin-t">
 							<div class="box">
 								<div class="price-show">
@@ -440,7 +554,7 @@
 						</div>
 					</div>
 					<div id="deposit-range" class="margin-t">
-						<div class="priceTitle">보증금</div>
+						<div class="priceTitle u">보증금</div>
 						<div class="margin-t">
 							<div class="box">
 								<div class="price-show">
@@ -463,7 +577,7 @@
 						</div>
 					</div>
 					<div id="monthly-range" class="margin-t">
-						<div class="priceTitle">월세</div>
+						<div class="priceTitle u">월세</div>
 						<div class="margin-t">
 							<div class="box">
 								<div class="price-show">
@@ -487,7 +601,7 @@
 					</div>
 
 					<div class="floor margin-t">
-						<div>층수</div>
+						<div class="u">층수</div>
 						<div class="margin-t">
 							<input type="button" id="floor1" value="반지하"> <input
 								type="hidden" name="floor1" value="N"> <input
@@ -498,7 +612,7 @@
 						</div>
 					</div>
 					<div class="etc margin-t">
-						<div>기타</div>
+						<div class="u">기타</div>
 						<div class="margin-t">
 							<input type="button" id="parking" value="주차"> <input
 								type="hidden" name="parking" value="0"> <input
@@ -531,11 +645,11 @@
 			<div class="image-box">
 			
 			</div>
-			<div class="boundaryList">
+			<div class="infoinfoList">
 				<div class="detail-house-price"></div>
 				<div class="regist-house-num"></div>
 			</div>
-			<div class="boundaryList displayList">
+			<div class="infoinfoList displayList">
 				<div>
 					<span>면적(전용)</span>
 					<div class="detail-house-area"></div>
@@ -596,7 +710,7 @@
 			</div>
 			<div class="boundaryList">상세 설명</div>
 			<div class="titleList detail-house-etc"></div>
-			<div class="titleList">
+			<div class="titleListlast">
 				<div class="detail-broker-name"></div>
 				<div class="detail-broker-landline"></div>
 				<div class="detail-broker-phone"></div>
@@ -608,7 +722,7 @@
 		<div class="callzzimSpace"></div>
 		<div class="callzzimSpace callzzim">
 			<div class="callSpace">
-				<img alt="전화이미지" src="../img/call.jpg" style="width: 30px;">
+				<img alt="전화이미지" src="../img/call.png" style="width: 30px;">
 				<div>전화하기</div>
 			</div>
 			<div class="zzimSpace">

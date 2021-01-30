@@ -7,67 +7,73 @@
 <%@page import="houseSemi.beans.HouseDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-	table{
-		font-size: 15px;
-	}
-</style>
+<%
+	int house_no = Integer.parseInt(request.getParameter("house_no"));
+	String house_type = request.getParameter("house_type");
+	HouseDao houseDao = new HouseDao();
+	HouseDto houseDto = houseDao.find(house_no);
+	
+	OneDao oneDao = new OneDao();
+	OneDto oneDto = oneDao.find(house_no);
+%>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/insert-room.css" type="text/css">
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
 var map;
 $(function(){
 		//지도
+		var mapAddress = document.querySelector(".mapAddress");
 		$(".check-location").click(function(){
-			$("#map").show();
-			//지도 생성
-			var mapContainer = document.querySelector("#map"),
-            mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667),
-                level: 3
-            };  
-
-			 map = new kakao.maps.Map(mapContainer, mapOption); 
-            
+	        var address = document.querySelector("input[name=address]").value;
 			 //입력창의 값을 불러오는 코드
-            var address = document.querySelector("input[name=address]").value;
             if(!address){
                 alert("주소를 입력하세요");
                 return;
+            }else{
+				$("#map").show();
+				//지도 생성
+				var mapContainer = document.querySelector("#map"),
+	            mapOption = {
+	                center: new kakao.maps.LatLng(33.450701, 126.570667),
+	                level: 3
+	            };  
+	
+				map = new kakao.maps.Map(mapContainer, mapOption); 
+	            
+	            var geocoder = new kakao.maps.services.Geocoder();
+				
+	            geocoder.addressSearch(address, function(result, status) {
+	                if (status === kakao.maps.services.Status.OK) {
+	                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);                    
+	                    //마커 생성
+	                    var marker = new kakao.maps.Marker({
+	                        map: map,
+	                        position: coords
+	                    });
+	                    
+	                 	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	                    map.setCenter(coords);
+	                 	
+	                    mapAddress.value = result[0].road_address.address_name;
+	                 	$(".address").val(result[0].road_address.address_name);
+	                 	var iwContent = '<div style=" width: 150px; height: 40px; padding:5px; font-size:12px;">주소:' + result[0].road_address.address_name + '</div>';
+	                 	iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+	                	// 인포윈도우를 생성합니다
+	                	var infowindow = new kakao.maps.InfoWindow({
+	                    position : iwPosition, 
+	                    content : iwContent 
+	                	});
+	                  
+	                	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+	                	infowindow.open(map, marker); 
+	                }
+	            });
+	
+		        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+	            var zoomControl = new kakao.maps.ZoomControl();
+	            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);	
             }
-            
-            var geocoder = new kakao.maps.services.Geocoder();
-			
-            geocoder.addressSearch(address, function(result, status) {
-                if (status === kakao.maps.services.Status.OK) {
-                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);                    
-                    //마커 생성
-                    var marker = new kakao.maps.Marker({
-                        map: map,
-                        position: coords
-                    });
-                    
-                 	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                    map.setCenter(coords);
-                 	
-                 	$(".address").val(result[0].road_address.address_name);
-                    
-                 	var iwContent = '<div style=" width: 150px; height: 40px; padding:5px; font-size:12px;">주소:' + result[0].road_address.address_name + '</div>';
-                    iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
-                	// 인포윈도우를 생성합니다
-                	var infowindow = new kakao.maps.InfoWindow({
-                    position : iwPosition, 
-                    content : iwContent 
-                	});
-                  
-                	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-                	infowindow.open(map, marker); 
-                } 
-            });
-
-	        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-            var zoomControl = new kakao.maps.ZoomControl();
-            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 		});
 		//관리비 및 입주일 check값 연결
 		$(".bill-check").change(function(){
@@ -103,126 +109,144 @@ $(function(){
                 alert("제목은 20자 이내로 작성해주세요");
             }
         });
-		//날짜 선택
 		
 		//form 이벤트 검사 추가
-		var count = 0;
+		var location_count = 0;
 		$(".check-location").click(function(){
-			count++;
-		}); 			
+			location_count++;
+		});
 		$(".form").submit(function(e){
  			e.preventDefault();
- 			if(count == 0){
+ 			if(location_count == 0){
  				alert("위치 확인 버튼을 눌러주세요")
+                $('html, body').animate({scrollTop : $('body').offset().top}, 300);
+ 				return;
  			}else{
- 				this.submit();
+ 				if($(".address").val() != mapAddress.value){
+ 					alert("입력 주소와 지도 주소가 같지 않습니다.")
+					$('html, body').animate({scrollTop : $('body').offset().top}, 300);
+ 					return;
+ 				}else{
+ 					if($("input[name=f1]").val().length == 0 || $("input[name=f2]").val().length == 0){
+ 						alert("사진을 추가해주세요")
+ 						$('html, body').animate({scrollTop : $('table').offset().top}, 300);
+ 	 					return;
+ 					}else{
+	 						this.submit(); 					 					 					 						
+ 					}
+ 				}
  			}
 		});
 	});
-	
 </script>
-<%
-	int house_no = Integer.parseInt(request.getParameter("house_no"));
-	String house_type = request.getParameter("house_type");
-	HouseDao houseDao = new HouseDao();
-	HouseDto houseDto = houseDao.find(house_no);
-	
-	OneDao oneDao = new OneDao();
-	OneDto oneDto = oneDao.find(house_no);
-	
-	
-%>
 <!-- header.jsp를 상단에 불러와 주세요 -->
 <jsp:include page="/template/header.jsp"></jsp:include>
 
-<h3>등록된 정보 수정</h3>
 <form class="form" action="update-room.do" method="post" enctype="multipart/form-data" >
 <!-- 추후 타입 히든으로 변경 -->
 <input type="hidden" name="house_no" value="<%=houseDto.getHouse_no()%>">
 <input type="hidden" name="house_type" value="<%=houseDto.getHouse_type()%>">
 
-<div class="add-adress" style="width: 600px;">
-	<h4>위치정보</h4>
-		<table style="width: 600px;">
-		<tr>
-			<th width="20%">주소</th>
-			<td colspan="3" width="80%">
-				<div>
-					<span>
-						<input class="inline-input address" type="text" name="address" value="<%=oneDto.getAddress() %>" required style="width: 350px;">
-					</span>
-					<span>
-						<input class="check-location" type="button" value="위치확인하기">
-					</span>
-				</div>
-				<div>
-					· 주소와 단지명 모두 검색이 가능합니다.<br>
-					· 주소 입력 시에는 동/읍/면 으로 검색해 주세요. 예) 자곡동, 동읍면, 신월읍<br>
-					· 오피스텔을 검색할 때에는 동/읍/면 이름과 단지 명을 함께 입력하면 좀 더<br>
-					&nbsp;&nbsp;편하게 주소를 검색할 수 있습니다. 예) 계산동 하이베라스
-				</div>
-				<div id="map" style="width:100%;height:200px; display: none;"></div>
-			</td>
-		</tr>
-		<tr>
-			<th width="20%">나머지주소</th>
-			<td colspan="3" width="80%">
-				<div>
-					<input class="inline-input" type="text" name="address2" value="<%=oneDto.getAddress2() %>" required style="width: 100%;">		
-				</div>
-			</td>
-		</tr>
-	</table>
-</div>
+<div class="container">
+	<div class="title">
+		<div class="title-main">
+			<h1>등록한 방 정보 수정</h1>
+		</div>
+		<p>
+		· 일반적인 형태의 주거용 전월세 매물만 내놓을 수 있습니다.<br>
+		&nbsp;&nbsp;&nbsp;1) 한 번의 방등록으로 해당 행정구역이내 중개사무소에 방 정보가 노출되어 중개가 시작됩니다.<br>
+  		&nbsp;&nbsp;&nbsp;2) 내놓은 방은 검증된 공인중개사가 매물을 확인하여 이용자들에게 중개해 드립니다.<br>
+  		&nbsp;&nbsp;&nbsp;3) 방을 내놓는 데에는 별도의 비용이 들지 않습니다. (거래 성사 시 법정 중개보수가 발생합니다)<br>
+		· 등록된 매물은 30일 후에 중개가 종료되며, 재등록이 필요합니다.<br>
+		· 내놓은 방의 정보가 정확하지 않는 경우, 중개가 종료되고 정보수정을 요청드릴 수 있습니다.<br>
+		</p>
+	</div>
+	<div class="add-address">
+		<h3>◇ 위치정보</h3>
+		<table>
+			<tbody>
+				<tr>
+					<th width="20%">주소</th>
+					<td colspan="3" width="80%">
+						<span>
+							<input class="inline-input address" type="text" name="address" value="<%=oneDto.getAddress() %>" required style="width: 350px;">
+							<input class="mapAddress" type="text" style="display: none;">
+						</span>
+						<span>
+							<input class="check-location" type="button" value="위치확인하기">
+						</span>
+						<div>
+							<span style="color: red;">※주소 입력후 위치 확인을 꼭 눌러주세요.</span><br>	
+							<p>
+							· 주소와 단지명 모두 검색이 가능합니다.<br>
+							· 주소 입력 시에는 동/읍/면 으로 검색해 주세요. 예) 자곡동, 동읍면, 신월읍<br>
+							· 오피스텔을 검색할 때에는 동/읍/면 이름과 단지 명을 함께 입력하면 좀 더<br>
+							&nbsp;&nbsp;편하게 주소를 검색할 수 있습니다. 예) 계산동 하이베라스
+							</p>						
+						</div>
+						<div id="map" style="width:100%;height:200px; display: none;"></div>
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">나머지주소</th>
+					<td colspan="3" width="80%">
+						<div>
+							<input class="inline-input" type="text" name="address2" value="<%=oneDto.getAddress2() %>" required style="width: 100%;">		
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
-<div class="add-photo" style="width: 600px;">
-	<h4>사진 등록</h4>
+<div class="add-photo">
+	<h3>◇사진 등록</h3>
 	<p class="photo-txt">
 		· 대표사진 및 방사진을 등록해주세요.<br>
-	<span>
 		· 직접 찍은 실제 방 사진의 원본을 등록해야 합니다.<br>                
 		· 워터마크, 날짜, 전화번호 등이 포함된 사진이나 방과 관련없는 사진을 등록할 경우 중개가 종료될 수 있습니다.
-	</span>
 	</p>
-	<table style="width: 600px;">
-		<tr>
-			<th width="20%">대표사진</th>
-			<td colspan="3" width="80%">
-				<input type="file" name="f1"  accept=".jpg, .png"> 
-				<input class="inline-input photo-delete1" type="button" value="삭제">
-			</td>
-		</tr>
-		<tr>
-			<th width="20%">방사진</th>
-			<td colspan="3" width="80%">
-					<input type="file" name="f2" accept=".jpg, .png"> 
-					<input class="inline-input photo-delete2" type="button" value="삭제">
-			</td>
-		</tr>
+	<table>
+		<tbody>
+			<tr>
+				<th width="20%">대표사진</th>
+				<td colspan="3" width="80%">
+					<input type="file" name="f1" accept=".jpg, .png"> 
+					<input class="inline-input photo-delete1" type="button" value="삭제">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%">방사진</th>
+				<td colspan="3" width="80%">
+						<input type="file" name="f2" accept=".jpg, .png"> 
+						<input class="inline-input photo-delete2" type="button" value="삭제">
+				</td>
+			</tr>
+		</tbody>
 	</table>
 </div>
 
-<div class="add-detail" style="width: 600px;">
-	<h4>상세 정보</h4>
-	<table style="width: 600px;">
+<div class="add-detail">
+	<h3>◇상세정보</h3>
+	<table>
 		<tbody>
 			<tr>
 				<th width="20%">보증금 / 전세</th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="deposit" value="<%=oneDto.getDeposit() %>"required style="width: 150px;">만원
+						<input class="inline-input" type="text" name="deposit" value="<%=oneDto.getDeposit()/10000 %>"required style="width: 150px;">만원
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">월세</th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="monthly" value="<%=oneDto.getMonthly() %>" required style="width: 150px;">만원
-					<span style="color: red;">※전세일 경우, 0을 입력하세요.</span>								
+					<input class="inline-input" type="text" name="monthly" value="<%=oneDto.getMonthly()/10000 %>" required style="width: 150px;">만원
+					<p style="color: red;">※전세일 경우, 0을 입력하세요.</p>								
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">관리비</th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="bill" value="<%=oneDto.getBill() %>" required style="width: 150px;">만원 &nbsp;/
+					<input class="inline-input" type="text" name="bill" value="<%=oneDto.getBill()/10000 %>" required style="width: 150px;">만원 &nbsp;/
 					<label>					
 						<input class="inline-input bill-check" type="checkbox">없음					
 					</label>
@@ -316,7 +340,7 @@ $(function(){
 					<label>					
 						<input class="inline-input move_in-check" type="checkbox">협의가능					
 					</label><br>
-					<span style="color: red;">※협의가능시, 협의가능을 체크해주세요.</span>							
+					<p style="color: red;">※협의가능시, 협의가능을 체크해주세요.</p>							
 				</td>
 			</tr>
 			<tr>
@@ -343,8 +367,9 @@ placeholder="해당 방에 대한 특징과 소개를 최소 50자 이상 입력
 		</tbody>
 	</table>
 </div>
-<div style="width: 600px;">
-	<input class="input" type="submit" value="방 등록하기">
+<div class="submit">
+	<input class="submit-btn" type="submit" value="방 등록하기">
+</div>
 </div>
 </form>
 	

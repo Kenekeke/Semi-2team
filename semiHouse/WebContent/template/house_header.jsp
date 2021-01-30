@@ -61,6 +61,14 @@ aside{
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="<%=request.getContextPath()%>/js/pricechoice.js"></script>	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=clusterer,services"></script>
+<script>
+	$(function(){
+		$(".active").hide();
+		$("#charter-range").hide();
+		$(".listDetail").hide();
+		$(".list").show();
+	});
+</script>
 </head>
 
 <body>
@@ -77,11 +85,11 @@ aside{
 </div>
     <main>
     	<%if(!isLogin){ %>
-        <header>
+        <header style="font-family:'samlib'; font-size: 23px;">
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="https://via.placeholder.com/200x70" alt="홈으로">
+                        <img class="logo" src="">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -106,7 +114,7 @@ aside{
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>
@@ -114,9 +122,9 @@ aside{
                     <input type="button" value="로그인 및 회원 가입" onClick="location.href='<%=request.getContextPath()%>/member/login.jsp'">
                 </div>
                 <div class="ad">
-                    <a href="#">
-                        <span style="display: block;">개발자문의</span>
-                        <img class="logo" src="https://via.placeholder.com/200x40" alt="홈으로">
+                    <a href="https://www.iei.or.kr/main/main.kh">
+                        <span style="display: block;">광고 문의</span>
+                        <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>
             </div>
@@ -131,11 +139,11 @@ aside{
             </div>
             </nav>
             <%}if(isnormal || isBroker){%>
-            <header>
+            <header style="font-family:'samlib'; font-size: 23px;">
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="https://via.placeholder.com/200x70" alt="홈으로">
+                        <img class="logo" src="">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -167,7 +175,7 @@ aside{
                             </ul>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>
@@ -175,9 +183,9 @@ aside{
                     <input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
                 </div>
                 <div class="ad">
-                    <a href="#">
-                        <span style="display: block;">개발자문의</span>
-                        <img class="logo" src="https://via.placeholder.com/200x40" alt="홈으로">
+                    <a href="https://www.iei.or.kr/main/main.kh">
+                        <span style="display: block;">광고 문의</span>
+                        <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>
             </div>
@@ -192,11 +200,11 @@ aside{
             </div>
             </nav>
             <%}if(isAdmin){%>
-            <header>
+            <header style="font-family:'samlib'; font-size: 23px;">
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="https://via.placeholder.com/200x70" alt="홈으로">
+                        <img class="logo" src="">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -207,7 +215,7 @@ aside{
                         <li class="menu-my">
                             <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
                         <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">게시판</a>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>

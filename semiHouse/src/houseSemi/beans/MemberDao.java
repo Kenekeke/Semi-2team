@@ -287,4 +287,18 @@ public class MemberDao {
 		
 		con.close();
 	}
+
+	public boolean editPasswordByAdmin(int member_no, String member_pw) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "update member set member_pw=? where member_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, member_pw);
+		ps.setInt(2, member_no);
+		int count = ps.executeUpdate();
+		
+		con.close();
+		
+		return count > 0;
+	}
 }

@@ -134,25 +134,214 @@ public class HouseDao {
 		con.close();
 		return houseList;
 	}
-//	public List<HouseOnePhotoVO> select(String member_no) throws Exception{
-//		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-//		
-//		String sql = "select H.house_no, O.address, O.address2, H.insert_date, O.broker_agree " + 
-//				"from house H inner join one O on H.house_no = O.house_no where H.member_no=?;";
-//		
-//		PreparedStatement ps = con.prepareStatement(sql);
-//		ps.setString(1, member_no);
-//		ResultSet rs = ps.executeQuery();
-//		
-//		List<HouseOnePhotoVO> houseList = new ArrayList<>();
-//		while (rs.next()) {
-//			HouseOnePhotoVO vo = new HouseDto();
-//			vo.setHouse_no(rs.getInt("house_no"));
-//			vo.setMember_no(rs.getInt("member_no"));
-//			vo.setInsert_date(rs.getDate("insert_date"));
-//			houseList.add(houseDto);
-//		}
-//		con.close();
-//		return houseList;
-//	}
+	public List<HouseOnePhotoVO> selectOne(int member_no) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "select * from house H "
+						+ "inner join one O on H.house_no = O.house_no "
+						+ "inner join photo P on O.house_no = P.house_no "
+							+ "where H.member_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, member_no);
+		ResultSet rs = ps.executeQuery();
+		
+		List<HouseOnePhotoVO> houseList = new ArrayList<>();
+		while (rs.next()) {
+			HouseOnePhotoVO vo = new HouseOnePhotoVO();
+			vo.setHouse_no(rs.getInt("house_no"));
+			vo.setMember_no(rs.getInt("member_no"));
+			vo.setBroker_no(rs.getInt("broker_no"));
+			vo.setHouse_type(rs.getString("house_type"));
+			vo.setInsert_date(rs.getDate("insert_date"));
+			vo.setOne_no(rs.getInt("one_no"));
+			vo.setDeposit(rs.getInt("deposit"));
+			vo.setMonthly(rs.getInt("monthly"));
+			vo.setAddress(rs.getString("address"));
+			vo.setAddress2(rs.getString("address2"));
+			vo.setBroker_agree(rs.getString("broker_agree"));
+			vo.setBill(rs.getInt("bill"));
+			vo.setTitle(rs.getString("title"));
+			vo.setSave_name(rs.getString("save_name"));
+			
+			houseList.add(vo);
+		}
+		con.close();
+		return houseList;
+	}
+	public List<HouseOnePhotoVO> selectOneBroker(int broker_no) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "select * from house H "
+						+ "inner join one O on H.house_no = O.house_no "
+						+ "inner join photo P on O.house_no = P.house_no "
+							+ "where H.broker_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, broker_no);
+		ResultSet rs = ps.executeQuery();
+		
+		List<HouseOnePhotoVO> houseList = new ArrayList<>();
+		while (rs.next()) {
+			HouseOnePhotoVO vo = new HouseOnePhotoVO();
+			vo.setHouse_no(rs.getInt("house_no"));
+			vo.setMember_no(rs.getInt("member_no"));
+			vo.setBroker_no(rs.getInt("broker_no"));
+			vo.setHouse_type(rs.getString("house_type"));
+			vo.setInsert_date(rs.getDate("insert_date"));
+			vo.setOne_no(rs.getInt("one_no"));
+			vo.setDeposit(rs.getInt("deposit"));
+			vo.setMonthly(rs.getInt("monthly"));
+			vo.setAddress(rs.getString("address"));
+			vo.setAddress2(rs.getString("address2"));
+			vo.setBroker_agree(rs.getString("broker_agree"));
+			vo.setBill(rs.getInt("bill"));
+			vo.setTitle(rs.getString("title"));
+			vo.setSave_name(rs.getString("save_name"));
+			
+			houseList.add(vo);
+		}
+		con.close();
+		return houseList;
+	}
+	public List<HouseOfficePhotoVO> selectOffice(int member_no) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "select * from house H "
+						+ "inner join office O on H.house_no = O.house_no "
+						+ "inner join photo P on O.house_no = P.house_no "
+							+ "where H.member_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, member_no);
+		ResultSet rs = ps.executeQuery();
+		
+		List<HouseOfficePhotoVO> houseList = new ArrayList<>();
+		while (rs.next()) {
+			HouseOfficePhotoVO vo = new HouseOfficePhotoVO();
+			vo.setHouse_no(rs.getInt("house_no"));
+			vo.setMember_no(rs.getInt("member_no"));
+			vo.setBroker_no(rs.getInt("broker_no"));
+			vo.setHouse_type(rs.getString("house_type"));
+			vo.setInsert_date(rs.getDate("insert_date"));
+			vo.setOffice_no(rs.getInt("office_no"));
+			vo.setDeposit(rs.getInt("deposit"));
+			vo.setMonthly(rs.getInt("monthly"));
+			vo.setAddress(rs.getString("address"));
+			vo.setAddress2(rs.getString("address2"));
+			vo.setBroker_agree(rs.getString("broker_agree"));
+			vo.setBill(rs.getInt("bill"));
+			vo.setTitle(rs.getString("title"));
+			vo.setSave_name(rs.getString("save_name"));
+			
+			houseList.add(vo);
+		}
+		con.close();
+		return houseList;
+	}
+	public List<HouseOfficePhotoVO> selectOfficeBroker(int broker_no) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "select * from house H "
+						+ "inner join office O on H.house_no = O.house_no "
+						+ "inner join photo P on O.house_no = P.house_no "
+							+ "where H.broker_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, broker_no);
+		ResultSet rs = ps.executeQuery();
+		
+		List<HouseOfficePhotoVO> houseList = new ArrayList<>();
+		while (rs.next()) {
+			HouseOfficePhotoVO vo = new HouseOfficePhotoVO();
+			vo.setHouse_no(rs.getInt("house_no"));
+			vo.setMember_no(rs.getInt("member_no"));
+			vo.setBroker_no(rs.getInt("broker_no"));
+			vo.setHouse_type(rs.getString("house_type"));
+			vo.setInsert_date(rs.getDate("insert_date"));
+			vo.setOffice_no(rs.getInt("office_no"));
+			vo.setDeposit(rs.getInt("deposit"));
+			vo.setMonthly(rs.getInt("monthly"));
+			vo.setAddress(rs.getString("address"));
+			vo.setAddress2(rs.getString("address2"));
+			vo.setBroker_agree(rs.getString("broker_agree"));
+			vo.setBill(rs.getInt("bill"));
+			vo.setTitle(rs.getString("title"));
+			vo.setSave_name(rs.getString("save_name"));
+			
+			houseList.add(vo);
+		}
+		con.close();
+		return houseList;
+	}
+	public List<HouseVillatwoPhotoVO> selectVillatwo(int member_no) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "select * from house H "
+						+ "inner join villatwo V on H.house_no = V.house_no "
+						+ "inner join photo P on V.house_no = P.house_no "
+							+ "where H.member_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, member_no);
+		ResultSet rs = ps.executeQuery();
+		
+		List<HouseVillatwoPhotoVO> houseList = new ArrayList<>();
+		while (rs.next()) {
+			HouseVillatwoPhotoVO vo = new HouseVillatwoPhotoVO();
+			vo.setHouse_no(rs.getInt("house_no"));
+			vo.setMember_no(rs.getInt("member_no"));
+			vo.setBroker_no(rs.getInt("broker_no"));
+			vo.setHouse_type(rs.getString("house_type"));
+			vo.setInsert_date(rs.getDate("insert_date"));
+			vo.setVillatwo_no(rs.getInt("villatwo_no"));
+			vo.setDeposit(rs.getInt("deposit"));
+			vo.setMonthly(rs.getInt("monthly"));
+			vo.setAddress(rs.getString("address"));
+			vo.setAddress2(rs.getString("address2"));
+			vo.setBroker_agree(rs.getString("broker_agree"));
+			vo.setBill(rs.getInt("bill"));
+			vo.setTitle(rs.getString("title"));
+			vo.setSave_name(rs.getString("save_name"));
+			
+			houseList.add(vo);
+		}
+		con.close();
+		return houseList;
+	}
+	public List<HouseVillatwoPhotoVO> selectVillatwoBroker(int broker_no) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "select * from house H "
+						+ "inner join villatwo V on H.house_no = V.house_no "
+						+ "inner join photo P on V.house_no = P.house_no "
+							+ "where H.broker_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, broker_no);
+		ResultSet rs = ps.executeQuery();
+		
+		List<HouseVillatwoPhotoVO> houseList = new ArrayList<>();
+		while (rs.next()) {
+			HouseVillatwoPhotoVO vo = new HouseVillatwoPhotoVO();
+			vo.setHouse_no(rs.getInt("house_no"));
+			vo.setMember_no(rs.getInt("member_no"));
+			vo.setBroker_no(rs.getInt("broker_no"));
+			vo.setHouse_type(rs.getString("house_type"));
+			vo.setInsert_date(rs.getDate("insert_date"));
+			vo.setVillatwo_no(rs.getInt("villatwo_no"));
+			vo.setDeposit(rs.getInt("deposit"));
+			vo.setMonthly(rs.getInt("monthly"));
+			vo.setAddress(rs.getString("address"));
+			vo.setAddress2(rs.getString("address2"));
+			vo.setBroker_agree(rs.getString("broker_agree"));
+			vo.setBill(rs.getInt("bill"));
+			vo.setTitle(rs.getString("title"));
+			vo.setSave_name(rs.getString("save_name"));
+			
+			houseList.add(vo);
+		}
+		con.close();
+		return houseList;
+	}
 }

@@ -1,5 +1,23 @@
+<%@page import="houseSemi.beans.OfficeDto"%>
+<%@page import="houseSemi.beans.OfficeDao"%>
+<%@page import="java.util.List"%>
+<%@page import="houseSemi.beans.PhotoDto"%>
+<%@page import="houseSemi.beans.PhotoDao"%>
+<%@page import="houseSemi.beans.OneDto"%>
+<%@page import="houseSemi.beans.OneDao"%>
+<%@page import="houseSemi.beans.HouseDto"%>
+<%@page import="houseSemi.beans.HouseDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int house_no = Integer.parseInt(request.getParameter("house_no"));
+	String house_type = request.getParameter("house_type");
+	HouseDao houseDao = new HouseDao();
+	HouseDto houseDto = houseDao.find(house_no);
+	
+	OfficeDao officeDao = new OfficeDao();
+	OfficeDto officeDto = officeDao.find(house_no);
+%>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/insert-room.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
@@ -126,14 +144,16 @@ $(function(){
 <!-- header.jsp를 상단에 불러와 주세요 -->
 <jsp:include page="/template/header.jsp"></jsp:include>
 
-
-<form class="form" action="insert-room.do" method="post" enctype="multipart/form-data" >
+<h3>등록된 정보 수정</h3>
+<form class="form" action="update-room.do" method="post" enctype="multipart/form-data" >
 <!-- 추후 타입 히든으로 변경 -->
-<input type="hidden" name="house_type" value="villatwo">
+<input type="hidden" name="house_no" value="<%=houseDto.getHouse_no()%>">
+<input type="hidden" name="house_type" value="<%=houseDto.getHouse_type()%>">
+
 <div class="container">
 	<div class="title">
 		<div class="title-main">
-			<h1>중개사무소에 방 내놓기 · 관리</h1>
+			<h1>등록한 방 정보 수정</h1>
 		</div>
 		<p>
 		· 일반적인 형태의 주거용 전월세 매물만 내놓을 수 있습니다.<br>
@@ -152,7 +172,7 @@ $(function(){
 					<th width="20%">주소</th>
 					<td colspan="3" width="80%">
 						<span>
-							<input class="inline-input address" type="text" name="address" required style="width: 350px;">
+							<input class="inline-input address" type="text" name="address" value="<%=officeDto.getAddress() %>" required style="width: 350px;">
 							<input class="mapAddress" type="text" style="display: none;">
 						</span>
 						<span>
@@ -174,7 +194,7 @@ $(function(){
 					<th width="20%">나머지주소</th>
 					<td colspan="3" width="80%">
 						<div>
-							<input class="inline-input" type="text" name="address2" required style="width: 100%;">		
+							<input class="inline-input" type="text" name="address2" value="<%=officeDto.getAddress2() %>" required style="width: 100%;">		
 						</div>
 					</td>
 				</tr>
@@ -216,20 +236,20 @@ $(function(){
 			<tr>
 				<th width="20%">보증금 / 전세</th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="deposit" required style="width: 150px;">만원
+						<input class="inline-input" type="text" name="deposit" value="<%=officeDto.getDeposit()/10000 %>"required style="width: 150px;">만원
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">월세</th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="monthly" required style="width: 150px;">만원
+					<input class="inline-input" type="text" name="monthly" value="<%=officeDto.getMonthly()/10000 %>" required style="width: 150px;">만원
 					<p style="color: red;">※전세일 경우, 0을 입력하세요.</p>								
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">관리비</th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="bill" required style="width: 150px;">만원 &nbsp;/
+					<input class="inline-input" type="text" name="bill" value="<%=officeDto.getBill()/10000 %>" required style="width: 150px;">만원 &nbsp;/
 					<label>					
 						<input class="inline-input bill-check" type="checkbox">없음					
 					</label>
@@ -238,40 +258,37 @@ $(function(){
 			<tr>
 				<th width="20%">면적</th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="area" required style="width: 150px;">㎡
+					<input class="inline-input" type="text" name="area" value="<%=officeDto.getArea() %>" required style="width: 150px;">㎡
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">층수</th>
 				<td colspan="3" width="80%">
 					<select class="inline-input" name="floor">
-						<option value="">선택하세요</option>
-						<option value="반지하">반지하</option>
-						<option value="1층">1층</option>
-						<option value="2층">2층</option>
-						<option value="3층">3층</option>
-						<option value="4층">4층</option>
-						<option value="5층">5층</option>
-						<option value="옥탑방">옥탑방</option>
+						<option value="반지하" <%if(officeDto.isFloor("반지하")){%>selected<%} %>>반지하</option>
+						<option value="1층" <%if(officeDto.isFloor("1층")){%>selected<%} %>>1층</option>
+						<option value="2층" <%if(officeDto.isFloor("2층")){%>selected<%} %>>2층</option>
+						<option value="3층" <%if(officeDto.isFloor("3층")){%>selected<%} %>>3층</option>
+						<option value="4층" <%if(officeDto.isFloor("4층")){%>selected<%} %>>4층</option>
+						<option value="5층" <%if(officeDto.isFloor("5층")){%>selected<%} %>>5층</option>
+						<option value="옥탑방" <%if(officeDto.isFloor("옥탑방")){%>selected<%} %>>옥탑방</option>
 					</select>
-					<p style="color: red;">※지상층일 경우, 상세정보에 층 수를 입력해주세요.</p>							
-
+					<span style="color: red;">※지상층일 경우, 상세정보에 층 수를 입력해주세요.</span>							
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">방향</th>
 				<td colspan="3" width="80%">
 					<select class="inline-input" name="direction">
-						<option value="">선택하세요</option>
-						<option value="동향">동향</option>
-						<option value="서향">서향</option>
-						<option value="남향">남향</option>
-						<option value="북향">북향</option>
-						<option value="남동향">남동</option>
-						<option value="남서향">남서향</option>
-						<option value="북동향">북동향</option>
-						<option value="북서향">북서향</option>
-						<option value="확인필요">확인필요</option>
+						<option value="동향" <%if(officeDto.isDirection("동향")){%>selected<%} %>>동향</option>						
+						<option value="서향" <%if(officeDto.isDirection("서향")){%>selected<%} %>>서향</option>						
+						<option value="남향" <%if(officeDto.isDirection("남향")){%>selected<%} %>>남향</option>						
+						<option value="북향" <%if(officeDto.isDirection("북향")){%>selected<%} %>>북향</option>						
+						<option value="남동향" <%if(officeDto.isDirection("남동향")){%>selected<%} %>>남동향</option>						
+						<option value="남서향" <%if(officeDto.isDirection("남서향")){%>selected<%} %>>남서향</option>						
+						<option value="북동향" <%if(officeDto.isDirection("북동향")){%>selected<%} %>>북동향</option>						
+						<option value="북서향" <%if(officeDto.isDirection("북서향")){%>selected<%} %>>북서향</option>						
+						<option value="확인필요" <%if(officeDto.isDirection("확인필요")){%>selected<%} %>>확인필요</option>						
 					</select>
 				</td>
 			</tr>
@@ -279,10 +296,10 @@ $(function(){
 				<th width="20%">전세대출</th>
 				<td colspan="3" width="80%">
 					<label>				
-						<input class="inline-input" type="radio" name="loan" value="1" required>가능							
+						<input class="inline-input" type="radio" name="loan" <%if(officeDto.isLoan("1")){%>checked<%} %> value="1" required>가능							
 					</label>
 					<label>				
-						<input class="inline-input" type="radio" name="loan" value="0">불가능							
+						<input class="inline-input" type="radio" name="loan" <%if(officeDto.isLoan("0")){%>checked<%} %> value="0">불가능							
 					</label>
 				</td>
 			</tr>
@@ -290,10 +307,10 @@ $(function(){
 				<th width="20%">반려동물</th>
 				<td colspan="3" width="80%">
 					<label>				
-						<input class="inline-input" type="radio" name="animal" value="1" required>가능							
+						<input class="inline-input" type="radio" name="animal" <%if(officeDto.isAnimal("1")){%>checked<%} %> value="1" required>가능							
 					</label>
 					<label>				
-						<input class="inline-input" type="radio" name="animal" value="0">불가능							
+						<input class="inline-input" type="radio" name="animal" <%if(officeDto.isAnimal("0")){%>checked<%} %> value="0">불가능							
 					</label>
 				</td>
 			</tr>
@@ -301,10 +318,10 @@ $(function(){
 				<th width="20%">엘리베이터</th>
 				<td colspan="3" width="80%">
 					<label>				
-						<input class="inline-input" type="radio" name="elevator" value="1" required>있음						
+						<input class="inline-input" type="radio" name="elevator" <%if(officeDto.isElevator("1")){%>checked<%} %> value="1" required>있음						
 					</label>
 					<label>				
-						<input class="inline-input" type="radio" name="elevator" value="0">없음				
+						<input class="inline-input" type="radio" name="elevator" <%if(officeDto.isElevator("0")){%>checked<%} %> value="0">없음				
 					</label>
 				</td>
 			</tr>
@@ -312,17 +329,17 @@ $(function(){
 				<th width="20%">주차</th>
 				<td colspan="3" width="80%">
 					<label>				
-						<input class="inline-input" type="radio" name="parking" value="1" required>가능							
+						<input class="inline-input" type="radio" name="parking" <%if(officeDto.isParking("1")){%>checked<%} %> value="1" required>가능							
 					</label>
 					<label>				
-						<input class="inline-input" type="radio" name="parking" value="0">없음							
+						<input class="inline-input" type="radio" name="parking" <%if(officeDto.isParking("0")){%>checked<%} %> value="0">없음							
 					</label>
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">입주 가능일 </th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="date" name="move_in" id="datepicker">
+					<input class="inline-input" type="date" name="move_in" value="<%=officeDto.getMove_in()%>">
 					<label>					
 						<input class="inline-input move_in-check" type="checkbox">협의가능					
 					</label><br>
@@ -332,7 +349,7 @@ $(function(){
 			<tr>
 				<th width="20%">제목 </th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="title" style="width: 100%" placeholder="ex): 넓은 오픈형 원룸 전세  전세대출가능">					
+					<input class="inline-input" type="text" name="title" value="<%=officeDto.getTitle()%>" style="width: 100%" placeholder="ex): 넓은 오픈형 원룸 전세  전세대출가능">					
 				</td>
 			</tr>
 			<tr>
@@ -344,7 +361,7 @@ placeholder="해당 방에 대한 특징과 소개를 최소 50자 이상 입력
 방의 위치와 교통, 주변 편의시설, 방의 특징과 장점, 보안시설, 옵션, 주차, 
 전체적인 방의 느낌 등을 작성 해주세요.
 
-다른 방에 대한 설명, 연락처, 홍보 메세지 등 해당 방과 관련없는 내용을 입력하거나 해당 방에 대한 설명이 부적절한 경우 중개가 종료될 수 있습니다."></textarea>
+다른 방에 대한 설명, 연락처, 홍보 메세지 등 해당 방과 관련없는 내용을 입력하거나 해당 방에 대한 설명이 부적절한 경우 중개가 종료될 수 있습니다."><%=officeDto.getEtc()%></textarea>
             			<span class="etc-length" id="etc-number" >0</span>
             			<span class="etc-length">/1000</span>            		
             		</div>

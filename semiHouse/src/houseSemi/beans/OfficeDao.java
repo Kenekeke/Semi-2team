@@ -11,6 +11,7 @@ import houseSemi.util.JdbcUtil;
 public class OfficeDao {
 	public static final String USERNAME="house";
 	public static final String PASSWORD="house";
+	
 	public OfficeDto find(int house_no) throws Exception {
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
 		String sql = "select * from office where house_no =?";
@@ -79,8 +80,48 @@ public class OfficeDao {
 		ps.execute();
 		
 		con.close();
+	}	
+	//수정
+	public boolean update(OfficeDto officeDto) throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "update office set "
+				+ "deposit=?, monthly=?, address=?, address2=?, floor=?, loan=?, animal=?, elevator=?, "
+				+ "parking=?, move_in=?, etc=?, area=?, bill=?, direction=?, title=? where house_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, officeDto.getDeposit());
+		ps.setInt(2, officeDto.getMonthly());
+		ps.setString(3, officeDto.getAddress());
+		ps.setString(4, officeDto.getAddress2());
+		ps.setString(5, officeDto.getFloor());
+		ps.setString(6, officeDto.getLoan());
+		ps.setString(7, officeDto.getAnimal());
+		ps.setString(8, officeDto.getElevator());
+		ps.setString(9, officeDto.getParking());
+		ps.setString(10, officeDto.getMove_in());
+		ps.setString(11, officeDto.getEtc());
+		ps.setString(12, officeDto.getArea());
+		ps.setInt(13, officeDto.getBill());
+		ps.setString(14, officeDto.getDirection());
+		ps.setString(15, officeDto.getTitle());
+		ps.setInt(16, officeDto.getHouse_no());
 		
+		int count = ps.executeUpdate();
+		con.close();
+		return count>0;
 	}
+	public boolean updateOfficeBrokerA(String broker_agree, int house_no)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "update office set broker_agree=? where house_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, broker_agree);
+		ps.setInt(2, house_no);
+		
+		int count = ps.executeUpdate();
+		con.close();
+		return count>0;
+	}
+	//조회
 	public List<OfficeDto> select() throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 		String sql = "select * from office";

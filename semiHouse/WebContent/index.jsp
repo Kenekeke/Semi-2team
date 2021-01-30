@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="houseSemi.beans.*"%>
+<%@page import="java.util.List"%>
 
-
+<%
+	int start = 1;
+	int end = 6;
+	BoardDao boardDao = new BoardDao();
+	List<BoardDto> boardlist = boardDao.indexselect(start, end);  
+	
+%>
 <script type="text/javascript"
-    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=services"></script>
+    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe6f523576b10aa9e50625a1962d3635&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
@@ -40,8 +48,8 @@
 	
 	        // 지도에 사각형을 표시합니다
 	        rectangle.setMap(map);
-	        map.setDraggable(false);
-
+	        map.setDraggable(false); 
+	        map.setZoomable(false);
 
             $.getJSON("./house/sources/seoul.json", function (geojson) {
                 var data = geojson.features;
@@ -51,7 +59,7 @@
                     coordinates = element.geometry.coordinates[0];
                     name = element.properties.SIG_KOR_NM;
                     displayArea(coordinates, name);
-                })
+                }) 
 
             })
  
@@ -109,7 +117,7 @@
                 // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
                 kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
                     polygon.setOptions({
-                        fillColor: '#09f',
+                        fillColor: '#7b9acc',
                         fillOpacity: 0.6
                     });
                 });
@@ -155,8 +163,10 @@
         	document.centerForm.action="./house/office.jsp";
         };
     };
-     document.getElementById('type_bt').addEventListener('onchange',click);
+     //document.getElementById('type_bt').addEventListener('onchange',function(){콜백함수});
 	</script>
+
+
 <jsp:include page="/template/header.jsp"></jsp:include>
 <div class="all_wrapper">
 		<div class="type_selector">
@@ -171,24 +181,41 @@
 		    	</select>
     		</form>
     		</div>
-  			<div id="map" style="width:100%;height:600px;">
+  			<div id="map" style="width:1400px;height:600px;margin-left:260px">
   		</div>
 	<div class="home_wrapper">
 		<div class="home_lower">
 			<div class="home_keeper">
-				<h2>사이트 소개</h2>
+				<div class="index_menu">회사소개</div>
+				<a href="https://nicetoday79.wixsite.com/my-site"><img src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px;margin-top: 15px;
+    margin-left: 15px;"></a>
 			</div>
 		</div>
 		<div class="home_lower">
 			<div class="home_keeper">
-				<h2>뉴스</h2>
+				<div class="index_menu">관련뉴스</div>
+				<div class="indexhold row">
+				<a href="https://realestate.joins.com/article/article.asp?pno=142618&ref=naver">대전 생활권에 규제 적은 단지...'계룡자이' 3월 분양</a></div>
+				<div class="indexhold row">
+				<a href="http://www.nbntv.co.kr/news/articleView.html?idxno=917248">부천시, 깡통전세 예방 등 임차인 보호에 힘쓴다</a></div>
+				<div class="indexhold row">
+				<a href="https://www.hankyung.com/realestate/article/2019011892171">부동산 앱, 신림동 가장 많이 찾았다</a></div>
+				<div class="indexhold row">
+				<a href="http://www.leaders.kr/news/articleView.html?idxno=206183">강서구, 부동산소유권 이전등기 특별조치법 시행</a></div>
+				<div class="indexhold row">
+				<a href="http://www.epnc.co.kr/news/articleView.html?idxno=113353">선시공 후분양 수유역 한원 힐트리움, 분양 문의 잇따르며 완판 예고</a></div>
 			</div>
 		</div>
 		<div class="home_lower">
 			<div class="home_keeper">
-				<h2>공지사항</h2>
+				<div class="index_menu">공지사항</div>
+				<%for(BoardDto dto : boardlist){ %>
+				<div class="indexhold row">
+				<a href="board/boardDetail.jsp?board_no=<%=dto.getBoard_no()%>"><%=dto.getBoard_title()%></a>
+				</div>
+				<%} %>
 			</div>
-		</div>
+		</div> 
 	</div>
 </div>
 
