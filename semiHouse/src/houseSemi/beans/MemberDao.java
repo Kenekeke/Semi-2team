@@ -256,6 +256,37 @@ public class MemberDao {
 		
 		return count > 0;
 	}
+//	시퀀스 번호를 미리 생성하는 기능
+	public int getSequence() throws Exception {
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "Select member_seq.nextval from dual";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int m_seq = rs.getInt(1);
+		
+		con.close();
+		return m_seq;
+	}
+	
+//	번호까지 함께 등록하는 기능 -> 회원번호 겹침방지
+	public void insert(MemberDto dto) throws Exception {
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		
+		String sql = "insert into member values(?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, dto.getMember_no());
+		ps.setString(2, dto.getMember_id());
+		ps.setString(3, dto.getMember_pw());
+		ps.setString(4, dto.getMember_nick());
+		ps.setString(5, dto.getMember_email());
+		ps.setString(6, dto.getMember_phone());
+		ps.setString(7, dto.getMember_auth());
+		ps.execute();
+		
+		con.close();
+	}
 	public boolean editPasswordByAdmin(int member_no, String member_pw) throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
 		
