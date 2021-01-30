@@ -287,7 +287,6 @@ public class MemberDao {
 		
 		con.close();
 	}
-
 	public boolean editPasswordByAdmin(int member_no, String member_pw) throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
 		
