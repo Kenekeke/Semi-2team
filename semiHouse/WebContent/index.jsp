@@ -187,8 +187,7 @@
 		<div class="home_lower">
 			<div class="home_keeper">
 				<div class="index_menu">회사소개</div>
-				<a href="https://nicetoday79.wixsite.com/my-site"><img src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px;margin-top: 15px;
-    margin-left: 15px;"></a>
+				<a href="https://nicetoday79.wixsite.com/my-site"><img src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px;margin-top:35px;"></a>
 			</div>
 		</div>
 		<div class="home_lower">
@@ -215,7 +214,8 @@
 				</div>
 				<%} %>
 			</div>
-		</div> 
+		</div>
+		<div class="section_footer"></div> 
 	</div>
 </div>
 
