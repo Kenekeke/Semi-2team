@@ -19,25 +19,16 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main_style.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <style> 
-        /*   **자리 테스트**  전부 다 만들고 없애기   */
-        main, header, nav, section,
-        aside, article, footer, div {
-            border: 1px dotted lightgray
-        }  
-        /*section 영역*/
         section {
             margin: 0;
             padding: 0;
-            border: 1px solid red;
             height: auto;
         }
-		
 		header{
 			height:80px;
 		}
         article {
             display: inline-block;
-            border: 1px solid blue;
             width: calc(100% - 405px);
             height: inherit;
         }
@@ -45,13 +36,11 @@
         aside {
             height: inherit;
             display: inline-block;
-            border: 1px solid green;
             width: 400px;
         }
         footer{
        		height: inherit;
             display: inline-block;
-            border: 1px solid green;
             width: 100%;
         }
     </style>
@@ -63,7 +52,7 @@
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="">
+                        <img class="logo" src="<%=request.getContextPath()%>/img/Logo.jpg">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -92,21 +81,23 @@
                         </li>
                     </ul>
                 </div>
-                <div class="login-btn">
+                <div class="top_right_wrapper">
+                	<div class="login-btn">
                     <input type="button" value="로그인 및 회원 가입" onClick="location.href='<%=request.getContextPath()%>/member/login.jsp'">
                 </div>
                 <div class="ad">
                     <a href="https://www.iei.or.kr/main/main.kh">
                         <span style="display: block;">광고 문의</span>
-                        <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
+                        <img class="logo2" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
+                </div>
                 </div>
             </div>
             <%}if(isnormal || isBroker){%>
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="">
+                        <img class="logo" src="<%=request.getContextPath()%>/img/Logo.jpg">
                     </a>
                 </div>
                 <div class="menu-bar">
@@ -123,7 +114,7 @@
                             <a href="<%=request.getContextPath()%>/like/zzim.jsp">찜한 매물</a>
                         </li>
                         <li class="menu-regist">
-                            <a href="<%=request.getContextPath()%>/house/insert.jsp">방 내놓기</a>
+                            <a href="<%=request.getContextPath()%>/house/insert-one.jsp">방 내놓기</a>
                             <ul class="menu-second">
                                 <li><a class="one" href="<%= request.getContextPath() %>/house/insert-one.jsp">원룸</a></li>
                                 <li><a class="villatwo" href="<%= request.getContextPath() %>/house/insert-villatwo.jsp">빌라 ｜ 투룸</a></li>
@@ -150,7 +141,7 @@
                 <div class="ad">
                     <a href="https://www.iei.or.kr/main/main.kh">
                         <span style="display: block;">광고 문의</span>
-                        <img class="logo" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
+                        <img class="logo2" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>		
             </div>
@@ -158,7 +149,7 @@
             <div class="outbox">
                 <div class="logo-wrap">
                     <a href="<%=request.getContextPath()%>">
-                        <img class="logo" src="">
+                        <img class="logo" src="<%=request.getContextPath()%>/img/Logo.jpg">
                     </a>
                 </div>
                 <div class="menu-bar">
