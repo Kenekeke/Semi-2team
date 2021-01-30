@@ -137,15 +137,18 @@
                         </li>
                     </ul>
                 </div>
-                <div class="login-btn">
-                	<input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
-                </div>
-                <div class="ad">
-                    <a href="https://www.iei.or.kr/main/main.kh">
+                <div class="top_right_wrapper">
+                    <div class="login-btn">
+                		<input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
+               		</div>
+                	<div class="ad">
+                    	<a href="https://www.iei.or.kr/main/main.kh">
                         <span style="display: block;">광고 문의</span>
                         <img class="logo2" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
-                    </a>
-                </div>		
+                    	</a>
+                	</div>	
+                </div>
+                	
             </div>
             <%}if(isBroker){%>
             <div class="outbox">
