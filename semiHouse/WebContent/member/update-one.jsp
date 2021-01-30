@@ -97,6 +97,15 @@ $(function(){
 		$(".photo-delete2").click(function(){
 			$("input[name=f2]").val("");
 		});
+		$(".photo-delete3").click(function(){
+			$("input[name=f3]").val("");
+		});
+		$(".photo-delete4").click(function(){
+			$("input[name=f4]").val("");
+		});
+		$(".photo-delete5").click(function(){
+			$("input[name=f5]").val("");
+		});
 		//상세 설명 1000자 이내 작성
 		$(".etc").on("input", function(){
             $("#etc-number").text($(this).val().length);
@@ -209,17 +218,39 @@ $(function(){
 	<table>
 		<tbody>
 			<tr>
+			<tr>
 				<th width="20%">대표사진</th>
 				<td colspan="3" width="80%">
-					<input type="file" name="f1" accept=".jpg, .png"> 
+					<input type="file" class="f1" name="f1" accept=".jpg, .png"> 
 					<input class="inline-input photo-delete1" type="button" value="삭제">
 				</td>
 			</tr>
 			<tr>
-				<th width="20%">방사진</th>
+				<th width="20%">방사진1</th>
 				<td colspan="3" width="80%">
-						<input type="file" name="f2" accept=".jpg, .png"> 
+						<input type="file" class="f2" name="f2" accept=".jpg, .png"> 
 						<input class="inline-input photo-delete2" type="button" value="삭제">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%">방사진2</th>
+				<td colspan="3" width="80%">
+						<input type="file" class="f3" name="f3" accept=".jpg, .png"> 
+						<input class="inline-input photo-delete3" type="button" value="삭제">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%">방사진3</th>
+				<td colspan="3" width="80%">
+						<input type="file" class="f4" name="f4" accept=".jpg, .png"> 
+						<input class="inline-input photo-delete4" type="button" value="삭제">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%">방사진4</th>
+				<td colspan="3" width="80%">
+						<input type="file" class="f5" name="f5" accept=".jpg, .png"> 
+						<input class="inline-input photo-delete5" type="button" value="삭제">
 				</td>
 			</tr>
 		</tbody>
