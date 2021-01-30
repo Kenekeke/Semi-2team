@@ -5,8 +5,8 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 <div class="all_wrapper">
 <form action="login.do" method="post">
-<div class="login_wrapper" style="width:400px;">
-	<div>
+<div class="login_wrapper">
+	<div style="padding: 30px;margin-left: 122px;font-size: 23px;">	
 		<label class="login_gubun"> 
 			<input type="radio" name="flag" value="m" checked="checked">
 			일반회원
@@ -17,10 +17,10 @@
 		</label>
 	</div>
 	<div class="row">
-		<input type="text" name="id" class="input" placeholder="ID" required >
+		<input class="login_text" type="text" name="id" class="input" placeholder="ID" required >
 	</div>
 	<div class="row">
-		<input type="password" name="pw"  class="input" placeholder="PASSWORD" required>
+		<input class="login_text" type="password" name="pw"  class="input" placeholder="PASSWORD" required>
 	</div>
 	<%if(request.getParameter("error")!=null){ %>
 	<div class="row center" style="color:red;">
@@ -28,10 +28,10 @@
 	</div>
 	<%} %>
 	<div class="row">
-		<input type="submit" value="로그인" class="input">
+		<input class="login_input" type="submit" value="로그인" class="input">
 	</div>
 	<div class="row">
-		<input type="button" value="회원가입" class="input" onClick="location.href='<%=request.getContextPath()%>/member/join.jsp'">
+		<input class="login_input" type="button" value="회원가입" class="input" onClick="location.href='<%=request.getContextPath()%>/member/join.jsp'">
 	</div>
 </div> 
 </form>

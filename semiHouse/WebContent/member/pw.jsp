@@ -19,7 +19,7 @@
 			<input type="password" name="change_pw" required class="input">
 		</div>	
 		<div class="pw_button">
-			<input type="submit" value="비밀번호 변경" class="input" style="padding:5px; width:100%;">
+			<input class="button_pw" type="submit" value="비밀번호 변경" class="input">
 		</div>
 		<%if(request.getParameter("error") != null){ %>
 		<div class="row" style="color:red;">

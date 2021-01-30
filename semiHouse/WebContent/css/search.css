@@ -35,17 +35,18 @@
 	left: 20px;
 	top: 150px;
 	background-color: white;
-	padding: 10px 10px;
+	padding: 8px 10px 10px 10px;
 	border: 1px solid lightgray;
 }
 
 .searchBox {
 	border: 2px solid #7b9acc;
+	border-radius: 3px;
 }
 
 .search {
 	float: left;
-	padding: 6px;
+	padding: 9px;
 	border: none;
 	width: 260px;
 	margin: 0;
@@ -57,7 +58,7 @@
 	border: 1px solid #7b9acc;
 	width: 45px;
 	hieght: 100%;
-	padding: 4px 4px;
+	padding: 0;
 }
 
 .search::after {

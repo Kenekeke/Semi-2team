@@ -1,5 +1,11 @@
 @charset "UTF-8";
-
+	@font-face {
+    font-family: 'BinggraeMelona';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+	
 	section{
 	    background-color: #f5f6fa;
 	}
@@ -74,6 +80,7 @@
 	}
 	section input[type=button]:hover, input[type=file]:hover, .submit-btn:hover {
 		background-color: #7b9acc;
+		border-color:#7b9ac;
 		color: white;
 		cursor: pointer;
 	}

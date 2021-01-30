@@ -61,7 +61,7 @@
 	</div>
 	<form action="list.jsp" method="get">
 		<div class="row center">
-			<select name="type" class="input input-inline" required>
+			<select name="type" class="board_search_type" required>
 				<option value="">분류 선택</option>
 				<option value="member_no" <%if(type!=null&&type.equals("member_no")){%>selected<%}%>>번호</option>
 				<option value="member_id" <%if(type!=null&&type.equals("member_id")){%>selected<%}%>>아이디</option>
@@ -69,11 +69,11 @@
 				<option value="member_auth" <%if(type!=null&&type.equals("member_auth")){%>selected<%}%>>등급</option>
 			</select>
 			<%if(isSearch){ %>
-			<input type="text" name="key" placeholder="검색어 입력" required class="input input-inline" value="<%=key%>">
+			<input type="text" name="key" placeholder="검색어 입력" required class="board_search_key" value="<%=key%>">
 			<%}else{ %>
-			<input type="text" name="key" placeholder="검색어 입력" required class="input input-inline">
+			<input type="text" name="key" placeholder="검색어 입력" required class="board_search_key">
 			<%} %>
-			<input type="submit" value="검색" class="input input-inline">
+			<input type="submit" value="검색" class="board-searchbtn-typekey">
 		</div>
 	</form>
 
@@ -87,14 +87,13 @@
 	</div>
 	<%} else { %>
 	<div class="row">
-		<table class="table table-border">
+		<table class="admin_table">
 			<thead>
 				<tr>
 					<th>회원번호</th>
 					<th>아이디</th>
 					<th>닉네임</th>
 					<th>등급</th>
-					<th>관리메뉴</th>
 				</tr>
 			</thead> 
 			<tbody>
@@ -106,8 +105,7 @@
 					<%if(dto.is("member"))%><td>일반회원</td>
 				 	<%if(dto.is("broker"))%><td>중개인</td>
 				 	<%if(dto.is("admin"))%><td>관리자</td> 
-					<td>	
-					</td>
+
 				</tr>
 				<%} %>
 			</tbody>

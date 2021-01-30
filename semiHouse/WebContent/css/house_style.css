@@ -21,7 +21,7 @@
 	height: inherit;
 	display: inline-block;
 	position: absolute;
-	top: 0;
+	top: 5px;
 }
 
 .menu-bar {
@@ -37,10 +37,13 @@
 	right: 800px;
 }
 
+.logo{
+width: 170px;
+margin-left: 33px;
+height: 65px;
+margin-top: 3px;
+}
 
-
-
-	
 
 /*전체 메뉴*/
 .menu, .menu ul {
@@ -107,12 +110,29 @@
 	right: 260px;
 	width: 126px;
 }
-
+.login-btn input {
+position: relative;
+top: 18px;
+padding: 5px;
+border-radius: 5px;
+border: none;
+border: 1px solid ;
+font-size: 12px;
+margin-left: 6px;
+background-color: #7b9acc;
+color: white;
+height: 35px;
+  }
 .ad {
 	position: relative;
 	bottom: 10px;
 	right: 40px;
 	width:180px;
+}
+
+.top_right_wrapper{
+width: 400px;
+margin-left: clamp(900px, 77%, 98%)
 }
 
 .login-btn input {
@@ -127,8 +147,9 @@
 
 /*세컨드 메뉴바 영역*/
 .second-menubar {
-	height: 55px;
-	border-bottom: 1px solid lightgray;
+	height: 85px;
+	font-family: 'samlib';
+    font-size: 20px;
 }
 
 .second-menubar li {

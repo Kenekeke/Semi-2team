@@ -230,14 +230,11 @@ int member_no = (int)session.getAttribute("check");
         						console.log(resp);
         						$(template).find(".filterResult").appendTo(".list");
        							$.each(resp, function(index, info){
-       								console.log(index);
            							if(resp.length>1){
            								photolist.push(info.save_name+info.photo_type);
            								n.push(index);
            							}
-           							console.log(photolist);
-           							console.log("<%=request.getContextPath()%>/img/"+info.save_name+info.photo_type);
-           							console.log(n.length);
+           						
            							if(index==0){
            								var list_price = info.deposit + "/" + info.monthly;
                				            var area_floor = info.floor+" ㆍ "+info.area;
@@ -399,11 +396,11 @@ int member_no = (int)session.getAttribute("check");
 	</div>
 </script>
 <article>
-    <div id="map" style="width:100%;height:100%;"></div>
-    <div class="floatBox">
-		<div class="searchBox" >
+   	<div id="map" style="width: 100%; height: 100%;"></div>
+	<div class="floatBox">
+		<div class="searchBox">
 			<input type="text" placeholder="지역, 지하철역 검색" class="search">
-			<button class="searchBtn">제출</button>
+			<button class="searchBtn"><img alt="돋보기" src="../img/search.png" style="width: 30px;"></button>
 		</div>
 	</div>
 </article>

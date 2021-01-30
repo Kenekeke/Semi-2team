@@ -26,7 +26,7 @@
 			$(".searchResult").remove();
     		$.ajax({
     			async: false,
-        		url: "<%=request.getContextPath()%>/house/test.do",
+        		url: "<%=request.getContextPath()%>/house/search.do",
         		type: "POST",
         		data: {
         			keyword : searchKeyword
@@ -175,7 +175,7 @@
 	    	   	parking : '<%=request.getParameter("parking")%>',
 	    	   	elevator : '<%=request.getParameter("elevator")%>',
 	    	   	animal : '<%=request.getParameter("animal")%>',	
-	    	   	loan : '<%=request.getParameter("loan")%>'     		
+	    	   	loan : '<%=request.getParameter("loan")%>'	
         	},
         	success: function(resp){
         		datas=resp;
@@ -184,9 +184,7 @@
         	error: function(){
         		console.log('false2');
         	}
-        	
-        })
-                
+        })               
       
         //cluseter.clear(); //기존에 있던 클러스터를 지운다.
         //onMap(datas); //필터링된 data를 받아서 지도위에 표기한다.
@@ -349,6 +347,7 @@
    	       				        	else{
    	       				        		$(".detail-broker-landline").text("");
    	       				        		$(".detail-broker-phone").text("핸드폰번호 : "+resp[0].member_phone);
+   	       				        		$(".call-broker-landline").text("");
    	       				        		$(".call-broker-phone").text(resp[0].member_phone);
    	       				        	}
    	       				        	$(".detail-broker-email").text("이메일 : "+resp[0].member_email);
@@ -479,7 +478,7 @@
 		</div>
 		<img alt="매물상세이미지" class="img-img" style="width: 100%; height:300px;">
 	</div>
-</script>
+</script> 
 <script id="template" type="text/template">
 	<div>
 		<div class="filterResult"></div>
@@ -507,7 +506,7 @@
 	<div class="floatBox">
 		<div class="searchBox">
 			<input type="text" placeholder="지역, 지하철역 검색" class="search">
-			<button class="searchBtn">검색</button>
+			<button class="searchBtn"><img alt="돋보기" src="../img/search.png" style="width: 30px;"></button>
 		</div>
 	</div>
 </article>

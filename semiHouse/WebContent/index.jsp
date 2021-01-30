@@ -11,7 +11,7 @@
 	
 %>
 <script type="text/javascript"
-    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe6f523576b10aa9e50625a1962d3635&libraries=services"></script>
+    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
@@ -20,7 +20,6 @@
             var mapOption = { //지도를 생성할 때 필요한 기본 옵션
                 center: new kakao.maps.LatLng(37.566826, 126.9786567), //지도의 중심좌표.
                 level: 9 //지도의 레벨(확대, 축소 정도)
-      
             }
 	        
             var map = new kakao.maps.Map(mapContainer, mapOption),
@@ -142,53 +141,51 @@
                     var Lng=centerPoint.La;
           			$("#Lat").val(Lat);
           			$("#Lng").val(Lng);
-                    document.centerForm.submit();
-                    
+                    document.centerForm.submit();   
                 });
-            }	
+            }
             
+            
+            $(".type_btn").on("change",function(){
+            	$(".type_label").css("background-color","#7b9acc");
+            	$(this).next().css("background-color","#42649B");
+            	switch($(this).val()){
+            	case "oneroom":
+            		document.centerForm.action="./house/one.jsp"
+            		break;
+            	case "villa":
+            		document.centerForm.action="./house/villatwo.jsp"
+            		break;
+            	case "office":
+            		document.centerForm.action="./house/office.jsp"
+            		break;
+            	}
+        	})
         });
         	
     </script>
 	<script>
-    function type_bt(type){
-    	//e.preventdefault()
-    	if(type=="oneroom"){
-        	document.centerForm.action="./house/one.jsp";
-        };
-        if(type=="villa"){
-        	document.centerForm.action="./house/villatwo.jsp";
-        };
-        if(type=="office"){
-        	document.centerForm.action="./house/office.jsp";
-        };
-    };
-     //document.getElementById('type_bt').addEventListener('onchange',function(){콜백함수});
+    	
+  	     //document.getElementById('type_bt').addEventListener('onchange',function(){콜백함수});
 	</script>
-
-
 <jsp:include page="/template/header.jsp"></jsp:include>
-<div class="all_wrapper">
+<div class="all_wrapper" style="background-color:white;">
+	<div id="map">
 		<div class="type_selector">
-			<form method="post" name="centerForm">
-			    	<input type="hidden" name="Lat" id="Lat">
-			    	<input type="hidden" name="Lng" id="Lng">
-			    	<select name=type onchange="type_bt(this.value)" class="selector_type">
-			    	<option value="anytype">건물 유형 선택</option>
-			    	<option value="oneroom">원룸</option>
-			    	<option value="villa">투룸|빌라</option>
-			    	<option value="office">오피스텔</option>
-		    	</select>
-    		</form>
-    		</div>
-  			<div id="map" style="width:1400px;height:600px;margin-left:260px">
+			<form method="post" action="./house/one.jsp" name="centerForm">
+		    	<input type="hidden" name="Lat" id="Lat">
+		    	<input type="hidden" name="Lng" id="Lng">
+		    	<input type="radio" name="map_type" class="type_btn" id="oneroom" value="oneroom" checked><label for="oneroom" class="type_label">원룸</label>
+		    	<input type="radio" name="map_type" class="type_btn" id="villa" value="villa"><label for="villa" class="type_label">투룸|빌라</label>
+		    	<input type="radio" name="map_type" class="type_btn" id="office" value="office"><label for="office" class="type_label">오피스텔</label>
+	   		</form>
   		</div>
+	</div>
 	<div class="home_wrapper">
 		<div class="home_lower">
 			<div class="home_keeper">
 				<div class="index_menu">회사소개</div>
-				<a href="https://nicetoday79.wixsite.com/my-site"><img src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px;margin-top: 15px;
-    margin-left: 15px;"></a>
+				<a href="https://nicetoday79.wixsite.com/my-site"><img src="<%=request.getContextPath()%>/img/Logo.jpg" style="width:150px;margin-top:35px;"></a>
 			</div>
 		</div>
 		<div class="home_lower">
@@ -215,7 +212,8 @@
 				</div>
 				<%} %>
 			</div>
-		</div> 
+		</div>
+		<div class="section_footer"></div> 
 	</div>
 </div>
 

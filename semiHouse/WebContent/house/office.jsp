@@ -26,7 +26,7 @@
 			$(".searchResult").remove();
     		$.ajax({
     			async: false,
-        		url: "<%=request.getContextPath()%>/house/test.do",
+        		url: "<%=request.getContextPath()%>/house/search.do",
         		type: "POST",
         		data: {
         			keyword : searchKeyword
@@ -349,6 +349,7 @@
    	       				        	else{
    	       				        		$(".detail-broker-landline").text("");
    	       				        		$(".detail-broker-phone").text("핸드폰번호 : "+resp[0].member_phone);
+   	       				        		$(".call-broker-landline").text("");
    	       				        		$(".call-broker-phone").text(resp[0].member_phone);
    	       				        	}
    	       				        	$(".detail-broker-email").text("이메일 : "+resp[0].member_email);
@@ -506,7 +507,7 @@
 	<div class="floatBox">
 		<div class="searchBox">
 			<input type="text" placeholder="지역, 지하철역 검색" class="search">
-			<button class="searchBtn">검색</button>
+			<button class="searchBtn"><img alt="돋보기" src="../img/search.png" style="width: 30px;"></button>
 		</div>
 	</div>
 </article>
