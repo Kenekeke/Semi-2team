@@ -21,7 +21,7 @@
 	height: inherit;
 	display: inline-block;
 	position: absolute;
-	top: 0;
+	top: 5px;
 }
 
 .menu-bar {
@@ -37,10 +37,13 @@
 	right: 800px;
 }
 
+.logo{
+width: 170px;
+margin-left: 33px;
+height: 65px;
+margin-top: 3px;
+}
 
-
-
-	
 
 /*전체 메뉴*/
 .menu, .menu ul {
@@ -127,8 +130,10 @@
 
 /*세컨드 메뉴바 영역*/
 .second-menubar {
-	height: 55px;
+	height: 85px;
 	border-bottom: 1px solid lightgray;
+	font-family: 'samlib';
+    font-size: 20px;
 }
 
 .second-menubar li {

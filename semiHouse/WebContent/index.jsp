@@ -11,7 +11,7 @@
 	
 %>
 <script type="text/javascript"
-    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=services"></script>
+    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe6f523576b10aa9e50625a1962d3635&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
@@ -196,7 +196,7 @@
 
 </style>
 <jsp:include page="/template/header.jsp"></jsp:include>
-<div class="all_wrapper">
+<div class="all_wrapper" style="background-color:white;">
 		<div class="type_selector">
 			<form method="post" action="./house/one.jsp" name="centerForm">
 			    	<input type="hidden" name="Lat" id="Lat">
