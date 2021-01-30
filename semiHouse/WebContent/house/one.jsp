@@ -26,7 +26,7 @@
 			$(".searchResult").remove();
     		$.ajax({
     			async: false,
-        		url: "<%=request.getContextPath()%>/house/test.do",
+        		url: "<%=request.getContextPath()%>/house/search.do",
         		type: "POST",
         		data: {
         			keyword : searchKeyword
@@ -175,7 +175,7 @@
 	    	   	parking : '<%=request.getParameter("parking")%>',
 	    	   	elevator : '<%=request.getParameter("elevator")%>',
 	    	   	animal : '<%=request.getParameter("animal")%>',	
-	    	   	loan : '<%=request.getParameter("loan")%>'     		
+	    	   	loan : '<%=request.getParameter("loan")%>'	
         	},
         	success: function(resp){
         		datas=resp;
@@ -184,9 +184,7 @@
         	error: function(){
         		console.log('false2');
         	}
-        	
-        })
-                
+        })               
       
         //cluseter.clear(); //기존에 있던 클러스터를 지운다.
         //onMap(datas); //필터링된 data를 받아서 지도위에 표기한다.
