@@ -36,14 +36,12 @@
         }
 
         .login-btn {
-        	margin-left: clamp(900px, 80%, 1900px);
-        	min-margin-left: 800px;
-        	max-margin-left: 1200px
+        	margin-left:0;
             width:126px;
         }
 
         .ad {
-            margin-left: clamp(1000px, 87%, 2000px);
+        	margin-left: 150px;
             bottom: 10px; 
 			width: 224px;           
         }
@@ -67,7 +65,7 @@
             /*relative로 내부의 absolute를 가둔다*/
             bottom: 38px;
             left: 230px;
-            width:750px;
+            width: 750px;
         }
 
         .menu>li {
@@ -191,7 +189,7 @@
 		 }
 		.top_right_wrapper{
 			width: 400px;
-    		left: 80%;
+			margin-left: clamp(900px, 77%, 98%)
 		}
 	    .login_wrapper {
 			width: 700px;
