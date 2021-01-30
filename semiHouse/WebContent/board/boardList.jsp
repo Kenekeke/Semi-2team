@@ -22,10 +22,10 @@
 	List<BoardVO> noticelist = boardDao.List("공지사항", 1, 3);
 	int boardSize;
 	if(isHeader){
-		boardSize = 15;
+		boardSize = 17;
 	}
 	else{
-		boardSize = 12;
+		boardSize = 14;
 	}
 	int endB = n * boardSize;
 	int startB = endB - boardSize +1;
@@ -134,10 +134,31 @@
 		});
 	});
 </script>
-	<div class="board-outbox nanumsquare">
-        <div class="rightwritebtn">
-        	<input type="button" value="글쓰기" class="board_write_btn boardbtnc">
-        </div>
+	<fieldset class="board-outbox nanumsquare">
+		<legend class="board-list-title-first"><img alt="커뮤니티이미지" src="../img/community.png" style="width:60px;"> 커뮤니티</legend>
+		<div class="boardlistlist-topt">
+			<div class="boardlist-searchbox a">
+	        	<form action="boardList.jsp" method="post">
+	        		<select name="type" class="board_search_type">
+	        			<option value="board_title" <%if(type!=null&&type.equals("board_title")){%>selected<%}%>>제목</option>
+	        			<option value="board_title_content" <%if(type!=null&&type.equals("board_title_content")){%>selected<%}%>>제목+본문</option>
+	        			<option value="member_nick" <%if(type!=null&&type.equals("member_nick")){%>selected<%}%>>글쓴이</option>
+	        		</select>
+	        		<%if(key!=null){ %>
+	        			<input type="text" name="key" class="board_search_key" required value=<%=key%>>
+	        		<%} else{%>
+	        			<input type="text" name="key" class="board_search_key" required>
+	        		<%} %>
+	        		<%if(isHeader){%>
+	        			<input type="hidden" name="board_header" value=<%=board_header%>>
+	        		<%}%>
+	        		<input type="submit" value="검색" class="board-searchbtn-typekey">
+	        	</form>
+	        </div>
+        	<div class="rightwritebtn">
+	        	<input type="button" value="글쓰기" class="board_write_btn boardbtnc">
+	        </div>
+		</div>
         <div class="type_radio">
         	<input type="radio" name="board_header_check" id="board-total" value="전체" <%if(board_header==null){%>checked<%}%>>
         	<label for="board-total">전체</label>
@@ -171,7 +192,7 @@
                         <td><a class="boardlisttitle" href="boardDetail.jsp?board_no=<%=noticevo.getBoard_no()%>"><%=noticevo.getBoard_title()%> <%if(noticevo.getReplycount()>0){%>[<%=noticevo.getReplycount()%>]<%}%></a></td>
                         <td><%=noticevo.getMember_nick()%></td>
                         <td><%=noticevo.getBoard_count()%></td>
-                        <td style="font-size:13px;"><%=noticevo.getBoard_time()%></td>
+                        <td style="font-size:15px;"><%=noticevo.getBoard_time()%></td>
                     </tr>
                 <%}
                 }%>
@@ -270,5 +291,5 @@
         		<input type="submit" value="검색" class="board-searchbtn-typekey">
         	</form>
         </div>
-    </div>
+    </fieldset>
 <jsp:include page="/template/footer.jsp"></jsp:include>

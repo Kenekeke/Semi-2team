@@ -75,7 +75,7 @@ aside{
 <div class="callInfo">
 	<div class="callInfodetail">
 		<div class="calltitle">문의하기</div>
-		<div>등록번호를 꼭 알려주세요</div>
+		<div class="callcontent">등록번호를 꼭 알려주세요</div>
 		<div class="call-house-no"></div>
 		<div class="call-broker-name"></div>
 		<div class="call-broker-landline"></div>

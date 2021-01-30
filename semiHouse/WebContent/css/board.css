@@ -14,10 +14,12 @@ html, body{
      height:80px;
  }
  .board-outbox{
-     width: 800px;
+     width: 950px;
      height:100%;
-     margin: 0 auto;
-     padding:20px 0;
+     margin: 50px auto;
+     padding:10px 40px 20px 40px;
+     border:3px solid #7b9acc;
+     border-radius:0.9rem;
  }
  .board-outbox > .row{
      margin:1rem 0;
@@ -113,8 +115,11 @@ html, body{
 .board_write_btn{
 	margin:10px 0 5px 0;
 }
-.rightwritebtn{
-	text-align:right;
+.boardlistlist-topt{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	height:80px;
 }
 input[name=board_header_check]+label{
 	margin:0 25px 0 0;
@@ -123,19 +128,21 @@ input[name=board_header_check]+label{
 	min-height:300px;
 }
 .boardlistPaging{
-	margin:20px 0 10px 0;
+	margin-top:20px;
 }
 .board_search_type{
   	width: auto;
 	padding: 0.5rem;
 	outline: none;
 	border: 0.5px solid #7b9acc;
+	border-radius:0.7rem;
 }
 .board_search_key{
   	width: auto;
 	padding: 0.5rem;
 	outline: none;
 	border: 0.5px solid #7b9acc;
+	border-radius:0.7rem;
 }
 .board-content{
     height:500px;
@@ -176,7 +183,7 @@ input[name=board_header_check]+label{
 	height:30px;
 	display:inline-block;
 	text-align:center;
-	margin:10px 0;
+	margin:10px 40px;
 	font-size:20px;
 }
 input[name=board_header]+label{
@@ -206,12 +213,15 @@ input[name=board_header]+label{
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	margin-bottom:50px;
+}
+.a{
+	margin-left:250px;
 }
 .board-searchbtn-typekey{
 	width:50px;
 	height:35px;
 	background-color:#7b9acc;
+	border-radius:0.7rem;
 	color:white;
 	font-weight:bold;
 	border:none;
@@ -229,20 +239,20 @@ input[name=board_header]+label{
 .detail-info-top{
 	display:flex;
 	justify-content:space-between;
+	border-bottom:2px solid #7b9acc;
 	align-items:center;
-	padding:0 1rem;
+	padding:0 1rem 0.5rem 1rem;
 }
 .board-detail-info{
 	padding:0.5rem 1rem;
 	margin:0.5rem 0 0 0;
-	border-bottom:1px solid #7b9acc;
 	display:flex;
 	justify-content:space-between;
 }
 .go-list{
 	text-decoration:none;
 	color:#7b9acc;
-	margin-right:0.5rem;
+	margin-left:0.5rem;
 	font-size:20px;
 }
 .go-list:hover{
@@ -257,9 +267,8 @@ input[name=board_header]+label{
     min-height:600px;
     margin-bottom:1rem;
     padding:40px 30px;
-    border-bottom:1px solid #7b9acc;
-    border-left: 1px solid #7b9acc;
-    border-right: 1px solid #7b9acc;
+    border:2px solid #7b9acc;
+    border-radius:0.9rem;
     font-size:18px;
 }
 .board-detail-th{
@@ -274,7 +283,9 @@ input[name=board_header]+label{
 .reply-textarea{
 	padding:1rem;
 	border:2px solid #7b9acc;
+	border-radius:0.7rem;
 	outline:none;
+	resize:none;
 }
 .replycount-detail{
 	padding-left:0.5rem;
@@ -314,12 +325,13 @@ input[name=board_header]+label{
 }
 .reply-submit-btn{
 	margin:0 0.5rem;
-	width:60px;
+	width:90px;
 	height:30px;
 	background-color:#7b9acc;
 	color:white;
 	font-weight:bold;
 	font-size:16px;
+	border-radius:0.7rem;
 	border:none;
 	outline:none;
 }
@@ -335,11 +347,19 @@ input[name=board_header]+label{
 	font-weight:bold;
 	border:none;
 	outline:none;
-	border-radius:0.5rem;
+	border-radius:0.8rem;
 }
 .noticeItem{
 	background-color:#f5f6fa;
 }
 .headerbold{
 	font-weight:bold;
+}
+.board-list-title-first{
+	margin-top:10px;
+	color:#7b9acc;
+	font-weight:bold;
+	font-size:40px;
+	display:flex;
+	align-items:center;
 }
