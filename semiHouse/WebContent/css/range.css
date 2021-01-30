@@ -63,7 +63,7 @@ aside {
 }
 
 .fb {
-	height: 40px;
+	height: 50px;
 	width: 100%;
 	padding: 0.5rem 0 0.6rem 0;
 	text-align: right;
@@ -80,34 +80,33 @@ aside {
 #filter-btn {
 	width: 60px;
 	height: 100%;
-	margin-right: 1rem; 
+	margin-right: 1rem;
 	border-radius : 0.5rem;
 	border: 1px solid #7b9acc;
 	outline: none;
 	cursor: pointer;
 	display: inline-block;
-	border-radius: 0.5rem;
 }
 
 .filter-open {
 	background-image: url("../img/filterbtn.png");
 	background-repeat: no-repeat;
-	background-position-x: 0;
-	background-position-y: -10px;
-	background-size: 60px;
+	background-position-x: -4px;
+	background-position-y: -18px;
+	background-size: 65px;
 }
 
 .filter-close {
 	background-image: url("../img/close.png");
 	background-repeat: no-repeat;
-	background-position-x: 0;
-	background-position-y: -10px;
-	background-size: 60px;
+	background-position-x: -4px;
+	background-position-y: -18px;
+	background-size: 65px;
 }
 
 .list {
 	width:400px;
-	height: calc(100vh - 170px);
+	height: calc(100vh - 180px);
 	overflow: auto;
 	z-index: 99;
 }
@@ -133,7 +132,7 @@ aside {
 }
 
 .detailFilter {
-	height: calc(100vh - 290px);
+	height: calc(100vh - 300px);
 	overflow: auto;
 }
 
@@ -481,23 +480,30 @@ input[type=range]::-webkit-slider-thumb {
 }
 .callInfodetail{
 	width:300px;
-	height:300px;
+	height:auto;
 	position:absolute;
 	z-index:999;
 	opacity:1;
 	background-color:white;
 	text-align:center;
-	padding:10px;
+	padding:15px 10px;
 }
 .calltitle{
-	font-size:20px;
+	font-size:28px;
 	font-weight:bold;
-	margin:1rem 0;
+	margin-bottom:1rem;
+}
+.callcontent{
+	font-size:17px;
 }
 .call-house-no{
-	font-size:23px;
+	font-size:25px;
 	font-weight:bold;
 	margin:0.5rem 0 1rem 0;
+}
+.call-broker-name{
+	font-size:20px;
+	font-weight:bold;
 }
 .call-broker-landline{
 	font-size:20px;
@@ -506,16 +512,17 @@ input[type=range]::-webkit-slider-thumb {
 	margin-top:0.5rem;
 }
 .call-broker-phone{
-	font-size:23px;
+	font-size:25px;
 	font-weight:bold;
 	color:#7b9acc;
 	margin-bottom:1rem;
 }
 .call-close{
-	width:100%;
-	height:30px;
+	width:80%;
+	height:35px;
 	background-color:#7b9acc;
 	color:white;
+	border-radius:0.5rem;
 	font-weight:bold;
 	border:none;
 	outline: none;
