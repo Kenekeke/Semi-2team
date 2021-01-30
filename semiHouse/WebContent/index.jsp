@@ -11,8 +11,7 @@
 	
 %>
 <script type="text/javascript"
-    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe6f523576b10aa9e50625a1962d3635&libraries=services"></script>
-
+    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
@@ -21,7 +20,6 @@
             var mapOption = { //지도를 생성할 때 필요한 기본 옵션
                 center: new kakao.maps.LatLng(37.566826, 126.9786567), //지도의 중심좌표.
                 level: 9 //지도의 레벨(확대, 축소 정도)
-      
             }
 	        
             var map = new kakao.maps.Map(mapContainer, mapOption),
@@ -170,44 +168,19 @@
     	
   	     //document.getElementById('type_bt').addEventListener('onchange',function(){콜백함수});
 	</script>
-
-<style>
-#oneroom +label{
-	background-color: #42649B;
-}
-.type_btn{
-	display:none;
-	margin:10px;
-}
-.type_label{
-	display:inline-block;
-	padding:10px;
-	margin: 0px;
-	border: none;
-	background-color: #7b9acc;
-	width:165px;
-	height: 60px;
-	text-align: center;
-	font-family: 'samlib';
-	font-size: 40px;
-	box-sizing: border-box;
-	border-radius: 30px;
-	color:white;
-}
-
-</style>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <div class="all_wrapper" style="background-color:white;">
+	<div id="map">
 		<div class="type_selector">
 			<form method="post" action="./house/one.jsp" name="centerForm">
-			    	<input type="hidden" name="Lat" id="Lat">
-			    	<input type="hidden" name="Lng" id="Lng">
-			    	<input type="radio" name="map_type" class="type_btn" id="oneroom" value="oneroom" checked><label for="oneroom" class="type_label">원룸</label>
-			    	<input type="radio" name="map_type" class="type_btn" id="villa" value="villa"><label for="villa" class="type_label">투룸|빌라</label>
-			    	<input type="radio" name="map_type" class="type_btn" id="office" value="office"><label for="office" class="type_label">오피스텔</label>
-    		</form>
-   		</div>
-		<div id="map" style="width:1400px;height:600px;margin-left:260px"></div>
+		    	<input type="hidden" name="Lat" id="Lat">
+		    	<input type="hidden" name="Lng" id="Lng">
+		    	<input type="radio" name="map_type" class="type_btn" id="oneroom" value="oneroom" checked><label for="oneroom" class="type_label">원룸</label>
+		    	<input type="radio" name="map_type" class="type_btn" id="villa" value="villa"><label for="villa" class="type_label">투룸|빌라</label>
+		    	<input type="radio" name="map_type" class="type_btn" id="office" value="office"><label for="office" class="type_label">오피스텔</label>
+	   		</form>
+  		</div>
+	</div>
 	<div class="home_wrapper">
 		<div class="home_lower">
 			<div class="home_keeper">
