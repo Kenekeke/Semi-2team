@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+	@font-face {
+    font-family: 'BinggraeMelona';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+	section{
+		font-family: 'BinggraeMelona';
+	}
+	.main-title{
+		width: 1000px;
+		margin: 40px auto 20px auto;
+	}
+	.main-title h2{
+		background-color: #7b9acc;
+		color: white;
+		padding: 15px 0 15px 7px;
+		margin: 12px 0 5px 0;
+		text-align: center;
+	}
+	.main-title p{
+		margin:0;
+		padding: 5px 0 10px 7px;
+		text-align: right;
+	}
+	.container{
+		width: 1000px;
+		margin: 0 auto 30px auto;
+	}
+	.table-title{
+		padding-left: 20px;
+	}
+	.table-com{
+		font-size: 19px;
+		border-top: 3px solid lightgray;
+		border-bottom: 2px solid lightgray;	
+	}
+	.table-com > thead > tr.table-header {
+		background-color: #7b9acc;
+		color: white;
+	}
+	.table-com > tbody > tr{
+		font-size: 17px;
+		text-align: center;
+	}
+	.table-com > tbody > tr{
+		font-size: 17px;
+		text-align: center;
+	}
+	.table-com > tbody > tr > td{
+		border-bottom: 1px dotted lightgray;
+	}
+	.table-com > tbody > tr:last-child td{
+		border-bottom: none;
+	}
+	.table-com > thead > tr > th,
+	.table-com > tbody > tr > td{
+		padding: 5px 3px;
+	}
