@@ -52,7 +52,7 @@
 		</div>
 			<%} %>
 		<div class="editpw_button">
-		<input type="submit" value="정보수정" class="input" style="padding:5px; width:100%;">
+		<input class="button_pw" type="submit" value="정보수정" class="input" style="padding:5px; width:100%;">
 		</div>
 	</div>
 </div>
@@ -96,7 +96,7 @@
 			</div>
 			<%} %>
 			<div class="editpw_button">
-			<input type="submit" value="정보수정" class="input" style="padding:5px; width:100%;">
+			<input class="button_pw" type="submit" value="정보수정" class="input" style="margin:15px;">
 			</div>
 		</div>	
 	</div>
