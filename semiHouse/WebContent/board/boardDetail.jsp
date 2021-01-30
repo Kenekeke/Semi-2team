@@ -97,8 +97,10 @@
 		});
 	});
 </script>
-    <div class="board-outbox nanumsquare">
+    <fieldset class="board-outbox nanumsquare">
+		<legend class="board-list-title-first"><img alt="커뮤니티이미지" src="../img/community.png" style="width:60px;"> 커뮤니티</legend>
         <div class="row detail-info-top">
+        	<a href="boardList.jsp" class="go-list" style="float:right;">≡목록</a>
         	<div>
         		<input type="button" value="글쓰기" class="board_write_btn boardbtnc">
 	            <%if(isBoardOwner){%>
@@ -107,7 +109,6 @@
 	            <input type="button" value="삭제" class="board_delete_btn boardbtnc">
 	            <%}%>
         	</div>
-            <a href="boardList.jsp" class="go-list" style="float:right;">≡목록</a>
         </div>
         <div class="board-detail-info-margin">
             <div class="board-detail-th">[<%=boardVO.getBoard_header()%>] <%=boardVO.getBoard_title()%></div>
@@ -136,7 +137,7 @@
                 	<%if(isMember){%>
                 		<input type="hidden" name="member_no" value=<%=(int)session.getAttribute("check")%>>
                 	<%}%>
-                    <textarea class="reply-textarea" name="reply_content" required cols="95" rows="4" <%if(isMember){%>placeholder="함께 만들어가는 공간입니다. 댓글 작성 시 타인에 대한 배려를 해주세요."<%}else{%>placeholder="로그인 후 작성 가능합니다."<%}%>></textarea>
+                    <textarea class="reply-textarea" name="reply_content" required cols="110" rows="4" <%if(isMember){%>placeholder="함께 만들어가는 공간입니다. 댓글 작성 시 타인에 대한 배려를 해주세요."<%}else{%>placeholder="로그인 후 작성 가능합니다."<%}%>></textarea>
                     <input class="reply-submit-btn" type="submit" value="등록">
                 </div>
             </form>
@@ -181,5 +182,5 @@
         	</ul>
         </div>
         <%}%>
-    </div>
+    </fieldset>
 <jsp:include page="/template/footer.jsp"></jsp:include>

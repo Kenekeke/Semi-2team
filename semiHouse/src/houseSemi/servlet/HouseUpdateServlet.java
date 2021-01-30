@@ -33,8 +33,7 @@ public class HouseUpdateServlet extends HttpServlet{
 		try {
 			req.setCharacterEncoding("UTF-8");
 			//수신
-			String path = "아래 처럼 해당 경로를 설정 하세요";
-			//String path = "C:\\Users\\mikyo\\git\\Semi-2team\\Semi-2team\\semiHouse\\WebContent\\img"; //저장 장소
+			String path = "C:\\Users\\mikyo\\git\\Semi-2team\\Semi-2team\\semiHouse\\WebContent\\img"; //저장 장소
 			int max = 10 * 1024 * 1024; //10MB
 			String encoding = "UTF-8";  //encoding
 			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();//같은 파일 업로드시 덮어쓰기 방지
@@ -73,7 +72,7 @@ public class HouseUpdateServlet extends HttpServlet{
 				PhotoDao photoDao = new PhotoDao();
 				photoDao.delete(house_no);
 				
-				for(int i=1; i <=2 ; i++) {
+				for(int i=1; i <=5 ; i++) {
 					PhotoDto photoDto = new PhotoDto();
 					photoDto.setHouse_no(Integer.parseInt(mRequest.getParameter("house_no")));
 					photoDto.setSave_name(mRequest.getFilesystemName("f"+i)); //저장된 이름
@@ -108,7 +107,6 @@ public class HouseUpdateServlet extends HttpServlet{
 				oneDto.setEtc(mRequest.getParameter("etc"));
 				
 				oneDao.updateOne(oneDto);
-				
 				}else if(mRequest.getParameter("house_type").equals("villatwo")) {
 					VillatwoDto villatwoDto = new VillatwoDto();
 					VillatwoDao villatwoDao = new VillatwoDao();

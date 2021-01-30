@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/insert-room.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona.woff">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=services"></script>
 <script>
@@ -81,6 +82,15 @@ $(function(){
 		$(".photo-delete2").click(function(){
 			$("input[name=f2]").val("");
 		});
+		$(".photo-delete3").click(function(){
+			$("input[name=f3]").val("");
+		});
+		$(".photo-delete4").click(function(){
+			$("input[name=f4]").val("");
+		});
+		$(".photo-delete5").click(function(){
+			$("input[name=f5]").val("");
+		});
 		//상세 설명 1000자 이내 작성
 		$(".etc").on("input", function(){
             $("#etc-number").text($(this).val().length);
@@ -111,12 +121,12 @@ $(function(){
 					$('html, body').animate({scrollTop : $('body').offset().top}, 300);
  					return;
  				}else{
- 					if($("input[name=f1]").val().length == 0 || $("input[name=f2]").val().length == 0){
+ 					if($(".f1").val().length == 0 || $(".f2").val().length == 0 || $(".f3").val().length == 0 || $(".f4").val().length == 0 || $(".f5").val().length == 0){
  						alert("사진을 추가해주세요")
  						$('html, body').animate({scrollTop : $('table').offset().top}, 300);
  	 					return;
  					}else{
-	 						this.submit(); 					 					 					 						
+ 						this.submit(); 					 					 					 						
  					}
  				}
  			}
@@ -194,15 +204,36 @@ $(function(){
 			<tr>
 				<th width="20%">대표사진</th>
 				<td colspan="3" width="80%">
-					<input type="file" name="f1" accept=".jpg, .png"> 
+					<input type="file" class="f1" name="f1" accept=".jpg, .png"> 
 					<input class="inline-input photo-delete1" type="button" value="삭제">
 				</td>
 			</tr>
 			<tr>
-				<th width="20%">방사진</th>
+				<th width="20%">방사진1</th>
 				<td colspan="3" width="80%">
-						<input type="file" name="f2" accept=".jpg, .png"> 
+						<input type="file" class="f2" name="f2" accept=".jpg, .png"> 
 						<input class="inline-input photo-delete2" type="button" value="삭제">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%">방사진2</th>
+				<td colspan="3" width="80%">
+						<input type="file" class="f3" name="f3" accept=".jpg, .png"> 
+						<input class="inline-input photo-delete3" type="button" value="삭제">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%">방사진3</th>
+				<td colspan="3" width="80%">
+						<input type="file" class="f4" name="f4" accept=".jpg, .png"> 
+						<input class="inline-input photo-delete4" type="button" value="삭제">
+				</td>
+			</tr>
+			<tr>
+				<th width="20%">방사진4</th>
+				<td colspan="3" width="80%">
+						<input type="file" class="f5" name="f5" accept=".jpg, .png"> 
+						<input class="inline-input photo-delete5" type="button" value="삭제">
 				</td>
 			</tr>
 		</tbody>
