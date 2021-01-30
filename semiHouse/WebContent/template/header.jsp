@@ -124,16 +124,15 @@
 
                             </ul>
                          </li>
+                         <li> 
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
+                        </li>
                         <li class="menu-my">
                             <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
-                            <ul class="menu-second" style="left:380px">
+                            <ul class="menu-second" style="left:510px">
                                 <li><a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a></li>
                                 <li><a class="room-list" href="<%= request.getContextPath()%>/member/room-list.jsp">등록된 매물</a></li>
-
                             </ul>
-                        </li>
-                        <li> 
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>
@@ -148,7 +147,6 @@
                     	</a>
                 	</div>	
                 </div>
-                	
             </div>
             <%}if(isBroker){%>
             <div class="outbox">
@@ -178,19 +176,19 @@
                                 <li><a class="office" href="<%= request.getContextPath() %>/house/insert-office.jsp">오피스텔</a></li>
                             </ul>
                          </li>
+                         <li> 
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
+                        </li>
                         <li class="menu-my">
                             <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
-                            <ul class="menu-second" style="left:380px">
+                            <ul class="menu-second" style="left:510px">
                                 <li><a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a></li>
                                 <li><a class="room-list" href="<%= request.getContextPath()%>/member/broker_room-list.jsp">등록된 매물</a></li>
-
                             </ul>
-                        </li>
-                        <li> 
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
                     </ul>
                 </div>
+                <div class="top_right_wrapper">
                 <div class="login-btn">
                 	<input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
                 </div>
@@ -199,7 +197,8 @@
                         <span style="display: block;">광고 문의</span>
                         <img class="logo2" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
-                </div>		
+                </div>
+                </div>	
             </div>
             <%}if(isAdmin){%>
             <div class="outbox">
@@ -221,18 +220,25 @@
                   	    <li>
                             <a href="<%=request.getContextPath()%>/admin/home.jsp">관리 메뉴</a>
                         </li>
-                        <li class="menu-my">
-                            <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
-                            
                         <li>
                             <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
                         </li>
-                        
+                        <li class="menu-my">
+                            <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
+                        </li>
                     </ul>
                 </div>
+                <div class="top_right_wrapper">
                 <div class="login-btn">
                 	<input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
-                </div>               		
+                </div>
+                <div class="ad">
+                    <a href="https://www.iei.or.kr/main/main.kh">
+                        <span style="display: block;">광고 문의</span>
+                        <img class="logo2" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
+                    </a>
+                </div>
+                </div>	               		
            </div>           
             <%}%> 
         </header>

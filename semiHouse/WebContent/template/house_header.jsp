@@ -118,7 +118,8 @@ aside{
                         </li>
                     </ul>
                 </div>
-                <div class="login-btn">
+               <div class="top_right_wrapper">
+                	<div class="login-btn">
                     <input type="button" value="로그인 및 회원 가입" onClick="location.href='<%=request.getContextPath()%>/member/login.jsp'">
                 </div>
                 <div class="ad">
@@ -126,6 +127,7 @@ aside{
                         <span style="display: block;">광고 문의</span>
                         <img class="logo2" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
+                </div>
                 </div>
             </div>
             </header>
@@ -160,33 +162,35 @@ aside{
                             <a href="<%=request.getContextPath()%>/like/zzim.jsp">찜한 매물</a>
                         </li>
                         <li class="menu-regist">
-                            <a href="<%=request.getContextPath()%>/house/insert.jsp">방 내놓기</a>
+                            <a href="<%=request.getContextPath()%>/house/insert-one.jsp">방 내놓기</a>
                             <ul class="menu-second">
                                 <li><a class="one" href="<%= request.getContextPath() %>/house/insert-one.jsp">원룸</a></li>
                                 <li><a class="villatow" href="<%= request.getContextPath() %>/house/insert-villatwo.jsp">빌라 ｜ 투룸</a></li>
                                 <li><a class="office" href="<%= request.getContextPath() %>/house/insert-office.jsp">오피스텔</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
+                        </li>
                         <li class="menu-my">
                             <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
-                            <ul class="menu-second" style="left:380px">
+                            <ul class="menu-second" style="left:510px">
                                 <li><a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a></li>
                                 <li><a class="room-list" href="<%= request.getContextPath() %>/member/room-list.jsp">등록된 매물</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
-                        </li>
                     </ul>
                 </div>
-                <div class="login-btn">
-                    <input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
-                </div>
-                <div class="ad">
-                    <a href="https://www.iei.or.kr/main/main.kh">
+                <div class="top_right_wrapper">
+                    <div class="login-btn">
+                		<input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
+               		</div>
+                	<div class="ad">
+                    	<a href="https://www.iei.or.kr/main/main.kh">
                         <span style="display: block;">광고 문의</span>
                         <img class="logo2" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
-                    </a>
+                    	</a>
+                	</div>	
                 </div>
             </div>
             </header>
@@ -221,27 +225,28 @@ aside{
                             <a href="<%=request.getContextPath()%>/like/zzim.jsp">찜한 매물</a>
                         </li>
                         <li class="menu-regist">
-                            <a href="<%=request.getContextPath()%>/house/insert.jsp">방 내놓기</a>
+                            <a href="<%=request.getContextPath()%>/house/insert-one.jsp">방 내놓기</a>
                             <ul class="menu-second">
                                 <li><a class="one" href="<%= request.getContextPath() %>/house/insert-one.jsp">원룸</a></li>
                                 <li><a class="villatow" href="<%= request.getContextPath() %>/house/insert-villatwo.jsp">빌라 ｜ 투룸</a></li>
                                 <li><a class="office" href="<%= request.getContextPath() %>/house/insert-office.jsp">오피스텔</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
+                        </li>
                         <li class="menu-my">
                             <a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a>
-                            <ul class="menu-second" style="left:380px">
+                            <ul class="menu-second" style="left:510px">
                                 <li><a href="<%=request.getContextPath()%>/member/my.jsp">내 정보</a></li>
                                 <li><a class="room-list" href="<%= request.getContextPath() %>/member/broker_room-list.jsp">등록된 매물</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="<%=request.getContextPath()%>/board/boardList.jsp">커뮤니티</a>
-                        </li>
                     </ul>
                 </div>
+                <div class="top_right_wrapper">
                 <div class="login-btn">
-                    <input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
+                	<input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
                 </div>
                 <div class="ad">
                     <a href="https://www.iei.or.kr/main/main.kh">
@@ -249,6 +254,7 @@ aside{
                         <img class="logo2" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>
+                </div>	
             </div>
             </header>
             <nav>
@@ -270,6 +276,13 @@ aside{
                 </div>
                 <div class="menu-bar">
                     <ul class="menu">
+                    <li class="menu-find">
+                            <a href="<%=request.getContextPath()%>/house/one.jsp">방 찾기</a>
+                            <ul class="menu-second">
+                                <li><a href="<%=request.getContextPath()%>/house/one.jsp">원룸</a></li>
+                                <li><a href="<%=request.getContextPath()%>/house/villatwo.jsp">빌라 ｜ 투룸</a></li>
+                                <li><a href="<%=request.getContextPath()%>/house/office.jsp">오피스텔</a></li>
+                            </ul>
                         <li>
                             <a href="<%=request.getContextPath()%>/admin/home.jsp">관리 메뉴</a>
                         </li>
@@ -280,6 +293,7 @@ aside{
                         </li>
                     </ul>
                 </div>
+                <div class="top_right_wrapper">
                 <div class="login-btn">
                 	<input type="button" value="로그아웃" onClick="location.href='<%=request.getContextPath()%>/member/logout.do'">
                 </div>
@@ -289,6 +303,7 @@ aside{
                         <img class="logo2" src="<%=request.getContextPath()%>/img/KHLogo.jpg" style="width:150;">
                     </a>
                 </div>
+                </div>	
             </div>
             </header>
             <nav>
