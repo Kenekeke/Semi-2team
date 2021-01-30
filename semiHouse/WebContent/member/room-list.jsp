@@ -25,7 +25,8 @@
 	int house_no_save = 0;
 %>
 
-
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/room-list.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona.woff">
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script>
 	$(function(){	     
@@ -45,27 +46,39 @@
  				$(location).attr("href", $(this).attr("href"));//기존에 가려고 하는 링크로 간다
  			}
 		});
+ 		$("#one-all").change(function(){
+		     var all = $(this).prop("checked");
+            $(".one-check").prop("checked", all);
+            
+		});
+ 		$("#villatwo-all").change(function(){
+		     var all = $(this).prop("checked");
+           $(".villatwo-check").prop("checked", all);
+           
+		});
+ 		$("#office-all").change(function(){
+		     var all = $(this).prop("checked");
+           $(".office-check").prop("checked", all);
+           
+		});
  		
  	});	
 </script>
-
-    <h4>등록 매물 리스트</h4>
+	
+	<div class="main-title">
+    <h2>등록한 방 리스트</h2>
     <p>중개사가 허가할 경우 수정이 불가능 합니다.</p>
-	<div>
-		<table class="table table-border" border="1" style="width: 1000px;">
+	</div>
+	<div class="container">
+		<h3 class="table-title">원룸</h3>
+		<table class="table-com">
 			<thead>
-				<tr>
-					<td class="left" colspan="4">원룸</td>
-					<td class="right" colspan="4">
-						<button>선택 삭제</button>				
-					</td>	
-				</tr>
-				<tr>
-					<th><input type="checkbox"></th>
+				<tr class="table-header">
+					<th><input type="checkbox" id="one-all"></th>
 					<th width="10%">등록 번호</th>
-					<th colspan="2" width="45%">주소</th>
-					<th width="15%">등록일</th>
-					<th width="15%">등록상태</th>
+					<th colspan="2" width="48%">주소</th>
+					<th width="14%">등록일</th>
+					<th width="14%">등록상태</th>
 					<th width="15%" colspan="2"></th>
 				</tr>
 			</thead>
@@ -77,7 +90,7 @@
 						house_no_save = oneVo.getHouse_no();
 				%>
 					<tr>
-						<td><input type="checkbox"></td>
+						<td><input type="checkbox" class="one-check"></td>
 						<td class="house_no"><%=oneVo.getHouse_no() %></td>
 						<td width="15%"><img src="../img/<%=oneVo.getSave_name()%>" alt="대표사진"></td>
 						<td class="left"><a href=""><%=oneVo.getAddress()%> / <%=oneVo.getAddress2() %></a></td>
@@ -115,20 +128,15 @@
 		</table>
 		<br>
 		<br>
-		<table class="table table-border" border="1" style="width: 1000px;">
+		<h3 class="table-title">빌라/투룸</h3>
+		<table class="table-com">
 			<thead>
-				<tr>
-					<td class="left" colspan="4">빌라/투룸</td>
-					<td class="right" colspan="4">
-						<button>선택 삭제</button>				
-					</td>
-				</tr>
-				<tr>
-					<th><input type="checkbox"></th>
+				<tr class="table-header">
+					<th><input type="checkbox" id="villatwo-all"></th>				
 					<th width="10%">등록 번호</th>
-					<th colspan="2" width="45%">주소</th>
-					<th width="15%">등록일</th>
-					<th width="15%">등록상태</th>
+					<th colspan="2" width="48%">주소</th>
+					<th width="14%">등록일</th>
+					<th width="14%">등록상태</th>
 					<th width="15%" colspan="2"></th>
 				</tr>
 			</thead>
@@ -140,7 +148,7 @@
 						house_no_save = villatwoVo.getHouse_no();
 				%>
 					<tr>
-						<td><input type="checkbox"></td>
+						<td><input type="checkbox" class="villatwo-check"></td>
 						<td class="house_no"><%=villatwoVo.getHouse_no() %></td>
 						<td width="15%"><img src="../img/<%=villatwoVo.getSave_name()%>" alt="대표사진"></td>
 						<td class="left"><a href=""><%=villatwoVo.getAddress()%> / <%=villatwoVo.getAddress2() %></a></td>
@@ -177,20 +185,15 @@
 		</table>
 		<br>
 		<br>
-		<table class="table table-border" border="1" style="width: 1000px;">
+		<h3 class="table-title">오피스텔</h3>
+		<table class="table-com">
 			<thead>
-				<tr>
-					<td class="left" colspan="4">오피스텔</td>
-					<td class="right" colspan="4">
-						<button>선택 삭제</button>				
-					</td>
-				</tr>
-				<tr>
-					<th><input type="checkbox"></th>
+				<tr class="table-header">
+					<th><input type="checkbox" id="office-all"></th>				
 					<th width="10%">등록 번호</th>
-					<th colspan="2" width="45%">주소</th>
-					<th width="15%">등록일</th>
-					<th width="15%">등록상태</th>
+					<th colspan="2" width="48%">주소</th>
+					<th width="14%">등록일</th>
+					<th width="14%">등록상태</th>
 					<th width="15%" colspan="2"></th>
 				</tr>
 			</thead>
@@ -202,7 +205,7 @@
 						house_no_save = officeVo.getHouse_no();
 				%>
 					<tr>
-						<td><input type="checkbox"></td>
+						<td><input type="checkbox" class="office-check"></td>
 						<td class="house_no"><%=officeVo.getHouse_no() %></td>
 						<td width="15%"><img src="../img/<%=officeVo.getSave_name()%>" alt="대표사진"></td>
 						<td class="left"><a href=""><%=officeVo.getAddress()%> / <%=officeVo.getAddress2() %></a></td>
@@ -238,9 +241,6 @@
 			</tbody>
 		</table>
 	</div>    
-    
-
-
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
     

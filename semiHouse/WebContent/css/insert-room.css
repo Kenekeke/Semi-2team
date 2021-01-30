@@ -74,6 +74,7 @@
 	}
 	section input[type=button]:hover, input[type=file]:hover, .submit-btn:hover {
 		background-color: #7b9acc;
+		border-color:#7b9ac;
 		color: white;
 		cursor: pointer;
 	}

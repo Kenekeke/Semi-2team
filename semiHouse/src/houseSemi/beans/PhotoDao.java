@@ -85,4 +85,23 @@ public class PhotoDao {
 		con.close();
 		return photoList;
 	}
+	public PhotoDto find(int house_no)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "select * from photo where house_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, house_no);
+		
+		ResultSet rs = ps.executeQuery();
+		PhotoDto dto;
+		if(rs.next()) {
+			dto = new PhotoDto();
+			dto.setHouse_no(rs.getInt("house_no"));
+			dto.setPhoto_no(rs.getInt("photo_no"));
+			dto.setSave_name(rs.getString("save_name"));
+		}else{
+			dto = null;
+		}
+		con.close();
+		return dto;
+	}
 }
