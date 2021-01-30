@@ -349,6 +349,7 @@
    	       				        	else{
    	       				        		$(".detail-broker-landline").text("");
    	       				        		$(".detail-broker-phone").text("핸드폰번호 : "+resp[0].member_phone);
+   	       				        		$(".call-broker-landline").text("");
    	       				        		$(".call-broker-phone").text(resp[0].member_phone);
    	       				        	}
    	       				        	$(".detail-broker-email").text("이메일 : "+resp[0].member_email);

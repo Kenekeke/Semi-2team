@@ -6,7 +6,7 @@
 <div class="all_wrapper">
 <form action="login.do" method="post">
 <div class="login_wrapper">
-	<div style="padding: 30px">	
+	<div style="padding: 30px;margin-left: 122px;font-size: 23px;">	
 		<label class="login_gubun"> 
 			<input type="radio" name="flag" value="m" checked="checked">
 			일반회원
