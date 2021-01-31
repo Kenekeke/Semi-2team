@@ -722,8 +722,7 @@
 		<div class="callzzimSpace"></div>
 		<div class="callzzimSpace callzzim">
 			<div class="callSpace">
-				<img alt="전화이미지" src="../img/call.png" style="width: 30px;">
-				<div>전화하기</div>
+				<div><span style="font-size:25px;">☏  </span>전화하기</div>
 			</div>
 			<div class="zzimSpace">
 				<img alt="찜이미지" src="../img/zzim.png" style="width: 30px;">

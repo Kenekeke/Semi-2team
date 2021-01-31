@@ -51,7 +51,7 @@ public class VillatwoDao {
 	}
 	public VillatwoDto my_villatwo(int house_no, int member_no) throws Exception {
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql = "select * from villa where house_no =? and member_no=?";
+		String sql = "select * from villatwo where house_no =? and member_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, house_no);
 		ps.setInt(2, member_no);
