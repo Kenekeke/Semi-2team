@@ -14,6 +14,7 @@ h1{
 	text-align:center;
 	
 }
+
 .table {
 	font-size:9pt;
 	text-align: center;
@@ -66,7 +67,7 @@ td{
 	width:250px;
 	height:20px;
 }
-#member_email,#broker_name,#broker_address,#broker_address2{
+#broker_name,#broker_address,#broker_address2{
 	width:350px;
 	height:20px;
 }
@@ -74,10 +75,14 @@ td{
 	width: 350px;
 	height : 20px;
 }
-	
-
-
-#member_phone{
-	width:70px;
+#member_email{
+	width: 250px;
+	margin-left:16px;
 	height:20px;
+}
+	
+#member_phone{
+	width: 250px;
+    height: 20px;
+    margin-left: 16px;
 }

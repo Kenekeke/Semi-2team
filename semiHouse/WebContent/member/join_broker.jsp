@@ -4,7 +4,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <title>중개사 회원가입 추가 정보 입력</title>
-<link rel="stylesheet" type="text/css" href="../css/join.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/join.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 function idCheck(){
@@ -75,7 +75,7 @@ function nickCheck(){
 </head>
 <body>
 	<div id="wrap" style="width:950px; height:600px; ">
-		<form class="formCheck" action = "join_member.do" method="post">
+		<form class="formCheck" action = "join_broker.do" method="post">
 			<h1>회원 가입</h1>
 			<table class = "join_table">
 				<tbody>
@@ -121,9 +121,8 @@ function nickCheck(){
 					<tr>
 						<div class="join_row">
 							<th><label for="member_phone">휴대 전화 : </label></th>
-								<td><input type="text" id="member_phone" name="member_phone" required>-
-								<input type="text" id="member_phone" name="member_phone" required>-
-								<input type="text" id="member_phone" name="member_phone" required></td>
+								<td><input class="phone_bt" type="text" id="member_phone" name="member_phone" required placeholder="XXX-XXXX-XXXX">
+								</td>
 						</div>
 					</tr>
 					<tr>
@@ -150,6 +149,7 @@ function nickCheck(){
 							<td><input type="text" id="broker_landline" name="broker_laneline" required class="input" placeholder="공인중개사 전화번호가 없을시 휴대폰번호를 다시 입력해주세요."></td>
 						</div>
 					</tr>
+					<input type="hidden" name="member_auth" value="broker">
 				</tbody>
 				</table>
 					<div class="join_row">
