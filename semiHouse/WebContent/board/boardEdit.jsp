@@ -27,13 +27,13 @@
 <body>
 	<div class="board-outbox">
 		<div class="left">
-			<h1 class-"nanumsquare">커뮤니티</h1>
+			<h1 class="nanumsquare">커뮤니티</h1>
 			<hr>
 		</div>
 		<form action="boardEdit.do" method="post">
 			<input type="hidden" name="board_no" value=<%=board_no%>>
 			<div class="boardTitle nanumsquare">
-				<div class="board_title board_title_in">제목</div><input type="text" name="board_title" class="boardinput" value=<%=boardDto.getBoard_title()%> required>
+				<div class="board_title board_title_in">제목</div><input type="text" name="board_title" class="boardinput" value="<%=boardDto.getBoard_title()%>" required>
 			</div>
 			<div class="boardHeader nanumsquare">
 				<div class="board_header">구분</div>
