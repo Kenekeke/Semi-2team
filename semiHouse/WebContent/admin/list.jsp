@@ -104,8 +104,7 @@
 					<td><%=dto.getMember_nick()%></td>
 					<%if(dto.is("member"))%><td>일반회원</td>
 				 	<%if(dto.is("broker"))%><td>중개인</td>
-				 	<%if(dto.is("admin"))%><td>관리자</td> 
-
+				 	<%if(dto.is("admin"))%><td>관리자</td>
 				</tr>
 				<%} %>
 			</tbody>

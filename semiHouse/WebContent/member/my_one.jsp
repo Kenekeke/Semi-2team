@@ -11,8 +11,9 @@
 		Lng = Double.parseDouble(request.getParameter("Lng"));
 	}
 	int house_no=Integer.parseInt(request.getParameter("house_no"));
+	int member_no=(int)session.getAttribute("check");
 	OneDao oneDao = new OneDao();
-	OneDto oneDto = oneDao.find(house_no);
+	OneDto oneDto = oneDao.my_one(house_no,member_no);
 %>
 
 <jsp:include page="/template/house_header.jsp"></jsp:include>
