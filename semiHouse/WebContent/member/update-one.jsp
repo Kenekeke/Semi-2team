@@ -179,7 +179,7 @@ $(function(){
 					<th width="20%">주소</th>
 					<td colspan="3" width="80%">
 						<span>
-							<input class="inline-input address" type="text" name="address" value="<%=oneDto.getAddress() %>" required style="width: 350px;">
+							<input class="inline-input address" type="text" name="address" value="<%=oneDto.getAddress() %>" required style="width: 340px;">
 							<input class="mapAddress" type="text" style="display: none;">
 						</span>
 						<span>
