@@ -1,14 +1,6 @@
 <%@page import="java.util.List"%>
-<%@page import="houseSemi.beans.OfficeDto"%>
-<%@page import="houseSemi.beans.OfficeDao"%>
-<%@page import="houseSemi.beans.VillatwoDto"%>
-<%@page import="houseSemi.beans.VillatwoDao"%>
-<%@page import="houseSemi.beans.OneDto"%>
-<%@page import="houseSemi.beans.PhotoDao"%>
-<%@page import="houseSemi.beans.PhotoDto"%>
-<%@page import="houseSemi.beans.OneDao"%>
-<%@page import="houseSemi.beans.HouseDto"%>
-<%@page import="houseSemi.beans.HouseDao"%>
+<%@page import="houseSemi.beans.*"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -32,8 +24,11 @@
 	PhotoDao photoDao = new PhotoDao();
 	List<PhotoDto> photoList = photoDao.selectThis(house_no);
 %>
-
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <style>
+	.nanumsquare {
+	    font-family: 'NanumSquare', sans-serif !important;
+	}
 	li{list-style: none;}
 	.main-table_wrapper{
 		width: 1000px;
@@ -164,21 +159,40 @@ $(function(){
 	  currentIdx = num;
 	}
 	nextBtn.addEventListener('click', function(){
+		
 		if(currentIdx < slideCount - 3){
 	  	moveSlide(currentIdx + 1);
 	  	console.log(currentIdx); 
+		}else if(currentIdx == 3){
+			currentIdx++;
+			$(".photo-place").children().hide();
+			$(".target").eq(currentIdx).show();	
+		  	console.log(currentIdx); 
 		}else{
 		  	moveSlide(0);
 		}
+		$(".photo-place").children().hide();
+		$(".target").eq(currentIdx).show();
 		
 	});
 	prevBtn.addEventListener('click', function(){
 		if(currentIdx > 0){
 	  		moveSlide(currentIdx - 1);
 	  		console.log(currentIdx); 
-		}else{
-		  	moveSlide(slideCount - 3);
+		}else if (currentIdx == 0){
+			currentIdx = 4;
+			$(".photo-place").children().hide();
+			$(".target").eq(currentIdx).show();	
+		  	console.log(currentIdx);
+		  	moveSlide(slideCount - 2);				
+		  	
 		}
+		else{
+		  	moveSlide(slideCount - 3);				
+		}
+	$(".photo-place").children().hide();
+	$(".target").eq(currentIdx).show();
+		
 	});
     $(".img-btn").click(function(){
         //this: 선택한 썸네일 이미지
