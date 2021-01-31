@@ -34,7 +34,7 @@ public class HouseInsertServlet extends HttpServlet{
 		try {
 			req.setCharacterEncoding("UTF-8");
 			// 수신
-			String path = "C:\\Users\\Lee\\git\\Semi-2team\\semiHouse\\WebContent\\img";
+			String path = "D:\\upload";
 			int max = 10 * 1024 * 1024; //10MB
 			String encoding = "UTF-8";  //encoding
 			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();//같은 파일 업로드시 덮어쓰기 방지
@@ -185,7 +185,7 @@ public class HouseInsertServlet extends HttpServlet{
 			resp.sendRedirect("insert_success.jsp");
 		}catch (Exception e) {
 			e.printStackTrace();
-			resp.sendError(500);
+			resp.sendRedirect("insert_fail.jsp");
 		}
 		
 	
