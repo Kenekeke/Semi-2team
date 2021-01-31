@@ -170,6 +170,7 @@ $(function(){
 		}else{
 		  	moveSlide(0);
 		}
+		
 	});
 	prevBtn.addEventListener('click', function(){
 		if(currentIdx > 0){
@@ -187,12 +188,6 @@ $(function(){
         $("#"+targetId).show();
     });
     $("#img-1").click();
-	$(".prev").onclick(function(){
-		
-	});
-	$(".next").onclick(function(){
-		
-	});
 });
 </script>
 <%if(houseDto.getHouse_type().equals("one")) {%>
