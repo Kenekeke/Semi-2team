@@ -41,30 +41,6 @@ public class PhotoDao {
 		return count >0;
 	}
 	
-	//단일 조회
-	public PhotoDto find(int house_no, int photo_no)throws Exception{
-		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql = "select * from photo where house_no=?";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, house_no);
-		
-		ResultSet rs = ps.executeQuery();
-		PhotoDto dto;
-		if(rs.next()) {
-			dto = new PhotoDto();
-			dto.setHouse_no(rs.getInt("house_no"));
-			dto.setUpload_name(rs.getString("upload_name"));
-			dto.setSave_name(rs.getString("save_name"));
-			dto.setPhoto_size(rs.getLong("photo_size"));
-			dto.setPhoto_type(rs.getString("photo_type"));
-			
-		}else {
-			dto = null;
-		}
-		con.close();
-		return dto;
-		
-	}
 	
 	public List<PhotoDto> select(int house_no)throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
@@ -85,9 +61,26 @@ public class PhotoDao {
 		con.close();
 		return photoList;
 	}
+	public List<PhotoDto> selectThis(int house_no)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "select * from photo where house_no=? order by photo_no asc";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, house_no);
+		
+		ResultSet rs = ps.executeQuery();
+		List<PhotoDto> photoList = new ArrayList<PhotoDto>();
+		while(rs.next()) {
+			PhotoDto photoDto = new PhotoDto();
+			photoDto.setSave_name(rs.getString("save_name"));
+			photoList.add(photoDto);
+		}
+		con.close();
+		return photoList;
+	}
+	//단일 조회
 	public PhotoDto find(int house_no)throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql = "select * from photo where house_no=?";
+		String sql = "select * from photo where house_no=? photo_no asc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, house_no);
 		

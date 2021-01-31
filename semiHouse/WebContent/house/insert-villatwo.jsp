@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/insert-room.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona.woff">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff">
+<style>
+
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
 <script>
@@ -16,9 +20,9 @@ $(function(){
                 alert("주소를 입력하세요");
                 return;
             }else{
-				$("#map").show();
+				$("#insert-map").show();
 				//지도 생성
-				var mapContainer = document.querySelector("#map"),
+				var mapContainer = document.querySelector("#insert-map"),
 	            mapOption = {
 	                center: new kakao.maps.LatLng(33.450701, 126.570667),
 	                level: 3
@@ -133,6 +137,7 @@ $(function(){
 		});
 	});
 </script>
+
 <!-- header.jsp를 상단에 불러와 주세요 -->
 <jsp:include page="/template/header.jsp"></jsp:include>
 
@@ -177,7 +182,7 @@ $(function(){
 							&nbsp;&nbsp;편하게 주소를 검색할 수 있습니다. 예) 계산동 하이베라스
 							</p>						
 						</div>
-						<div id="map" style="width:100%;height:200px; display: none;"></div>
+						<div id="insert-map" style="width:100%;height:200px; display: none;"></div>
 					</td>
 				</tr>
 				<tr>
@@ -363,14 +368,14 @@ $(function(){
 			<tr>
 				<th width="20%">제목 </th>
 				<td colspan="3" width="80%">
-					<input class="inline-input" type="text" name="title" style="width: 100%" placeholder="ex): 넓은 오픈형 원룸 전세  전세대출가능">					
+					<input class="inline-input" type="text" name="title" style="width: 100%" required placeholder="ex): 넓은 오픈형 원룸 전세  전세대출가능">					
 				</td>
 			</tr>
 			<tr>
 				<th width="20%">상세 설명 </th>
 				<td colspan="3" width="80%">
             		<div class="right">
-					<textarea class="etc" rows="15" style="width: 100%" name="etc" 
+					<textarea class="etc" rows="15" style="width: 100%" name="etc"
 placeholder="해당 방에 대한 특징과 소개를 최소 50자 이상 입력해야 합니다.
 방의 위치와 교통, 주변 편의시설, 방의 특징과 장점, 보안시설, 옵션, 주차, 
 전체적인 방의 느낌 등을 작성 해주세요.

@@ -20,7 +20,7 @@
 </script>
 	<div class="board-outbox">
 		<div class="left">
-			<h3>커뮤니티</h3>
+			<h1 class="nanumsquare">커뮤니티</h1>
 			<hr>
 		</div>
 		<form action="boardWrite.do" method="post">
