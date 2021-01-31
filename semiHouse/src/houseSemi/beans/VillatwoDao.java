@@ -13,7 +13,7 @@ public class VillatwoDao {
 	public static final String PASSWORD="house";
 	public VillatwoDto find(int house_no) throws Exception {
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql = "select * from villa where house_no =?";
+		String sql = "select * from villatwo where house_no =?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, house_no);
 		ResultSet rs= ps.executeQuery();

@@ -159,7 +159,7 @@ public class HouseUpdateServlet extends HttpServlet{
 				resp.sendRedirect("update_success.jsp");
 			}catch (Exception e) {
 				e.printStackTrace();
-				resp.sendError(500);
+				resp.sendRedirect("update_fail.jsp");
 		}
 	}
 	
