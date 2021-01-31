@@ -4,13 +4,13 @@
 <%@page import="java.util.List"%>
 
 <%
-	int start = 1;
 	int end = 6;
+	int start = 1;
 	BoardDao boardDao = new BoardDao();
 	List<BoardDto> boardlist = boardDao.indexselect(start, end); 
 %>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=services"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
 
