@@ -49,6 +49,45 @@ public class VillatwoDao {
 		con.close();
 		return dto;
 	}
+	public VillatwoDto my_villatwo(int house_no, int member_no) throws Exception {
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "select * from villa where house_no =? and member_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, house_no);
+		ps.setInt(2, member_no);
+		ResultSet rs= ps.executeQuery();
+		
+		VillatwoDto dto;
+		if(rs.next()) {
+			dto = new VillatwoDto();
+			
+			dto.setBroker_agree(rs.getString("broker_agree"));
+			dto.setAnimal(rs.getString("animal"));
+			dto.setBroker_no(rs.getInt("broker_no"));
+			dto.setElevator(rs.getString("elevator"));
+			dto.setEtc(rs.getString("etc"));
+			dto.setFloor(rs.getString("floor"));
+			dto.setHouse_no(rs.getInt("house_no"));
+			dto.setLoan(rs.getString("loan"));
+			dto.setMember_no(rs.getInt("member_no"));
+			dto.setMove_in(rs.getString("move_in"));
+			dto.setParking(rs.getString("parking"));
+			dto.setAddress(rs.getString("address"));
+			dto.setAddress2(rs.getString("address2"));
+			dto.setArea(rs.getString("area"));
+			dto.setDeposit(rs.getInt("deposit"));
+			dto.setMonthly(rs.getInt("monthly"));
+			dto.setTitle(rs.getString("title"));
+			dto.setBill(rs.getInt("bill"));
+			dto.setDirection(rs.getString("direction"));
+			dto.setVillatwo_no(rs.getInt("villatwo_no"));
+		}
+		else {
+			dto=null;
+		}
+		con.close();
+		return dto;
+	}
 	
 	public void insert(VillatwoDto villatwoDto) throws Exception {
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);

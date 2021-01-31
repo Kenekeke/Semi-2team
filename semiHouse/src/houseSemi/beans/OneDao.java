@@ -120,6 +120,41 @@ public class OneDao {
 		return dto;
 		
 	}
+	public OneDto my_one(int house_no, int member_no)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "select * from one where house_no=? and member_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, house_no);
+		ps.setInt(2, member_no);
+		
+		ResultSet rs = ps.executeQuery();
+		OneDto dto;
+		if(rs.next()) {
+			dto = new OneDto();
+			dto.setHouse_no(rs.getInt("house_no"));
+			dto.setDeposit(rs.getInt("deposit"));
+			dto.setMonthly(rs.getInt("monthly"));
+			dto.setAddress(rs.getString("address"));
+			dto.setAddress2(rs.getString("address2"));
+			dto.setFloor(rs.getString("floor"));
+			dto.setLoan(rs.getString("loan"));
+			dto.setAnimal(rs.getString("animal"));
+			dto.setElevator(rs.getString("elevator"));
+			dto.setParking(rs.getString("parking"));
+			dto.setMove_in(rs.getString("move_in"));
+			dto.setEtc(rs.getString("etc"));
+			dto.setArea(rs.getString("area"));
+			dto.setBill(rs.getInt("bill"));
+			dto.setDirection(rs.getString("direction"));
+			dto.setTitle(rs.getString("title"));
+			
+		}else {
+			dto = null;
+		}
+		con.close();
+		return dto;
+		
+	}
 		public List<OneDto> onSelect() throws Exception{
 			Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 			String sql = "select * from one where broker_agree='1'";

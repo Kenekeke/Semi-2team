@@ -178,6 +178,9 @@ input[name=board_header_check]+label{
 	height:30px;
 	margin: 0 15px 0 0;
 }
+board_title_in{
+	padding: 5px 0 0 0;
+}
 .type_radio{
 	width: 800px;
 	height:30px;
