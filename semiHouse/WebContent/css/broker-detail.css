@@ -92,19 +92,7 @@
 		margin: 0 auto;
 		pading:0;
 	}
-	.float-left{
-		float: left;
-		width: 50%;
-	}
-	.float-right{
-		float: right;
-		width: 50%;
-	}
-	.float-box::after {
-            content: "";
-            display: block;
-            clear: both;
-    }
+	
     .address{
     	width: 1000px;
     	margin: 0 auto;

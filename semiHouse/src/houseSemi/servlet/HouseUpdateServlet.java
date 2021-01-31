@@ -33,7 +33,7 @@ public class HouseUpdateServlet extends HttpServlet{
 		try {
 			req.setCharacterEncoding("UTF-8");
 			//수신
-			String path = "C:\\Users\\mikyo\\git\\Semi-2team\\Semi-2team\\semiHouse\\WebContent\\img"; //저장 장소
+			String path = "C:\\Users\\mikyo\\Desktop\\upload"; //저장 장소
 			int max = 10 * 1024 * 1024; //10MB
 			String encoding = "UTF-8";  //encoding
 			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();//같은 파일 업로드시 덮어쓰기 방지

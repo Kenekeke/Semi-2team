@@ -34,7 +34,7 @@ public class HouseInsertServlet extends HttpServlet{
 		try {
 			req.setCharacterEncoding("UTF-8");
 			// 수신
-			String path = "D:\\upload";
+			String path = "C:\\Users\\mikyo\\Desktop\\upload";
 			int max = 10 * 1024 * 1024; //10MB
 			String encoding = "UTF-8";  //encoding
 			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();//같은 파일 업로드시 덮어쓰기 방지
