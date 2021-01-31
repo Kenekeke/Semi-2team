@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="houseSemi.beans.OfficeDto"%>
 <%@page import="houseSemi.beans.OfficeDao"%>
 <%@page import="houseSemi.beans.VillatwoDto"%>
@@ -29,8 +30,9 @@
 	
 	
 	PhotoDao photoDao = new PhotoDao();
-	PhotoDto photoDto = photoDao.find(house_no);
+	List<PhotoDto> photoList = photoDao.selectThis(house_no);
 %>
+
 <style>
 	li{list-style: none;}
 	.main-table_wrapper{
@@ -97,6 +99,7 @@
 	}
 	.slides li:not(:last-child){
 	  float: left;
+	  margin-bottom: 10px;
 	  margin-right:30px;
 	}
 	.controls{
@@ -108,6 +111,9 @@
 	  color: #fff;
 	  padding: 5px 10px;
 	  margin: 0 10px;
+	}
+	.controls span:hover{
+		cursor: pointer;
 	}
 	.room-text{
 		width: 1000px;
@@ -141,6 +147,7 @@
 </style>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script>
+$(function(){
 	var slides = document.querySelector('.slides'),
 		slide = document.querySelectorAll('.slides li'),
 		currentIdx = 0,
@@ -172,6 +179,21 @@
 		  	moveSlide(slideCount - 3);
 		}
 	});
+    $(".img-btn").click(function(){
+        //this: 선택한 썸네일 이미지
+        var id = $(this).attr("id");
+        var targetId = id + "-target";
+        $(".target").hide();
+        $("#"+targetId).show();
+    });
+    $("#img-1").click();
+	$(".prev").onclick(function(){
+		
+	});
+	$(".next").onclick(function(){
+		
+	});
+});
 </script>
 <%if(houseDto.getHouse_type().equals("one")) {%>
 <div class="container">
@@ -241,7 +263,7 @@
 			<li>
 				<span>· 입주가능일</span>
 				<p>
-					<%if(oneDto.getMove_in().equals("")){ %>
+					<%if(oneDto.getMove_in() == null){ %>
 					협의 가능
 					<%}else{ %>
 					<%=oneDto.getMove_in() %>
@@ -289,11 +311,14 @@
 	<br>
 	<div class="slide_wrapper">
  		<ul class="slides">
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
+ 			<%for (PhotoDto photoDto : photoList){ %>
+	    	<li><img id="img-1" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="대표사진" width="80px;" height="80px;"></li>
+	    	<li><img id="img-2" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="방사진1" width="80px;" height="80px;" ></li>
+	    	<li><img id="img-3" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="방사진2" width="80px;" height="80px;"></li>
+	    	<li><img id="img-4" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="방사진3" width="80px;" height="80px;"></li>
+	    	<li><img id="img-5" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="방사진4" width="80px;" height="80px;"></li>
+    		<%break;}%>
+	    	<li><img src="http://placehold.it/80x80" alt="더미사진"></li>
 	  </ul>
 	</div>
 	  <p class="controls">
@@ -302,7 +327,13 @@
 	  </p>
 	<br>
 	<div class="photo-place center">
-		<img src="http://placehold.it/300x300" alt="">
+		<%for (PhotoDto photoDto : photoList){ %>
+		<img id="img-1-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="대표사진" width="300px;" height="300px;">
+		<img id="img-2-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="방사진1" width="300px;" height="300px;">
+		<img id="img-3-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="방사진2" width="300px;" height="300px;">
+		<img id="img-4-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="방사진3" width="300px;" height="300px;">
+		<img id="img-5-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="방사진4" width="300px;" height="300px;">
+		<%break;} %>
 		<br>
 		<hr>
 	</div>
@@ -318,307 +349,9 @@
 				<%=oneDto.getEtc() %>
 			</p>
 		</div>
+		<br><hr><br>
 	</div>
 </div>
-<br>
-
-<%}else if(houseDto.getHouse_type().equals("villatwo")) { %>
-<div class="container">
-	<div class="main-table_wrapper">
-		<table class="main-table">
-			<tbody>
-			<tr>
-				<td width="27%">
-					<span>원룸</span><br>
-					<h2>보증금 <%=oneDto.getDeposit()/10000 %></h2><span>만원</span>
-				</td>				
-				<td width="20%">
-					<span>적용면적</span><br>
-					<h2><%=oneDto.getArea() %>㎡</h2>
-				</td>				
-				<td>
-					<span>한달 예상 주거비</span><br>
-					<h2 style="color: blue;"><%=(oneDto.getMonthly()+oneDto.getBill())/10000 %>만원+ α</h2>
-				</td>				
-			</tr>
-			</tbody>
-		</table>
-	</div>
-	<br>
-	<div class="address">
-		<p>주소: <%=oneDto.getAddress() %> / <%=oneDto.getAddress2() %></p>
-	</div>
-	<br>
-	<div class="room-list" style="width: 1000px;">
-		<ul class="list">
-			<li>
-				<span>· 보증금(전세)</span>
-				<p><%=oneDto.getDeposit()/10000 %>만원</p>
-			</li>
-			<li>
-				<span>· 월세</span>
-				<p><%=oneDto.getMonthly()/10000 %>만원</p>
-			</li>		
-			<li>
-				<span>· 관리비</span>
-				<p><%=oneDto.getBill()/10000 %>만원</p>
-			</li>
-			<hr>
-			<li>
-				<span>· 해당층/건물층</span>
-				<p><%=oneDto.getFloor() %>/5층</p>
-			</li>
-			<li>
-				<span>· 적용/공급면적</span>
-				<p><%=oneDto.getArea() %>㎡</p>
-			</li>
-			<li>
-				<span>· 방향</span>
-				<p><%=oneDto.getDirection() %></p>
-			</li>
-			<hr>
-			<li>
-				<span>· 엘리베이터</span>
-				<p>
-					<%if(oneDto.getElevator().equals("0")){ %>
-					없음
-					<%}else{ %>
-					있음
-					<%} %>
-				</p>
-			</li>
-			<li>
-				<span>· 입주가능일</span>
-				<p>
-					<%if(oneDto.getMove_in().equals("")){ %>
-					협의 가능
-					<%}else{ %>
-					<%=oneDto.getMove_in() %>
-					<%} %>
-				</p>
-			</li>
-			<li>
-				<span>· 반려동물</span>
-				<p>
-					<%if(oneDto.getAnimal().equals("0")){ %>
-					불가능
-					<%}else{ %>
-					가능
-					<%} %>
-				</p>
-			</li>
-			<hr>
-			<li>
-				<span>· 건물 주차수</span>
-				<p>
-					<%if(oneDto.getParking().equals("0")){ %>
-					없음
-					<%}else{ %>
-					가능
-					<%} %>
-				</p>
-			<li>
-				<span>· 전세자금대출</span>
-				<p>
-					<%if(oneDto.getLoan().equals("0")){ %>
-					불가능
-					<%}else{ %>
-					가능
-					<%} %>
-				</p>
-			</li>
-			<li>
-				<span>· 최초 등록일</span>
-				<p><%=houseDto.getInsert_date() %></p>
-			</li>
-		</ul>
-		<br><br><br><br>
-		<hr>
-	</div>
-	<br>
-	<div class="slide_wrapper">
- 		<ul class="slides">
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	  </ul>
-	</div>
-	  <p class="controls">
-	    <span class="prev" >prev</span>
-	    <span class="next">next</span>
-	  </p>
-	<br>
-	<div class="photo-place center">
-		<img src="http://placehold.it/300x300" alt="">
-		<br>
-		<hr>
-	</div>
-	<br>
-	<div class="room-text float-box">
-		<div class="float-left">
-			<p>
-				<%=oneDto.getTitle() %>
-			</p>
-		</div>
-		<div class="float-right">
-			<p>
-				<%=oneDto.getEtc() %>
-			</p>
-		</div>
-	</div>
-</div>
-<br>
-<%}else{ %>
-<div class="container">
-	<div class="main-table_wrapper">
-		<table class="main-table">
-			<tbody>
-			<tr>
-				<td width="27%">
-					<span>오피스텔</span><br>
-					<h2>보증금(전세) <%=oneDto.getDeposit()/10000 %></h2><span>만원</span>
-				</td>				
-				<td width="20%">
-					<span>적용면적</span><br>
-					<h2><%=oneDto.getArea() %>㎡</h2>
-				</td>				
-				<td>
-					<span>한달 예상 주거비</span><br>
-					<h2 style="color: blue;"><%=(oneDto.getMonthly()+oneDto.getBill())/10000 %>만원+ α</h2>
-				</td>				
-			</tr>
-			</tbody>
-		</table>
-	</div>
-	<br>
-	<div class="address">
-		<p>주소: <%=oneDto.getAddress() %> / <%=oneDto.getAddress2() %></p>
-	</div>
-	<br>
-	<div class="room-list" style="width: 1000px;">
-		<ul class="list">
-			<li>
-				<span>· 보증금(전세)</span>
-				<p><%=oneDto.getDeposit()/10000 %>만원</p>
-			</li>
-			<li>
-				<span>· 월세</span>
-				<p><%=oneDto.getMonthly()/10000 %>만원</p>
-			</li>		
-			<li>
-				<span>· 관리비</span>
-				<p><%=oneDto.getBill()/10000 %>만원</p>
-			</li>
-			<hr>
-			<li>
-				<span>· 해당층/건물층</span>
-				<p><%=oneDto.getFloor() %>/5층</p>
-			</li>
-			<li>
-				<span>· 적용/공급면적</span>
-				<p><%=oneDto.getArea() %>㎡</p>
-			</li>
-			<li>
-				<span>· 방향</span>
-				<p><%=oneDto.getDirection() %></p>
-			</li>
-			<hr>
-			<li>
-				<span>· 엘리베이터</span>
-				<p>
-					<%if(oneDto.getElevator().equals("0")){ %>
-					없음
-					<%}else{ %>
-					있음
-					<%} %>
-				</p>
-			</li>
-			<li>
-				<span>· 입주가능일</span>
-				<p>
-					<%if(oneDto.getMove_in().equals("")){ %>
-					협의 가능
-					<%}else{ %>
-					<%=oneDto.getMove_in() %>
-					<%} %>
-				</p>
-			</li>
-			<li>
-				<span>· 반려동물</span>
-				<p>
-					<%if(oneDto.getAnimal().equals("0")){ %>
-					불가능
-					<%}else{ %>
-					가능
-					<%} %>
-				</p>
-			</li>
-			<hr>
-			<li>
-				<span>· 건물 주차수</span>
-				<p>
-					<%if(oneDto.getParking().equals("0")){ %>
-					없음
-					<%}else{ %>
-					가능
-					<%} %>
-				</p>
-			<li>
-				<span>· 전세자금대출</span>
-				<p>
-					<%if(oneDto.getLoan().equals("0")){ %>
-					불가능
-					<%}else{ %>
-					가능
-					<%} %>
-				</p>
-			</li>
-			<li>
-				<span>· 최초 등록일</span>
-				<p><%=houseDto.getInsert_date() %></p>
-			</li>
-		</ul>
-		<br><br><br><br>
-		<hr>
-	</div>
-	<br>
-	<div class="slide_wrapper">
- 		<ul class="slides">
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	    	<li><img src="http://placehold.it/80x80" alt=""></li>
-	  </ul>
-	</div>
-	  <p class="controls">
-	    <span class="prev" >prev</span>
-	    <span class="next">next</span>
-	  </p>
-	<br>
-	<div class="photo-place center">
-		<img src="http://placehold.it/300x300" alt="">
-		<br>
-		<hr>
-	</div>
-	<br>
-	<div class="room-text float-box">
-		<div class="float-left">
-			<p>
-				<%=oneDto.getTitle() %>
-			</p>
-		</div>
-		<div class="float-right">
-			<p>
-				<%=oneDto.getEtc() %>
-			</p>
-		</div>
-	</div>
-</div>
-<br>
 <%} %>
-
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

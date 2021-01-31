@@ -10,41 +10,55 @@ import javax.servlet.http.HttpServletResponse;
 
 import houseSemi.beans.*;
 
-@WebServlet(urlPatterns ="/member/join_member.do")
-public class MemberJoinServlet extends HttpServlet{
- @Override
+@WebServlet(urlPatterns ="/member/join_broker.do")
+public class BrokerJoinServlet extends HttpServlet {
+@Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	 try { //->일어날 예외에 대한 대비
-	 	//한글요청
+	try {
+		
+		//한글 요청
 		req.setCharacterEncoding("UTF-8");
+		
+		
 		
 		//MemberDao 내의 getSequence 메소드 호출
 		MemberDto dto = new MemberDto();
 		MemberDao dao = new MemberDao();
+		BrokerDto brokerDto = new BrokerDto();
+		BrokerDao brokerDao = new BrokerDao();
 		int member_no = dao.getSequence();
-		dto.setMember_no(member_no);
+		int broker_no = brokerDao.getSequence();
+		brokerDto.setMember_no(member_no);
+		brokerDto.setBroker_no(broker_no); //시퀀스만들기
 		
+		dto.setMember_no(member_no);
 		dto.setMember_id(req.getParameter("member_id"));
 		dto.setMember_pw(req.getParameter("member_pw"));
 		dto.setMember_nick(req.getParameter("member_nick"));
 		dto.setMember_email(req.getParameter("member_email"));
 		dto.setMember_phone(req.getParameter("member_phone"));
 		dto.setMember_auth(req.getParameter("member_auth"));
+		brokerDto.setBroker_name(req.getParameter("broker_name"));
+		brokerDto.setBroker_address(req.getParameter("broker_address"));
+		brokerDto.setBroker_address2(req.getParameter("broker_address2"));
+		brokerDto.setBroker_landline(req.getParameter("broker_landline"));
 		dao.insert(dto);
-		 
-		 
-	 
-		 //결과
-		 resp.sendRedirect("join_success.jsp");
-		 
+		brokerDao.insert(brokerDto);
 		
-		 
-	 }
-	 //예외처리
-	 catch (Exception e) {
-		e.printStackTrace(); //->에러 출력시
-		resp.sendError(500); //->에러 코드 발동!!
+		
+		
+		
+		//결과
+		resp.sendRedirect("join_success.jsp");
+	
+	
+	
+	
 	}
-	 
+	//예외처리
+	catch (Exception e) {
+		e.printStackTrace();
+		resp.sendError(500);
+	}
 }
 }

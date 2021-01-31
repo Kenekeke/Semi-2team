@@ -32,9 +32,9 @@ $(function(){
                 alert("주소를 입력하세요");
                 return;
             }else{
-				$("#map").show();
+				$("#insert-map").show();
 				//지도 생성
-				var mapContainer = document.querySelector("#map"),
+				var mapContainer = document.querySelector("#insert-map"),
 	            mapOption = {
 	                center: new kakao.maps.LatLng(33.450701, 126.570667),
 	                level: 3
@@ -194,7 +194,7 @@ $(function(){
 							&nbsp;&nbsp;편하게 주소를 검색할 수 있습니다. 예) 계산동 하이베라스
 							</p>						
 						</div>
-						<div id="map" style="width:100%;height:200px; display: none;"></div>
+						<div id="insert-map" style="width:100%;height:200px; display: none;"></div>
 					</td>
 				</tr>
 				<tr>
