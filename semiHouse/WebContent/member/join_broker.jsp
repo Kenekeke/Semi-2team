@@ -10,7 +10,7 @@
 function idCheck(){
     var regex = /^[a-z][a-z0-9]{7,15}$/;
     var idInput = document.querySelector("input[name=member_id]");
-    var idSpan = document.querySelector("input[name=member_id] + span");
+    var idSpan = document.querySelector("#idcheckkk");
 
     if(regex.test(idInput.value)){//정상
         idSpan.textContent = "올바른 아이디입니다.";
@@ -23,7 +23,7 @@ function idCheck(){
 function pwCheck(){
     var regex = /^[A-Za-z0-9!@#$%^&*()\s]{7,15}$/;
     var pwInput = document.querySelector("input[name=member_pw]");
-    var pwSpan = document.querySelector("input[name=member_pw] + span");
+    var pwSpan = document.querySelector("#pwcheckkk");
 
     if(regex.test(pwInput.value)){
         pwSpan.textContent = "올바른 비밀번호 형식입니다.";
@@ -31,7 +31,7 @@ function pwCheck(){
     else{
         pwSpan.textContent = "영문 대/소문자와 숫자로 구성된 8~16자로 작성해주세요.";
     }
-    if(document.getElementById('member_pw').value == document.getElementById('member_pw2').value){
+    if(document.getElementById('member_pw').value == document.getElementById('member_pw2').value && !(pwInput.value=="")){
     	document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
     	document.getElementById('check').style.color='blue';
     }
@@ -44,7 +44,7 @@ function pwCheck(){
 function nickCheck(){
     var regex = /^[가-힣]{1,9}$/;
     var nicknameInput = document.querySelector("input[name=member_nickname]");
-    var nicknameSpan = document.querySelector("input[name=member_nickname] + span");
+    var nicknameSpan = document.querySelector("#nickcheck");
 
     if(regex.test(nicknameInput.value)){
         nicknameSpan.textContent = "올바른 닉네임입니다.";
