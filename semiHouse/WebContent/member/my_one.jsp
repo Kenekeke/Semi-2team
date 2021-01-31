@@ -41,7 +41,6 @@
         	elevator: '<%=oneDto.getElevator()%>',
         	parking: '<%=oneDto.getParking()%>',
         	move_in: '<%=oneDto.getMove_in()%>',
-        	etc: '<%=oneDto.getEtc()%>',
         	area: '<%=oneDto.getArea()%>',
         	broker_agree: '<%=oneDto.getBroker_agree()%>',
         	bill : '<%=oneDto.getBill()%>',

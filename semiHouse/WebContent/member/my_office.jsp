@@ -43,7 +43,6 @@
         	elevator: '<%=officeDto.getElevator()%>',
         	parking: '<%=officeDto.getParking()%>',
         	move_in: '<%=officeDto.getMove_in()%>',
-        	etc: '<%=officeDto.getEtc()%>',
         	area: '<%=officeDto.getArea()%>',
         	broker_agree: '<%=officeDto.getBroker_agree()%>',
         	bill : '<%=officeDto.getBill()%>',

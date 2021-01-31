@@ -43,7 +43,6 @@
         	elevator: '<%=villatwoDto.getElevator()%>',
         	parking: '<%=villatwoDto.getParking()%>',
         	move_in: '<%=villatwoDto.getMove_in()%>',
-        	etc: '<%=villatwoDto.getEtc()%>',
         	area: '<%=villatwoDto.getArea()%>',
         	broker_agree: '<%=villatwoDto.getBroker_agree()%>',
         	bill : '<%=villatwoDto.getBill()%>',
