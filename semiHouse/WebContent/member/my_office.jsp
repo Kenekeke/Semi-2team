@@ -11,8 +11,10 @@
 		Lng = Double.parseDouble(request.getParameter("Lng"));
 	}
 	int house_no=Integer.parseInt(request.getParameter("house_no"));
+	int member_no=(int)session.getAttribute("check");
+
 	OfficeDao officeDao = new OfficeDao();
-	OfficeDto officeDto = officeDao.find(house_no);
+	OfficeDto officeDto = officeDao.my_office(house_no, member_no);
 %>
 
 <jsp:include page="/template/house_header.jsp"></jsp:include>

@@ -11,13 +11,10 @@
 	boolean isAdmin = session.getAttribute("auth").equals("admin");
 
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<jsp:include page="/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="../css/board.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+
 <script>
 	$(function(){
 		$(".cancle_btn").on('click', function(e){
@@ -28,17 +25,17 @@
 </script>
 </head>
 <body>
-	<div class="board-outbox">
+	<div class="board-outbox nanumsquare">
 		<div class="left">
 			<h3>커뮤니티</h3>
 			<hr>
 		</div>
 		<form action="boardEdit.do" method="post">
 			<input type="hidden" name="board_no" value=<%=board_no%>>
-			<div class="boardTitle">
-				<div class="board_title">제목</div><input type="text" name="board_title" class="boardinput" value=<%=boardDto.getBoard_title()%>>
+			<div class="boardTitle nanumsquare">
+				<div class="board_title">제목</div><input type="text" name="board_title" class="boardinput" value=<%=boardDto.getBoard_title()%> required>
 			</div>
-			<div class="boardHeader">
+			<div class="boardHeader nanumsquare">
 				<div class="board_header">구분</div>
 				<div class="type_radio">
 					<%if(isAdmin) {%>
@@ -51,7 +48,7 @@
 				</div>
 			</div>
 			<div>
-				<textarea class="board_content" name="board_content"><%=boardDto.getBoard_content()%></textarea>
+				<textarea class="board_content nanumsquare" name="board_content" required><%=boardDto.getBoard_content()%></textarea>
 			</div>
 			<div class="boardwriteBtn center">
 				<input type="submit" value="등록" class="write_btn"><input class="cancle_btn" type="button" value="취소">
