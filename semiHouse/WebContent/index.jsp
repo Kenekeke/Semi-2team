@@ -10,8 +10,7 @@
 	List<BoardDto> boardlist = boardDao.indexselect(start, end);  
 	
 %>
-<script type="text/javascript"
-    	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=282dcf8fcb607739d9d693500710c861&libraries=services"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {

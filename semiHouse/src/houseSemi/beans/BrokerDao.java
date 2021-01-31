@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import houseSemi.util.JdbcUtil;
+import houseSemi.beans.BrokerDto;
 
 public class BrokerDao {
 	public static final String USERNAME = "house";
@@ -117,6 +118,33 @@ public class BrokerDao {
 		
 		return count > 0;
 	}
-	
+		public int getSequence() throws Exception {
+			Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+			
+			String sql = "Select broker_seq.nextval from dual";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int b_seq = rs.getInt(1);
+			
+			con.close();
+			return b_seq;
+		}
+		
+		public void insert(BrokerDto dto) throws Exception {
+			Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+			
+			String sql = "insert into broker values(?, ?, ?, ?, ?, ?)";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, dto.getBroker_no());
+			ps.setInt(2, dto.getMember_no());
+			ps.setString(3, dto.getBroker_name());
+			ps.setString(4, dto.getBroker_address());
+			ps.setString(5, dto.getBroker_address2());
+			ps.setString(6, dto.getBroker_landline());
+			ps.execute();
+			
+			con.close();
+		}
 }
 
