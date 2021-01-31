@@ -7,55 +7,135 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/join.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
-function idCheck(){
-    var regex = /^[a-z][a-z0-9]{7,15}$/;
-    var idInput = document.querySelector("input[name=member_id]");
-    var idSpan = document.querySelector("#idcheckkk");
+$(function(){
+	var joinCheck=1;
+	 $("#member_id").blur(function () {
+         var regex = /^[a-z][a-z0-9]{4,19}$/;
+         var idSpan = $("#idcheckkk");
+         if (regex.test($(this).val())) {
+             idSpan.text("올바른 아이디 형식입니다.");
+             joinCheck=1;
+         } else if (!$(this).val()) idSpan.text("아이디를 입력해주세요");
+         else {
+        	idSpan.text("잘못된 형식입니다.");
+         	joinCheck=0;
+         }
+     });
 
-    if(regex.test(idInput.value)){//정상
-        idSpan.textContent = "올바른 아이디입니다.";
-    }
-    else{//이상
-        idSpan.textContent = "영문 소문자와 숫자를 섞어 8~16자 이내로 작성해주세요.";
-    }
-}
+     $("#member_pw").blur(function () {
+         var regex = /^(\w|[!@#$%&*]){5,16}$/;
+         var pwSpan = $("#pwcheckkk");
+         if (regex.test($(this).val())) {
+             if (!$(this).val().search(/[a-z]|[A-Z]/) < 0) {
+               	 pwSpan.text("올바른 형식입니다.");
+                 joinCheck=1;
+             } else {
+            	 pwSpan.textContent = "영문자를 포함해주세요.";
+            	 joinCheck=0;
+             }
+         } else if (!$(this).val()) {
+             pwSpan.text("비밀번호를 입력해주세요.");
+        	 joinCheck=0;
+         } else {
+        	 pwSpan.text("잘못된 형식입니다.");
+        	 joinCheck=0;
+         }
+         
+     })
 
-function pwCheck(){
-    var regex = /^[A-Za-z0-9!@#$%^&*()\s]{7,15}$/;
-    var pwInput = document.querySelector("input[name=member_pw]");
-    var pwSpan = document.querySelector("#pwcheckkk");
+     $("#member_nick").blur(function () {
+         var regex = /^(\w|[가-힣]){2,10}$/;
+         var nickSpan = $("#nickcheck");
+         if (regex.test($(this).val())) {
+             nickSpan.text("올바른 형식입니다.");
+             var member_nick=$("#member_nick").val();
+     		$.ajax({          
+    			async: false,
+     			url: "<%=request.getContextPath()%>/member/nickCheck.do",
+     			type: "POST",
+     			data:{
+     				member_nick: member_nick
+     			},
+     			success: function(result){
+     				if(result==="true"){
+     					$("#nickcheck").text("이미 존재하는 닉네임입니다.");
+     		             joinCheck=0;
+     				}
+     				else{
+     					$("#nickcheck").text("사용 가능한 닉네임입니다.");
+     		             joinCheck=1;
+     				}
+     			},
+     			error: function(){
+     				console.log("fail");
+     			}
+     		});
+         } else if (!$(this).val()) {
+             nickSpan.text("닉네임을 입력해주세요.");
+             joinCheck=1;
+         } else {
+        	 nickSpan.text("잘못된 형식입니다.");
+             joinCheck=0;
+         }
 
-    if(regex.test(pwInput.value)){
-        pwSpan.textContent = "올바른 비밀번호 형식입니다.";
-    }
-    else{
-        pwSpan.textContent = "영문 대/소문자와 숫자로 구성된 8~16자로 작성해주세요.";
-    }
-    if(document.getElementById('member_pw').value == document.getElementById('member_pw2').value && !(pwInput.value=="")){
-    	document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
-    	document.getElementById('check').style.color='blue';
-    }
-    else{
-    	document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.'
-        document.getElementById('check').style.color='red';
-    }
-}
-
-function nickCheck(){
-    var regex = /^[가-힣]{1,9}$/;
-    var nicknameInput = document.querySelector("input[name=member_nickname]");
-    var nicknameSpan = document.querySelector("#nickcheck");
-
-    if(regex.test(nicknameInput.value)){
-        nicknameSpan.textContent = "올바른 닉네임입니다.";
-    }
-    else if (!nicknameInput.value){
-    	nicknameSpan.textContent = "닉네임을 입력해주세요.";
-    }
-    else{
-        nicknameSpan.textContent = "잘못된 형식입니다.";
-    }
-}
+     })
+	$("#member_pw2").on("blur",function(){
+		if($("#member_pw").val() == $('#member_pw2').val() && !( $("#member_pw").val()=="")){
+	    	$("#check").text("비밀번호가 일치합니다.");
+            joinCheck=1;
+	    	$("#check").css("color",'blue');
+	    }
+	    else{
+	    	$('#check').text('비밀번호가 일치하지 않습니다.');
+            joinCheck=0;
+	        $('#check').css("color",'red');
+	    };
+	});
+	$("#member_phone").on("blur",function(){
+		if($("#member_phone").val().length <= 13 ){
+			joinCheck=1;
+		}
+		else{
+			joinCheck=0;
+			alert("번호 형식이 맞지 않습니다.ex)010-1234-5678");
+		}
+	});
+	$(".idCheck").on("click",function(e){
+		e.preventDefault();
+		var member_id=$("#member_id").val();
+		$.ajax({
+			async: false,
+			url: "<%=request.getContextPath()%>/member/idCheck.do",
+			type: "POST",
+			data:{
+				member_id: member_id
+			},
+			success: function(result){
+				if(result==="true"){
+					$("#idcheckkk").text("이미 존재하는 아이디입니다.");
+		             joinCheck=0;
+				}
+				else{
+					$("#idcheckkk").text("사용 가능한 아이디입니다.");
+		             joinCheck=1;
+				}
+			},
+			error: function(){
+				console.log("fail");
+			}
+		});
+	});
+	$(".btn_success").on("click",function(e){
+		e.preventDefault();
+		console.log(joinCheck);
+		if(joinCheck==1){
+			$(".formCheck").submit();
+		}
+		else{
+			alert("회원가입 양식에 맞지 않습니다.");
+		}
+	});
+});
 </script>
 </head>
 <body>
@@ -93,7 +173,6 @@ function nickCheck(){
 					<label for="member_phone">휴대 전화 </label>
 					<input class="phone_bt input" type="text" id="member_phone" name="member_phone" required placeholder="XXX-XXXX-XXXX">
 				</div>
-				<input type="hidden" name="member_auth" value="member">
 				
 				<div class="join_row">
 					<label for="broker_name">중개사무소 이름 </label>
