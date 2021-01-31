@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import houseSemi.beans.*;
+import houseSemi.beans.BrokerDao;
+import houseSemi.beans.BrokerDto;
+import houseSemi.beans.MemberDao;
+import houseSemi.beans.MemberDto;
 
 @WebServlet(urlPatterns ="/member/join_broker.do")
 public class BrokerJoinServlet extends HttpServlet {
@@ -28,8 +31,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		BrokerDao brokerDao = new BrokerDao();
 		int member_no = dao.getSequence();
 		int broker_no = brokerDao.getSequence();
-		brokerDto.setMember_no(member_no);
-		brokerDto.setBroker_no(broker_no); //시퀀스만들기
+		
 		
 		dto.setMember_no(member_no);
 		dto.setMember_id(req.getParameter("member_id"));
@@ -42,6 +44,8 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		brokerDto.setBroker_address(req.getParameter("broker_address"));
 		brokerDto.setBroker_address2(req.getParameter("broker_address2"));
 		brokerDto.setBroker_landline(req.getParameter("broker_landline"));
+		brokerDto.setMember_no(member_no);
+		brokerDto.setBroker_no(broker_no); //시퀀스만들기
 		dao.insert(dto);
 		brokerDao.insert(brokerDto);
 		
