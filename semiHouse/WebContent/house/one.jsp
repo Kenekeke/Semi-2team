@@ -256,7 +256,7 @@
         						else{
         							list_price = "월세 "+(resp[0].deposit/10000) + "/" + (resp[0].monthly/10000);
         						}
-       				            var area_floor = resp[0].floor+" ㆍ "+resp[0].area;
+       				            var area_floor = resp[0].floor+" ㆍ "+resp[0].area+"㎡";
        				         	$(template).find(".filterImg").children().prop("src", "<%=request.getContextPath()%>/img/"+resp[0].save_name).appendTo($(".list").children().last());
        				      	 	$(template).find(".filterPrice").text(list_price).appendTo($(".list").children().last());
  				             	$(template).find(".filterInfo").text(area_floor).appendTo($(".list").children().last());
@@ -297,7 +297,7 @@
         							$(".image-box").children().first().show();
 									$(".detail-house-price").text(list_price);
        				        		$(".regist-house-num").text("등록번호 ("+resp[0].house_no+")");
-   	       				        	$(".detail-house-area").text(resp[0].area);
+   	       				        	$(".detail-house-area").text(resp[0].area+"㎡");
    	       				        	$(".detail-house-bill").text((resp[0].bill/10000)+"만원");
    	       				        	$(".detail-house-direction").text(resp[0].direction);
    	       				        	$(".detail-house-title").text(resp[0].title);
@@ -332,7 +332,7 @@
    	       				        		$(".detail-house-move_in").text("협의가능");
    	       				        	}
    	       				        	$(".detail-house-bill1").text((resp[0].bill/10000)+"만원");
-   	       				        	$(".detail-house-area1").text(resp[0].area);
+   	       				        	$(".detail-house-area1").text(resp[0].area+"㎡");
    	       				        	$(".detail-house-direction1").text(resp[0].direction);
    	       				        	$(".detail-house-floor").text(resp[0].floor);
    	       				        	$(".detail-house-address").text(resp[0].address+" "+resp[0].address2);
