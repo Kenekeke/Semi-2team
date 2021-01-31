@@ -4,7 +4,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <title>일반 회원 가입</title>
-<link rel="stylesheet" type="text/css" href="../css/join.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/join.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 function idCheck(){
@@ -121,10 +121,10 @@ padding-left:405px;
 					<tr>
 						<div class="join_row">
 							<th><label for="member_phone">휴대 전화 : </label></th>
-								<td><input type="text" id="member_phone" name="member_phone" class="input" required>-
-								<input type="text" id="member_phone" name="member_phone" class="input" required>-
-								<input type="text" id="member_phone" name="member_phone" class="input" required></td>
+								<td><input class="phone_bt" type="text" id="member_phone" name="member_phone" class="input" required placeholder="XXX-XXXX-XXXX">
+								</td>
 						</div>
+						<input type="hidden" name="member_auth" value="member">
 					</tr>
 				</tbody>
 				</table>
