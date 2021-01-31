@@ -97,7 +97,7 @@
 					<tr>
 						<td><input type="checkbox" class="one-check"></td>
 						<td class="house_no"><%=oneVo.getHouse_no() %></td>
-						<td width="15%"><img src="../img/<%=oneVo.getSave_name()%>" alt="대표사진"></td>
+						<td width="15%"><img src="../img/<%=oneVo.getSave_name()%>" alt="대표사진" width="80px" height="80px"></td>
 						<td class="left"><a href="<%=request.getContextPath()%>/member/broker_room-detail.jsp?house_no=<%=oneVo.getHouse_no()%>"><%=oneVo.getAddress()%> / <%=oneVo.getAddress2() %></a></td>
 						<td><%=oneVo.getInsert_date()%></td>
 							<%if(oneVo.getBroker_agree().equals("0")) {%>
@@ -158,7 +158,7 @@
 					<tr>
 						<td><input type="checkbox" class="villatwo-check"></td>
 						<td class="house_no"><%=villatwoVo.getHouse_no() %></td>
-						<td width="15%"><img src="../img/<%=villatwoVo.getSave_name()%>" alt="대표사진"></td>
+						<td width="15%"><img src="../img/<%=villatwoVo.getSave_name()%>" alt="대표사진" width="80px" height="80px"></td>
 						<td class="left"><a href="<%=request.getContextPath()%>/member/broker_room-detail.jsp?house_no=<%=villatwoVo.getHouse_no()%>"><%=villatwoVo.getAddress()%> / <%=villatwoVo.getAddress2() %></a></td>
 						<td><%=villatwoVo.getInsert_date()%></td>
 							<%if(villatwoVo.getBroker_agree().equals("0")) {%>
@@ -166,7 +166,6 @@
 							<%}else{ %>				
 							<td>등록 완료</td>
 							<%} %>
-						<td width="8%">
 						<td width="8%">
 							<a class="agree-link" href="<%=request.getContextPath()%>/member/update-agree.do?house_no=<%=villatwoVo.getHouse_no()%>">
 								<%if(villatwoVo.getBroker_agree().equals("0")) {%>
@@ -220,7 +219,7 @@
 					<tr>
 						<td><input type="checkbox" class="office-check"></td>
 						<td class="house_no"><%=officeVo.getHouse_no() %></td>
-						<td width="15%"><img src="../img/<%=officeVo.getSave_name()%>" alt="대표사진"></td>
+						<td width="15%"><img src="../img/<%=officeVo.getSave_name()%>" alt="대표사진" width="80px" height="80px"></td>
 						<td class="left"><a href="<%=request.getContextPath()%>/member/broker_room-detail.jsp?house_no=<%=officeVo.getHouse_no()%>"><%=officeVo.getAddress()%> / <%=officeVo.getAddress2() %></a></td>
 						<td><%=officeVo.getInsert_date()%></td>
 							<%if(officeVo.getBroker_agree().equals("0")) {%>

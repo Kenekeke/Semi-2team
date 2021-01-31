@@ -54,6 +54,7 @@ $(function(){
 			$(".photo-place").children().hide();
 			$(".target").eq(currentIdx).show();	
 		  	console.log(currentIdx); 
+		  	moveSlide(currentIdx)
 		}else{
 		  	moveSlide(0);
 		}
@@ -207,13 +208,13 @@ $(function(){
 	<br>
 	<div class="slide_wrapper">
  		<ul class="slides">
+ 			<%int i = 1; %>
  			<%for (PhotoDto photoDto : photoList){ %>
-	    	<li><img id="img-1" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="대표사진" width="80px;" height="80px;"></li>
-	    	<li><img id="img-2" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="방사진1" width="80px;" height="80px;" ></li>
-	    	<li><img id="img-3" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="방사진2" width="80px;" height="80px;"></li>
-	    	<li><img id="img-4" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="방사진3" width="80px;" height="80px;"></li>
-	    	<li><img id="img-5" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="방사진4" width="80px;" height="80px;"></li>
-    		<%break;}%>
+	    	<li><img id="img-<%=i %>" class="img-btn" src="../img/<%=photoDto.getSave_name()%>" alt="대표사진" width="80px;" height="80px;"></li>
+    		<%
+    		 i++;
+    		 System.out.println(photoDto.getSave_name());
+ 			}%>
 	    	<li><img src="http://placehold.it/80x80" alt="더미사진"></li>
 	  </ul>
 	</div>
@@ -223,24 +224,22 @@ $(function(){
 	  </p>
 	<br>
 	<div class="photo-place center">
+		 <%int k = 1; %>
 		<%for (PhotoDto photoDto : photoList){ %>
-		<img id="img-1-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="대표사진" width="300px;" height="300px;">
-		<img id="img-2-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="방사진1" width="300px;" height="300px;">
-		<img id="img-3-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="방사진2" width="300px;" height="300px;">
-		<img id="img-4-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="방사진3" width="300px;" height="300px;">
-		<img id="img-5-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="방사진4" width="300px;" height="300px;">
-		<%break;} %>
+		<img id="img-<%=k %>-target" class="target" src="../img/<%=photoDto.getSave_name()%>" alt="대표사진" width="300px;" height="300px;">
+		<% k++;} %>
 		<br>
 		<hr>
 	</div>
 	<br>
-	<div class="room-text float-box">
-		<div class="float-left">
+	<div class="room-text" style="height: 300px;">
+		<div>
 			<p>
 				<%=oneDto.getTitle() %>
 			</p>
 		</div>
-		<div class="float-right">
+		<br>
+		<div>
 			<p>
 				<%=oneDto.getEtc() %>
 			</p>
@@ -391,13 +390,14 @@ $(function(){
 		<hr>
 	</div>
 	<br>
-	<div class="room-text float-box">
-		<div class="float-left">
+	<div class="room-text" style="height: 300px;">
+		<div>
 			<p>
 				<%=villatwoDto.getTitle() %>
 			</p>
 		</div>
-		<div class="float-right">
+		<br>
+		<div>
 			<p>
 				<%=villatwoDto.getEtc() %>
 			</p>
@@ -548,13 +548,14 @@ $(function(){
 		<hr>
 	</div>
 	<br>
-	<div class="room-text float-box">
-		<div class="float-left">
+	<div class="room-text" style="height: 300px;">
+		<div>
 			<p>
 				<%=officeDto.getTitle() %>
 			</p>
 		</div>
-		<div class="float-right">
+		<br>
+		<div>
 			<p>
 				<%=officeDto.getEtc() %>
 			</p>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <% //초기 지도의 중심좌표로 사용할 위도, 경도 불어오기
 	request.setCharacterEncoding("UTF-8");
-	boolean isMember = request.getSession().getAttribute("check")!=null;
+	boolean isMember = session.getAttribute("check")!=null;
 	boolean isLatLng = request.getParameter("Lat") !=null && request.getParameter("Lng") !=null;
 	double Lat;
 	double Lng;
@@ -297,7 +297,7 @@
         							$(".image-box").children().first().show();
 									$(".detail-house-price").text(list_price);
        				        		$(".regist-house-num").text("등록번호 ("+resp[0].house_no+")");
-   	       				        	$(".detail-house-area").text(resp[0].area);
+   	       				        	$(".detail-house-area").text(resp[0].area+"㎡");
    	       				        	$(".detail-house-bill").text((resp[0].bill/10000)+"만원");
    	       				        	$(".detail-house-direction").text(resp[0].direction);
    	       				        	$(".detail-house-title").text(resp[0].title);
@@ -332,7 +332,7 @@
    	       				        		$(".detail-house-move_in").text("협의가능");
    	       				        	}
    	       				        	$(".detail-house-bill1").text((resp[0].bill/10000)+"만원");
-   	       				        	$(".detail-house-area1").text(resp[0].area);
+   	       				        	$(".detail-house-area1").text(resp[0].area+"㎡");
    	       				        	$(".detail-house-direction1").text(resp[0].direction);
    	       				        	$(".detail-house-floor").text(resp[0].floor);
    	       				        	$(".detail-house-address").text(resp[0].address+" "+resp[0].address2);

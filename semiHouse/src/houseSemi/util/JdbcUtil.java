@@ -9,5 +9,5 @@ public class JdbcUtil{
 		Connection con = DriverManager.getConnection(
 				"jdbc:oracle:thin:@124.254.202.40:1521:xe", username, password);	
 		return con;
-	}	
+	}
 }
