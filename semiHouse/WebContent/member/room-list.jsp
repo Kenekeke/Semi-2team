@@ -93,7 +93,7 @@
 						<td><input type="checkbox" class="one-check"></td>
 						<td class="house_no"><%=oneVo.getHouse_no() %></td>
 						<td width="15%"><img src="../img/<%=oneVo.getSave_name()%>" alt="대표사진"></td>
-						<td class="left"><a href=""><%=oneVo.getAddress()%> / <%=oneVo.getAddress2() %></a></td>
+						<td class="left"><a href="<%=request.getContextPath()%>/member/my_one.jsp?house_no=<%=oneVo.getHouse_no()%>"><%=oneVo.getAddress()%> / <%=oneVo.getAddress2() %></a></td>
 						<td><%=oneVo.getInsert_date()%></td>
 							<%if(oneVo.getBroker_agree().equals("0")) {%>
 							<td>등록 중</td>
@@ -151,7 +151,7 @@
 						<td><input type="checkbox" class="villatwo-check"></td>
 						<td class="house_no"><%=villatwoVo.getHouse_no() %></td>
 						<td width="15%"><img src="../img/<%=villatwoVo.getSave_name()%>" alt="대표사진"></td>
-						<td class="left"><a href=""><%=villatwoVo.getAddress()%> / <%=villatwoVo.getAddress2() %></a></td>
+						<td class="left"><a href="<%=request.getContextPath()%>/member/my_villatwo.jsp?house_no=<%=villatwoVo.getHouse_no()%>"><%=villatwoVo.getAddress()%> / <%=villatwoVo.getAddress2() %></a></td>
 						<td><%=villatwoVo.getInsert_date()%></td>
 							<%if(villatwoVo.getBroker_agree().equals("0")) {%>
 							<td>등록 중</td>
@@ -208,7 +208,7 @@
 						<td><input type="checkbox" class="office-check"></td>
 						<td class="house_no"><%=officeVo.getHouse_no() %></td>
 						<td width="15%"><img src="../img/<%=officeVo.getSave_name()%>" alt="대표사진"></td>
-						<td class="left"><a href=""><%=officeVo.getAddress()%> / <%=officeVo.getAddress2() %></a></td>
+						<td class="left"><a href="<%=request.getContextPath()%>/member/my_office.jsp?house_no=<%=officeVo.getHouse_no()%>"><%=officeVo.getAddress()%> / <%=officeVo.getAddress2() %></a></td>
 						<td><%=officeVo.getInsert_date()%></td>
 							<%if(officeVo.getBroker_agree().equals("0")) {%>
 							<td>등록 중</td>

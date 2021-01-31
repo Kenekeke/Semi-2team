@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+.nanumsquare {
+	    font-family: 'NanumSquare', sans-serif !important;
+	}
+	section div{
+	    font-family: 'NanumSquare', sans-serif !important;			
+	}
+	li{list-style: none;}
+	.main-table_wrapper{
+		width: 1000px;
+		margin: 40px auto 0 auto;
+		border: 3px solid #7b9acc;
+	}
+	.main-table{
+		width: 1000px;
+		padding: 20px 0;
+	}
+	.main-table > tbody > tr > td {
+		border-right: 2px solid lightgray;
+		padding-left: 15px;
+	}
+	.main-table > tbody > tr > td:last-child {
+		border-right: none;
+	}
+	.main-table > tbody > tr > td > h2{
+		display: inline-block;
+		margin: 19px 0;
+	}
+	.room-list{
+		margin: 0 auto;
+	}
+	.room-list ul{
+            margin: 0;
+            padding: 0;
+        }
+	.list > li{
+            display: inline-block;
+            padding: 5px;
+            margin: 0 3px;
+            width: 320px;
+        }
+    .list > li > span{
+			display: inline-block;
+			width: 120px;
+			padding-left: 8px;
+    }
+    .list > li > p {
+    		display: inline-block;
+    		margin: 0;
+    }
+    .main-table-row > td > div > h2{
+    		display: inline-block;
+    }
+	
+	.slide_wrapper{
+	  position: relative;
+	  width: 320px;
+	  margin: 0 auto;
+	  height: 100px;
+	  overflow:hidden;
+	}
+	.slides{
+	  padding-left: 10px;
+	  margin: 10px 0;
+	  height: 80px;
+	  position: absolute;
+	  left: 0; top: 0;
+	  width: 700px;  
+	  transition: left 0.5s ease-out;
+	}
+	.slides li:not(:last-child){
+	  float: left;
+	  margin-bottom: 10px;
+	  margin-right:30px;
+	}
+	.controls{
+	  text-align: center;
+	  margin: 20px 50px;
+	}
+	.controls span{
+	  background:#333;
+	  color: #fff;
+	  padding: 5px 10px;
+	  margin: 0 10px;
+	}
+	.controls span:hover{
+		cursor: pointer;
+	}
+	.room-text{
+		width: 1000px;
+		margin: 0 auto;
+		pading:0;
+	}
+	.float-left{
+		float: left;
+		width: 50%;
+	}
+	.float-right{
+		float: right;
+		width: 50%;
+	}
+	.float-box::after {
+            content: "";
+            display: block;
+            clear: both;
+    }
+    .address{
+    	width: 1000px;
+    	margin: 0 auto;
+    }
+    .photo-place{
+    	width: 1000px;
+    	margin: 0 auto;
+    }
+    .room-text > div > p{
+    	padding-left: 8px; 
+    }

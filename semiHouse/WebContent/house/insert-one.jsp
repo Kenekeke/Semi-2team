@@ -167,7 +167,7 @@ $(function(){
 					<th width="20%">주소</th>
 					<td colspan="3" width="80%">
 						<span>
-							<input class="inline-input address" type="text" name="address" required style="width: 350px;">
+							<input class="inline-input address" type="text" name="address" required style="width: 340px;">
 							<input class="mapAddress" type="text" style="display: none;">
 						</span>
 						<span>
@@ -303,7 +303,7 @@ $(function(){
 						<option value="서향">서향</option>
 						<option value="남향">남향</option>
 						<option value="북향">북향</option>
-						<option value="남동향">남동</option>
+						<option value="남동향">남동향</option>
 						<option value="남서향">남서향</option>
 						<option value="북동향">북동향</option>
 						<option value="북서향">북서향</option>

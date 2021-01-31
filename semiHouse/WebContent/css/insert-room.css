@@ -83,6 +83,7 @@
 		border: 2px solid lightgray;
 		border-radius: 5px;
 		margin-left: 3px;
+		box
 	}
 	section input[type=button]:hover, input[type=file]:hover, .submit-btn:hover {
 		background-color: #7b9acc;
