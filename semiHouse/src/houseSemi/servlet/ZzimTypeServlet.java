@@ -25,7 +25,6 @@ public class ZzimTypeServlet extends HttpServlet{
 			
 			String house_type=req.getParameter("house_type");
 			int house_no=Integer.parseInt(req.getParameter("house_no"));
-			System.out.println(house_no);
 			resp.setHeader("Content-Type", "application/json");
     		resp.setHeader("Content-Encoding", "UTF-8");	
     		 
