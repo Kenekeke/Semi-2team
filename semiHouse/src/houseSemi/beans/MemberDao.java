@@ -6,12 +6,34 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.xml.internal.ws.api.pipe.NextAction;
+
 import houseSemi.util.JdbcUtil;
 
 public class MemberDao {
 	String USERNAME="house";
 	String PASSWORD="house";
 	
+	public boolean idCheck(String member_id) throws Exception {
+		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
+		String sql="select * from member where member_id=?";
+		PreparedStatement ps= con.prepareStatement(sql);
+		ps.setString(1, member_id);
+		ResultSet rs= ps.executeQuery();
+		boolean result=rs.next();
+		con.close();
+		return result;
+	}
+	public boolean nickCheck(String member_nick) throws Exception {
+		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
+		String sql="select * from member where member_nick=?";
+		PreparedStatement ps= con.prepareStatement(sql);
+		ps.setString(1, member_nick);
+		ResultSet rs= ps.executeQuery();
+		boolean result=rs.next();
+		con.close();
+		return result;
+	}
 	public MemberDto find(int member_no) throws Exception {
 		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);
 		String sql="select * from member where member_no=?";
