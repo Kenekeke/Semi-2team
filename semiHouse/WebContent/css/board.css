@@ -220,9 +220,8 @@ input[name=board_header]+label{
 	border: 1px solid #7b9acc;
 	color: white;
 	border-radius: 5px;
-}
-.write_btn{
 	font-weight: bold;
+	
 }
 .boardlist-searchbox{
 	display:flex;
