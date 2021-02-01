@@ -154,7 +154,7 @@
             	}
             %>
             	<div class="replylist-list">
-	            	<div class="reply-detail-content"><%=replyDto.getReply_content()%> <%if(isReplyOwner){%><a href="<%=request.getContextPath()%>/board/replyDelete.do?reply_no=<%=replyDto.getReply_no()%>&board_no=<%=board_no%>" class="reply-delete">Ⅹ</a><%}%></div>
+	            	<div class="reply-detail-content"><%=replyDto.getReply_content()%> <%if(isReplyOwner||isAdmin){%><a href="<%=request.getContextPath()%>/board/replyDelete.do?reply_no=<%=replyDto.getReply_no()%>&board_no=<%=board_no%>" class="reply-delete">Ⅹ</a><%}%></div>
 	            	<div class="reply-member-info">
 	            		<div class="reply-member-nick"><%=memberDao.find(replyDto.getMember_no()).getMember_nick()%></div>
 	            		<div class="reply-regist-time"><%=f.format(replyDto.getReply_time())%></div>

@@ -146,13 +146,13 @@ $(function(){
 				<div class="join_table">
 					<div class="join_row">
 					<label for="member_id">아이디 </label>
-					<input type="text" id="member_id" name="member_id" required placeholder="8~18자 영문 소문자 또는 숫자 혼합해주세요" onchange="idCheck" class="input" maxlength="18">
+					<input type="text" id="member_id" name="member_id" required placeholder="5~20자 영문 소문자 또는 숫자 혼합해주세요" onchange="idCheck" class="input" maxlength="18">
 					<button class="idCheck" onclick="idCheck();">중복확인</button>
 				</div>
 				<span id="idcheckkk"></span>
 				<div class="join_row">
 					<label for="member_pw">비밀번호 </label>
-					<input type="password" id="member_pw" name="member_pw" required onchange="pwCheck();" class="input" placeholder="비밀번호는 최소 8글자 이상, 최대 16글자 이하로 설정해주세요">
+					<input type="password" id="member_pw" name="member_pw" required onchange="pwCheck();" class="input" placeholder="비밀번호는 최소 5글자 이상, 최대 16글자 이하로 설정해주세요">
 				</div>
 				<span id="pwcheckkk"></span>
 				<div class="join_row">
