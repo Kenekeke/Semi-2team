@@ -29,8 +29,7 @@
 	position: relative;
 	/*relative로 내부의 absolute를 가둔다*/
 	bottom: 38px;
-	width:1288px;
-	
+    width: 750px;
 }
 
 .empty {
@@ -132,7 +131,7 @@ height: 35px;
 
 .top_right_wrapper{
 width: 400px;
-margin-left: clamp(900px, 77%, 98%)
+margin-left: clamp(800px, 60%, 98%);
 }
 
 .login-btn input {

@@ -256,8 +256,8 @@
         						else{
         							list_price = "월세 "+(resp[0].deposit/10000) + "/" + (resp[0].monthly/10000);
         						}
-       				            var area_floor = resp[0].floor+" ㆍ "+resp[0].area+"㎡";
-       				         	$(template).find(".filterImg").children().prop("src", "<%=request.getContextPath()%>/img/"+resp[0].save_name).appendTo($(".list").children().last());
+       				            var area_floor = resp[0].floor+" ㆍ "+resp[0].area;
+       				         	$(template).find(".filterImg").children().attr("src", "<%=request.getContextPath()%>/img/"+resp[0].save_name).appendTo($(".list").children().last());
        				      	 	$(template).find(".filterPrice").text(list_price).appendTo($(".list").children().last());
  				             	$(template).find(".filterInfo").text(area_floor).appendTo($(".list").children().last());
  				             	$(template).find(".filterAddress").text(resp[0].address).appendTo($(".list").children().last());
@@ -266,7 +266,7 @@
         							$.each(resp, function(index, info){
         								$(template_img).find(".image-btn-box").appendTo(".image-box");
         								$(template_img).find(".detail-imagebtn-box").appendTo($(".image-box").children().last());
-        								$(template_img).find(".img-img").prop("src", "<%=request.getContextPath()%>/img/"+info.save_name).appendTo($(".image-box").children().last());
+        								$(template_img).find(".img-img").attr("src", "<%=request.getContextPath()%>/img/"+info.save_name).appendTo($(".image-box").children().last());
         								$(".image-box").children().last().find(".img-img").mouseover(function(){
         									$(this).prev().show();
         								});
@@ -722,8 +722,7 @@
 		<div class="callzzimSpace"></div>
 		<div class="callzzimSpace callzzim">
 			<div class="callSpace">
-				<img alt="전화이미지" src="../img/call.png" style="width: 30px;">
-				<div>전화하기</div>
+				<div><span style="font-size:25px;">☏  </span>전화하기</div>
 			</div>
 			<div class="zzimSpace">
 				<img alt="찜이미지" src="../img/zzim.png" style="width: 30px;">

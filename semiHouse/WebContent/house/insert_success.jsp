@@ -7,10 +7,9 @@
 		$(document).ready(function(){
 			alert("등록이 완료 되었습니다.")
 			location.href ="<%=request.getContextPath()%>/member/room-list.jsp";
-		});
-		
+		});		
 	});
-</script>
+</script>           
 
 
 
