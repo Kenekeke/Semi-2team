@@ -4,7 +4,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <title>SemiProject kh4 Join</title>
-<link rel="stylesheet" type="text/css" href="./css/common.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 
 <style>
   div.join_page {

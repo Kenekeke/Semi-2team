@@ -77,13 +77,9 @@
 		</div>
 	</form>
 
-	<%if(list == null){ %>
+	<%if (list.isEmpty()){ %>
 	<div class="row center">
-		<h4>누굴 찾을텐가..?</h4>
-	</div>
-	<%} else if (list.isEmpty()){ %>
-	<div class="row center">
-		<h4>아무도 없는걸요..?</h4>
+		<h4>검색 결과가 없습니다.</h4>
 	</div>
 	<%} else { %>
 	<div class="row">

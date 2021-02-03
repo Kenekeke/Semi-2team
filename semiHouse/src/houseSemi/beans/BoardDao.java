@@ -9,8 +9,8 @@ import java.util.List;
 import houseSemi.util.JdbcUtil;
 
 public class BoardDao {
-	public static final String USERNAME = "house";
-	public static final String PASSWORD = "house";
+	public static final String USERNAME = "kh42";
+	public static final String PASSWORD = "kh42";
 	
 	public void delete(int board_no) throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);

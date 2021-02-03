@@ -11,8 +11,8 @@ import com.sun.xml.internal.ws.api.pipe.NextAction;
 import houseSemi.util.JdbcUtil;
 
 public class MemberDao {
-	String USERNAME="house";
-	String PASSWORD="house";
+	String USERNAME="kh42";
+	String PASSWORD="kh42";
 	
 	public boolean idCheck(String member_id) throws Exception {
 		Connection con = JdbcUtil.getConnection(USERNAME,PASSWORD);

@@ -10,8 +10,8 @@ import java.util.List;
 import houseSemi.util.JdbcUtil;
 
 public class SearchDao {
-	String USERNAME="house";
-	String PASSWORD="house";
+	String USERNAME="kh42";
+	String PASSWORD="kh42";
 	public List<SearchDto> select(String keyword) throws Exception{
 		Connection con=JdbcUtil.getConnection(USERNAME, PASSWORD);
 		String sql="select * from search where instr(name,?) > 0";

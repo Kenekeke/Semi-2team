@@ -10,8 +10,8 @@ import java.util.List;
 import houseSemi.util.JdbcUtil;
 
 public class OneDao {
-	String USERNAME="house";
-	String PASSWORD="house";
+	String USERNAME="kh42";
+	String PASSWORD="kh42";
 	
 	//매물 등록
 	public void insert(OneDto oneDto) throws Exception{
@@ -131,6 +131,7 @@ public class OneDao {
 		OneDto dto;
 		if(rs.next()) {
 			dto = new OneDto();
+			dto.setOne_no(rs.getInt("one_no"));
 			dto.setHouse_no(rs.getInt("house_no"));
 			dto.setDeposit(rs.getInt("deposit"));
 			dto.setMonthly(rs.getInt("monthly"));
