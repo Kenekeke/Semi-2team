@@ -8,8 +8,8 @@ import houseSemi.util.JdbcUtil;
 import houseSemi.beans.BrokerDto;
 
 public class BrokerDao {
-	public static final String USERNAME = "house";
-	public static final String PASSWORD = "house";
+	public static final String USERNAME = "kh42";
+	public static final String PASSWORD = "kh42";
 
 	public BrokerDto find(String city) throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);

@@ -48,7 +48,7 @@
 	        map.setDraggable(false); 
 	        map.setZoomable(false);
 
-            $.getJSON("./house/sources/seoul.json", function (geojson) {
+            $.getJSON("<%=request.getContextPath()%>/house/sources/seoul.json", function (geojson) {
                 var data = geojson.features;
                 var coordinates = [];
                 var name = '';
@@ -149,13 +149,13 @@
             	$(this).next().css("background-color","#42649B");
             	switch($(this).val()){
             	case "oneroom":
-            		document.centerForm.action="./house/one.jsp"
+            		document.centerForm.action="<%=request.getContextPath()%>/house/one.jsp"
             		break;
             	case "villa":
-            		document.centerForm.action="./house/villatwo.jsp"
+            		document.centerForm.action="<%=request.getContextPath()%>/house/villatwo.jsp"
             		break;
             	case "office":
-            		document.centerForm.action="./house/office.jsp"
+            		document.centerForm.action="<%=request.getContextPath()%>/house/office.jsp"
             		break;
             	}
         	})

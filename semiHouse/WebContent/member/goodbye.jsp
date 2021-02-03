@@ -5,7 +5,7 @@
 <div class="all_wrapper">
 <div class="login_wrapper">
 	<a href="<%=request.getContextPath()%>">
-	<img class=".img.img-round" src="https://via.placeholder.com/400x400" alt="홈으로">
+	<img class=".img.img-round" src="<%=request.getContextPath()%>/img/Logo.jpg" alt="홈으로">
 	</a>
 </div>
 </div>

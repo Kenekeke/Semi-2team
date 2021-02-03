@@ -9,8 +9,8 @@ import java.util.List;
 import houseSemi.util.*;
 
 public class LikesDao {
-	String USERNAME="house";
-	String PASSWORD="house";
+	String USERNAME="kh42";
+	String PASSWORD="kh42";
 	public List<LikesDto> select(int member_no) throws Exception{
 		Connection con=JdbcUtil.getConnection(USERNAME, PASSWORD);
 		String sql="select * from likes where member_no=? order by likes_no asc";

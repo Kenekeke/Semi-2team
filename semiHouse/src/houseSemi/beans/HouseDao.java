@@ -10,8 +10,8 @@ import houseSemi.util.JdbcUtil;
 
 public class HouseDao {
 	// 계정정보를 상수로 저장
-	public static final String USERNAME = "house";
-	public static final String PASSWORD = "house";
+	public static final String USERNAME = "kh42";
+	public static final String PASSWORD = "kh42";
 	
 	//시퀀스 생성
 	public int getSequence() throws Exception {

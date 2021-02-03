@@ -116,7 +116,7 @@
 		<div class="member_info"> 
 			<select name="member_auth" class="input">
 				<option selected value="<%=dto.getMember_auth()%>">
-				 <%if(dto.is("member"))%>일반회원</option>
+				 <%if(dto.is("member"))%>일반회원 
 				 <%if(dto.is("admin"))%>관리자</option> 
 				<option value="member">일반회원</option>
 				<option value="admin">관리자</option>
