@@ -5,10 +5,9 @@
     pageEncoding="UTF-8"%>
 <%
 	int house_no = Integer.parseInt(request.getParameter("house_no"));
-
+	
 	HouseDao houseDao = new HouseDao();
 	HouseDto houseDto = houseDao.find(house_no);
-	
 	
 		
 	OneDao	oneDao = new OneDao();
@@ -210,10 +209,11 @@ $(function(){
  		<ul class="slides">
  			<%int i = 1; %>
  			<%for (PhotoDto photoDto : photoList){ %>
-	    	<li><img id="img-<%=i %>" class="img-btn" src="D:/upload/kh42/<%=photoDto.getSave_name()%>" alt="대표사진" width="80px;" height="80px;"></li>
+	    	<li><img id="img-<%=i %>" class="img-btn" src="photodownload.do?house_no=<%=house_no%>&photo_no=<%=photoDto.getPhoto_no() %>" alt="대표사진" width="80px;" height="80px;"></li>
     		<%
     		 i++;
-    		 System.out.println(photoDto.getSave_name());
+    		 System.out.println(photoDto.getPhoto_no());
+    		 System.out.println(house_no);
  			}%>
 	    	<li><img src="http://placehold.it/80x80" alt="더미사진"></li>
 	  </ul>
@@ -226,16 +226,17 @@ $(function(){
 	<div class="photo-place center">
 		 <%int k = 1; %>
 		<%for (PhotoDto photoDto : photoList){ %>
-		<img id="img-<%=k %>-target" class="target" src="D:/upload/kh42/<%=photoDto.getSave_name()%>" alt="대표사진" width="300px;" height="300px;">
+		<img id="img-<%=k %>-target" class="target" src="photodownload.do?house_no=<%=house_no%>&photo_no=<%=photoDto.getPhoto_no() %>" alt="대표사진" width="300px;" height="300px;">
 		<% k++;} %>
-		<br>
-		<hr>
 	</div>
 	<br>
 	<div class="room-text" style="height: 300px;">
+		<hr>		
 		<div>
 			<p>
-				<%=oneDto.getTitle() %>
+				<b>
+					<i><%=oneDto.getTitle() %></i>
+				</b>
 			</p>
 		</div>
 		<br>
@@ -254,7 +255,7 @@ $(function(){
 			<tbody>
 			<tr>
 				<td width="27%">
-					<span>원룸</span><br>
+					<span>투룸/빌라</span><br>
 					<h2>보증금 <%=villatwoDto.getDeposit()/10000 %></h2><span>만원</span>
 				</td>				
 				<td width="20%">
@@ -365,7 +366,7 @@ $(function(){
  		<ul class="slides">
  			<%int i = 1; %>
  			<%for (PhotoDto photoDto : photoList){ %>
-	    	<li><img id="img-<%=i %>" class="img-btn" src="D:/upload/kh42/<%=photoDto.getSave_name()%>" alt="대표사진" width="80px;" height="80px;"></li>
+	    	<li><img id="img-<%=i %>" class="img-btn" src="photodownload.do?house_no=<%=house_no%>&photo_no=<%=photoDto.getPhoto_no() %>" alt="대표사진" width="80px;" height="80px;"></li>
     		<%
     		 i++;
     		 System.out.println(photoDto.getSave_name());
@@ -381,18 +382,19 @@ $(function(){
 	<div class="photo-place center">
 		 <%int k = 1; %>
 		<%for (PhotoDto photoDto : photoList){ %>
-		<img id="img-<%=k %>-target" class="target" src="D:/upload/kh42/<%=photoDto.getSave_name()%>" alt="대표사진" width="300px;" height="300px;">
+		<img id="img-<%=k %>-target" class="target" src="photodownload.do?house_no=<%=house_no%>&photo_no=<%=photoDto.getPhoto_no() %>" alt="대표사진" width="300px;" height="300px;">
 		<% k++;} %>
-		<br>
-		<hr>
 	</div>
 	<br>
 	<div class="room-text" style="height: 300px;">
+		<hr>		
 		<div>
 			<p>
-				<%=villatwoDto.getTitle() %>
+				<b>
+					<i><%=villatwoDto.getTitle() %></i>
+				</b>
 			</p>
-		</div>
+		</div>	
 		<br>
 		<div>
 			<p>
@@ -409,7 +411,7 @@ $(function(){
 			<tbody>
 			<tr>
 				<td width="27%">
-					<span>원룸</span><br>
+					<span>오피스텔</span><br>
 					<h2>보증금 <%=officeDto.getDeposit()/10000 %></h2><span>만원</span>
 				</td>				
 				<td width="20%">
@@ -520,7 +522,7 @@ $(function(){
  		<ul class="slides">
  			<%int i = 1; %>
  			<%for (PhotoDto photoDto : photoList){ %>
-	    	<li><img id="img-<%=i %>" class="img-btn" src="D:/upload/kh42/<%=photoDto.getSave_name()%>" alt="대표사진" width="80px;" height="80px;"></li>
+	    	<li><img id="img-<%=i %>" class="img-btn" src="photodownload.do?house_no=<%=house_no%>&photo_no=<%=photoDto.getPhoto_no() %>" alt="대표사진" width="80px;" height="80px;"></li>
     		<%
     		 i++;
     		 System.out.println(photoDto.getSave_name());
@@ -536,16 +538,17 @@ $(function(){
 	<div class="photo-place center">
 		 <%int k = 1; %>
 		<%for (PhotoDto photoDto : photoList){ %>
-		<img id="img-<%=k %>-target" class="target" src="D:/upload/kh42/<%=photoDto.getSave_name()%>" alt="대표사진" width="300px;" height="300px;">
+		<img id="img-<%=k %>-target" class="target" src="photodownload.do?house_no=<%=house_no%>&photo_no=<%=photoDto.getPhoto_no() %>" alt="대표사진" width="300px;" height="300px;">
 		<% k++;} %>
-		<br>
-		<hr>
 	</div>
 	<br>
 	<div class="room-text" style="height: 300px;">
+		<hr>		
 		<div>
 			<p>
-				<%=officeDto.getTitle() %>
+				<b>
+					<i><%=officeDto.getTitle() %></i>
+				</b>
 			</p>
 		</div>
 		<br>

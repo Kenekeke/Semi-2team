@@ -1,16 +1,7 @@
-<%@page import="houseSemi.beans.BrokerDto"%>
-<%@page import="houseSemi.beans.BrokerDao"%>
-<%@page import="houseSemi.beans.HouseVillatwoPhotoVO"%>
-<%@page import="houseSemi.beans.HouseOfficePhotoVO"%>
-<%@page import="houseSemi.beans.HouseOnePhotoVO"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
+<%@page import="houseSemi.beans.*"%>
+<%@page import="java.sql.*"%>
 <%@page import="houseSemi.util.JdbcUtil"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="houseSemi.beans.OneDto"%>
 <%@page import="java.util.*"%>
-<%@page import="houseSemi.beans.HouseDao"%>
-<%@page import="houseSemi.beans.HouseOnePhotoVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -97,7 +88,11 @@
 					<tr>
 						<td><input type="checkbox" class="one-check"></td>
 						<td class="house_no"><%=oneVo.getHouse_no() %></td>
-						<td width="15%"><img src="D:/upload/kh42/<%=oneVo.getSave_name()%>" alt="대표사진" width="80px" height="80px"></td>
+						<td width="15%"><img src="photodownload.do?house_no=<%=oneVo.getHouse_no()%>&photo_no=<%=oneVo.getPhoto_no() %>" alt="대표사진" width="80px" height="80px"></td>
+						<% 
+							System.out.println(oneVo.getHouse_no());
+							System.out.println(oneVo.getPhoto_no());
+							%>
 						<td class="left"><a href="<%=request.getContextPath()%>/member/broker_room-detail.jsp?house_no=<%=oneVo.getHouse_no()%>"><%=oneVo.getAddress()%> / <%=oneVo.getAddress2() %></a></td>
 						<td><%=oneVo.getInsert_date()%></td>
 							<%if(oneVo.getBroker_agree().equals("0")) {%>
@@ -158,7 +153,7 @@
 					<tr>
 						<td><input type="checkbox" class="villatwo-check"></td>
 						<td class="house_no"><%=villatwoVo.getHouse_no() %></td>
-						<td width="15%"><img src="D:/upload/kh42/<%=villatwoVo.getSave_name()%>" alt="대표사진" width="80px" height="80px"></td>
+						<td width="15%"><img src="photodownload.do?house_no=<%=villatwoVo.getHouse_no()%>&photo_no=<%=villatwoVo.getPhoto_no() %>" alt="대표사진" width="80px" height="80px"></td>
 						<td class="left"><a href="<%=request.getContextPath()%>/member/broker_room-detail.jsp?house_no=<%=villatwoVo.getHouse_no()%>"><%=villatwoVo.getAddress()%> / <%=villatwoVo.getAddress2() %></a></td>
 						<td><%=villatwoVo.getInsert_date()%></td>
 							<%if(villatwoVo.getBroker_agree().equals("0")) {%>
@@ -219,7 +214,7 @@
 					<tr>
 						<td><input type="checkbox" class="office-check"></td>
 						<td class="house_no"><%=officeVo.getHouse_no() %></td>
-						<td width="15%"><img src="D:/upload/kh42/<%=officeVo.getSave_name()%>" alt="대표사진" width="80px" height="80px"></td>
+						<td width="15%"><img src="photodownload.do?house_no=<%=officeVo.getHouse_no()%>&photo_no=<%=officeVo.getPhoto_no() %>" alt="대표사진" width="80px" height="80px"></td>
 						<td class="left"><a href="<%=request.getContextPath()%>/member/broker_room-detail.jsp?house_no=<%=officeVo.getHouse_no()%>"><%=officeVo.getAddress()%> / <%=officeVo.getAddress2() %></a></td>
 						<td><%=officeVo.getInsert_date()%></td>
 							<%if(officeVo.getBroker_agree().equals("0")) {%>
