@@ -9,7 +9,7 @@
 	BoardDao boardDao = new BoardDao();
 	List<BoardDto> boardlist = boardDao.indexselect(start, end); 
 %>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=724a7918d5c20b6b105ff0bdad826269&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=257ed6e3d85bd70a90124054049a6b0a&libraries=services"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(function () {
