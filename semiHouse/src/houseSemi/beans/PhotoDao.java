@@ -72,18 +72,20 @@ public class PhotoDao {
 		while(rs.next()) {
 			PhotoDto photoDto = new PhotoDto();
 			photoDto.setSave_name(rs.getString("save_name"));
+			photoDto.setPhoto_no(rs.getInt("photo_no"));
+			photoDto.setUpload_name(rs.getString("upload_name"));
 			photoList.add(photoDto);
 		}
 		con.close();
 		return photoList;
 	}
+	
 	//단일 조회
 	public PhotoDto find(int house_no)throws Exception{
 		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
-		String sql = "select * from photo where house_no=? photo_no asc";
+		String sql = "select * from photo where house_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, house_no);
-		
 		ResultSet rs = ps.executeQuery();
 		PhotoDto dto;
 		if(rs.next()) {
@@ -91,6 +93,31 @@ public class PhotoDao {
 			dto.setHouse_no(rs.getInt("house_no"));
 			dto.setPhoto_no(rs.getInt("photo_no"));
 			dto.setSave_name(rs.getString("save_name"));
+			dto.setPhoto_size(rs.getInt("photo_size"));
+			dto.setUpload_name(rs.getString("upload_name"));
+		}else{
+			dto = null;
+		}
+		con.close();
+		return dto;
+	}
+	
+	//단일 조회 사진 번호 포함
+	public PhotoDto findMemberPhoto(int house_no, int photo_no)throws Exception{
+		Connection con = JdbcUtil.getConnection(USERNAME, PASSWORD);
+		String sql = "select * from photo where house_no=? and photo_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, house_no);
+		ps.setInt(2, photo_no);
+		ResultSet rs = ps.executeQuery();
+		PhotoDto dto;
+		if(rs.next()) {
+			dto = new PhotoDto();
+			dto.setHouse_no(rs.getInt("house_no"));
+			dto.setPhoto_no(rs.getInt("photo_no"));
+			dto.setSave_name(rs.getString("save_name"));
+			dto.setPhoto_size(rs.getInt("photo_size"));
+			dto.setUpload_name(rs.getString("upload_name"));
 		}else{
 			dto = null;
 		}
