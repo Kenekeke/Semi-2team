@@ -140,7 +140,7 @@ public class HouseDao {
 		String sql = "select * from house H "
 						+ "inner join one O on H.house_no = O.house_no "
 						+ "inner join photo P on O.house_no = P.house_no "
-							+ "where H.member_no=?";
+							+ "where H.member_no=? order by photo_no asc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, member_no);
@@ -163,6 +163,7 @@ public class HouseDao {
 			vo.setBill(rs.getInt("bill"));
 			vo.setTitle(rs.getString("title"));
 			vo.setSave_name(rs.getString("save_name"));
+			vo.setPhoto_no(rs.getInt("photo_no"));
 			
 			houseList.add(vo);
 		}
@@ -175,7 +176,7 @@ public class HouseDao {
 		String sql = "select * from house H "
 						+ "inner join one O on H.house_no = O.house_no "
 						+ "inner join photo P on O.house_no = P.house_no "
-							+ "where H.broker_no=?";
+							+ "where H.broker_no=? order by photo_no asc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, broker_no);
@@ -198,6 +199,7 @@ public class HouseDao {
 			vo.setBill(rs.getInt("bill"));
 			vo.setTitle(rs.getString("title"));
 			vo.setSave_name(rs.getString("save_name"));
+			vo.setPhoto_no(rs.getInt("photo_no"));
 			
 			houseList.add(vo);
 		}
@@ -210,7 +212,7 @@ public class HouseDao {
 		String sql = "select * from house H "
 						+ "inner join office O on H.house_no = O.house_no "
 						+ "inner join photo P on O.house_no = P.house_no "
-							+ "where H.member_no=?";
+							+ "where H.member_no=? order by photo_no asc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, member_no);
@@ -233,6 +235,7 @@ public class HouseDao {
 			vo.setBill(rs.getInt("bill"));
 			vo.setTitle(rs.getString("title"));
 			vo.setSave_name(rs.getString("save_name"));
+			vo.setPhoto_no(rs.getInt("photo_no"));
 			
 			houseList.add(vo);
 		}
@@ -245,7 +248,7 @@ public class HouseDao {
 		String sql = "select * from house H "
 						+ "inner join office O on H.house_no = O.house_no "
 						+ "inner join photo P on O.house_no = P.house_no "
-							+ "where H.broker_no=?";
+							+ "where H.broker_no=? order by photo_no asc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, broker_no);
@@ -268,6 +271,7 @@ public class HouseDao {
 			vo.setBill(rs.getInt("bill"));
 			vo.setTitle(rs.getString("title"));
 			vo.setSave_name(rs.getString("save_name"));
+			vo.setPhoto_no(rs.getInt("photo_no"));
 			
 			houseList.add(vo);
 		}
@@ -280,7 +284,7 @@ public class HouseDao {
 		String sql = "select * from house H "
 						+ "inner join villatwo V on H.house_no = V.house_no "
 						+ "inner join photo P on V.house_no = P.house_no "
-							+ "where H.member_no=?";
+							+ "where H.member_no=? order by photo_no asc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, member_no);
@@ -303,6 +307,7 @@ public class HouseDao {
 			vo.setBill(rs.getInt("bill"));
 			vo.setTitle(rs.getString("title"));
 			vo.setSave_name(rs.getString("save_name"));
+			vo.setPhoto_no(rs.getInt("photo_no"));
 			
 			houseList.add(vo);
 		}
@@ -315,7 +320,7 @@ public class HouseDao {
 		String sql = "select * from house H "
 						+ "inner join villatwo V on H.house_no = V.house_no "
 						+ "inner join photo P on V.house_no = P.house_no "
-							+ "where H.broker_no=?";
+							+ "where H.broker_no=? order by photo_no asc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, broker_no);
@@ -338,6 +343,7 @@ public class HouseDao {
 			vo.setBill(rs.getInt("bill"));
 			vo.setTitle(rs.getString("title"));
 			vo.setSave_name(rs.getString("save_name"));
+			vo.setPhoto_no(rs.getInt("photo_no"));
 			
 			houseList.add(vo);
 		}

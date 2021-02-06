@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="houseSemi.beans.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -15,6 +16,7 @@
 
 	VillatwoDao villatwoDao = new VillatwoDao();
 	VillatwoDto villatwoDto = villatwoDao.my_villatwo(house_no, member_no);
+	
 %>
 
 <jsp:include page="/template/house_header.jsp"></jsp:include>
@@ -132,7 +134,7 @@
         							list_price = "월세 "+(resp[0].deposit/10000) + "/" + (resp[0].monthly/10000);
         						}
        				            var area_floor = resp[0].floor+" ㆍ "+resp[0].area+"㎡";
-       				         	$(template).find(".filterImg").children().attr("src", "D:/upload/kh42/"+resp[0].save_name).appendTo($(".list").children().last());
+       				         	$(template).find(".filterImg").children().attr("src", "photodownload.do?house_no="+<%=house_no%>+"&photo_no="+resp[0].photo_no).appendTo($(".list").children().last());
        				      	 	$(template).find(".filterPrice").text(list_price).appendTo($(".list").children().last());
  				             	$(template).find(".filterInfo").text(area_floor).appendTo($(".list").children().last());
  				             	$(template).find(".filterAddress").text(resp[0].address).appendTo($(".list").children().last());
@@ -141,7 +143,7 @@
         							$.each(resp, function(index, info){
         								$(template_img).find(".image-btn-box").appendTo(".image-box");
         								$(template_img).find(".detail-imagebtn-box").appendTo($(".image-box").children().last());
-        								$(template_img).find(".img-img").attr("src", "D:/upload/kh42/"+info.save_name).appendTo($(".image-box").children().last());
+        								$(template_img).find(".img-img").attr("src", "photodownload.do?house_no="+<%=house_no%>+"&photo_no="+info.photo_no).appendTo($(".image-box").children().last());
         								$(".image-box").children().last().find(".img-img").mouseover(function(){
         									$(this).prev().show();
         								});
